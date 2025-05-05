@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - GGDeals</title>
+    
+    <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/compiled/css/app.css">
+    <link rel="stylesheet" href="./assets/compiled/css/app-dark.css">
+    <link rel="stylesheet" href="./assets/compiled/css/iconly.css">
+    <link rel="stylesheet" href="./assets/extensions/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <script src="assets/static/js/initTheme.js"></script>
+    <div id="app">
+        <div id="main" class="layout-horizontal">
+            <header class="mb-5">
+                <div class="header-top">
+                    <div class="container">
+                        <div class="logo">
+                            <a href="admin.html"><img src="./assets/compiled/svg/logo.svg" alt="Logo">
+                        </div>
+                        <div class="header-top-right">
+                            <div class="dropdown">
+                                <a href="#" id="topbarUserDropdown" class="user-dropdown d-flex align-items-center dropend dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="avatar avatar-md2" >
+                                        <img src="./assets/compiled/jpg/1.jpg" alt="Avatar">
+                                    </div>
+                                    <div class="text">
+                                        <h6 class="user-dropdown-name">Administrador</h6>
+                                        <p class="user-dropdown-status text-sm text-muted">Administrador</p>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="topbarUserDropdown">
+                                  <li><a class="dropdown-item" th:href="@{/admin/profile}" href="admin-profile.html">Mi Perfil</a></li>
+                                  <li><a class="dropdown-item" th:href="@{/admin/password}" href="admin-password.html">Cambiar Contraseña</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item" th:href="@{/logout}" href="login.html">Cerrar Sesión</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Burger button responsive -->
+                            <a href="#" class="burger-btn d-block d-xl-none">
+                                <i class="bi bi-justify fs-3"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <nav class="main-navbar">
+                    <div class="container">
+                        <ul>
+                            <li class="menu-item">
+                                <a href="admin.html" class='menu-link'>
+                                    <span><i class="bi bi-grid-fill"></i> Dashboard</span>
+                                </a>
+                            </li>
+                            
+                            <li class="menu-item">
+                                <a href="admin-users.html" class='menu-link'>
+                                    <span><i class="bi bi-people-fill"></i> Usuarios</span>
+                                </a>
+                            </li>
+                            
+                            <li class="menu-item">
+                                <a href="admin-games.html" class='menu-link'>
+                                    <span><i class="bi bi-joystick"></i> Videojuegos</span>
+                                </a>
+                            </li>
+                            
+                            <li class="menu-item">
+                                <a href="admin-keys.html" class='menu-link'>
+                                    <span><i class="bi bi-key-fill"></i> Réplicas</span>
+                                </a>
+                            </li>
+                            
+                            <li class="menu-item">
+                                <a href="admin-sales.html" class='menu-link'>
+                                    <span><i class="bi bi-cart-fill"></i> Ventas</span>
+                                </a>
+                            </li>
+                            
+                            <li class="menu-item">
+                                <a href="admin-reservations.html" class='menu-link'>
+                                    <span><i class="bi bi-bookmark-fill"></i> Reservas</span>
+                                </a>
+                            </li>
+                            
+                            <li class="menu-item has-sub">
+                                <a href="#" class='menu-link'>
+                                    <span><i class="bi bi-list-check"></i> Catálogos</span>
+                                </a>
+                                <div class="submenu">
+                                    <div class="submenu-group-wrapper">
+                                        <ul class="submenu-group">
+                                            <li class="submenu-item">
+                                                <a href="admin-platforms.html" class='submenu-link'>Plataformas</a>
+                                            </li>
+                                            <li class="submenu-item">
+                                                <a href="admin-editions.html" class='submenu-link'>Ediciones</a>
+                                            </li>
+                                            <li class="submenu-item">
+                                                <a href="admin-features.html" class='submenu-link'>Características</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+            <div class="content-wrapper container">
+                
+                <div class="page-heading">
+                    <h3>Dashboard de Administración</h3>
+                </div>
+                <div class="page-content">
+                    <section class="row">
+                        <div class="col-12 col-lg-9">
+                            <div class="row">
+                                <div class="col-6 col-lg-3 col-md-6">
+                                    <div class="card">
+                                        <div class="card-body px-4 py-4-5">
+                                            <div class="row">
+                                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                                    <div class="stats-icon purple mb-2">
+                                                        <i class="bi bi-people-fill"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                                    <h6 class="text-muted font-semibold">Total Usuarios</h6>
+                                                    <h6 class="font-extrabold mb-0">243</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-lg-3 col-md-6">
+                                    <div class="card">
+                                        <div class="card-body px-4 py-4-5">
+                                            <div class="row">
+                                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                                    <div class="stats-icon blue mb-2">
+                                                        <i class="bi bi-joystick"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                                    <h6 class="text-muted font-semibold">Total Juegos</h6>
+                                                    <h6 class="font-extrabold mb-0">128</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-lg-3 col-md-6">
+                                    <div class="card">
+                                        <div class="card-body px-4 py-4-5">
+                                            <div class="row">
+                                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                                    <div class="stats-icon green mb-2">
+                                                        <i class="bi bi-cart-fill"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                                    <h6 class="text-muted font-semibold">Total Ventas</h6>
+                                                    <h6 class="font-extrabold mb-0">€ 12,456</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-lg-3 col-md-6">
+                                    <div class="card">
+                                        <div class="card-body px-4 py-4-5">
+                                            <div class="row">
+                                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
+                                                    <div class="stats-icon red mb-2">
+                                                        <i class="bi bi-bookmark-fill"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                                    <h6 class="text-muted font-semibold">Reservas Activas</h6>
+                                                    <h6 class="font-extrabold mb-0">36</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>Ventas Mensuales</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="chart-monthly-sales"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-xl-4">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>Ventas por Plataforma</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div id="chart-platform-sales"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-xl-8">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4>Juegos Más Vendidos</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-hover table-lg">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Juego</th>
+                                                            <th>Ventas</th>
+                                                            <th>Ingresos</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="col-5">
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="avatar avatar-md">
+                                                                        <img src="./assets/compiled/jpg/5.jpg">
+                                                                    </div>
+                                                                    <p class="font-bold ms-3 mb-0">The Witcher 3: Wild Hunt</p>
+                                                                </div>
+                                                            </td>
+                                                            <td class="col-auto">
+                                                                <p class="mb-0">254</p>
+                                                            </td>
+                                                            <td class="col-auto">
+                                                                <p class="mb-0">€ 12,700</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="col-5">
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="avatar avatar-md">
+                                                                        <img src="./assets/compiled/jpg/2.jpg">
+                                                                    </div>
+                                                                    <p class="font-bold ms-3 mb-0">Cyberpunk 2077</p>
+                                                                </div>
+                                                            </td>
+                                                            <td class="col-auto">
+                                                                <p class="mb-0">198</p>
+                                                            </td>
+                                                            <td class="col-auto">
+                                                                <p class="mb-0">€ 11,880</p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="col-5">
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="avatar avatar-md">
+                                                                        <img src="./assets/compiled/jpg/3.jpg">
+                                                                    </div>
+                                                                    <p class="font-bold ms-3 mb-0">Red Dead Redemption 2</p>
+                                                                </div>
+                                                            </td>
+                                                            <td class="col-auto">
+                                                                <p class="mb-0">157</p>
+                                                            </td>
+                                                            <td class="col-auto">
+                                                                <p class="mb-0">€ 9,420</p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Juegos Más Reservados</h4>
+                                </div>
+                                <div class="card-content pb-4">
+                                    <div class="recent-message d-flex px-4 py-3">
+                                        <div class="avatar avatar-lg">
+                                            <img src="./assets/compiled/jpg/4.jpg">
+                                        </div>
+                                        <div class="name ms-4">
+                                            <h5 class="mb-1">GTA VI</h5>
+                                            <h6 class="text-muted mb-0">89 reservas</h6>
+                                        </div>
+                                    </div>
+                                    <div class="recent-message d-flex px-4 py-3">
+                                        <div class="avatar avatar-lg">
+                                            <img src="./assets/compiled/jpg/5.jpg">
+                                        </div>
+                                        <div class="name ms-4">
+                                            <h5 class="mb-1">Elder Scrolls VI</h5>
+                                            <h6 class="text-muted mb-0">67 reservas</h6>
+                                        </div>
+                                    </div>
+                                    <div class="recent-message d-flex px-4 py-3">
+                                        <div class="avatar avatar-lg">
+                                            <img src="./assets/compiled/jpg/1.jpg">
+                                        </div>
+                                        <div class="name ms-4">
+                                            <h5 class="mb-1">Starfield 2</h5>
+                                            <h6 class="text-muted mb-0">42 reservas</h6>
+                                        </div>
+                                    </div>
+                                    <div class="px-4">
+                                        <a href="admin-reservations.html" class='btn btn-block btn-xl btn-outline-primary font-bold mt-3'>Ver Todas las Reservas</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Lanzamientos Próximos</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="upcoming-games">
+                                        <div class="game-item d-flex py-2">
+                                            <div class="avatar avatar-sm me-3">
+                                                <img src="./assets/compiled/jpg/1.jpg">
+                                            </div>
+                                            <div class="game-info d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0">Elden Ring DLC</h6>
+                                                <small>15/06/2025</small>
+                                            </div>
+                                        </div>
+                                        <div class="game-item d-flex py-2">
+                                            <div class="avatar avatar-sm me-3">
+                                                <img src="./assets/compiled/jpg/2.jpg">
+                                            </div>
+                                            <div class="game-info d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0">God of War: Ragnarok</h6>
+                                                <small>22/06/2025</small>
+                                            </div>
+                                        </div>
+                                        <div class="game-item d-flex py-2">
+                                            <div class="avatar avatar-sm me-3">
+                                                <img src="./assets/compiled/jpg/3.jpg">
+                                            </div>
+                                            <div class="game-info d-flex flex-column justify-content-center">
+                                                <h6 class="mb-0">Spider-Man 2</h6>
+                                                <small>30/06/2025</small>
+                                            </div>
+                                        </div>
+                                        <div class="text-center mt-3">
+                                            <a href="admin-games.html" class="btn btn-sm btn-outline-primary">Ver Todos</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <footer>
+                <div class="container">
+                    <div class="footer clearfix mb-0 text-muted">
+                        <div class="float-start">
+                            <p>2025 &copy; GGDeals Admin</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="assets/static/js/components/dark.js"></script>
+    <script src="assets/static/js/pages/horizontal-layout.js"></script>
+    <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/compiled/js/app.js"></script>
+    
+    <script src="assets/extensions/apexcharts/apexcharts.min.js"></script>
+    <script>
+        // Gráfica de ventas mensuales
+        var monthlySalesOptions = {
+            series: [{
+                name: 'Ventas',
+                data: [12500, 14800, 18300, 19500, 16200, 20100, 22400, 19800, 21200, 23500, 24600, 26100]
+            }],
+            chart: {
+                height: 350,
+                type: 'area',
+                toolbar: {
+                    show: false,
+                }
+            },
+            colors: ['#5ddab4'],
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 1,
+                    opacityFrom: 0.7,
+                    opacityTo: 0.9,
+                    stops: [0, 90, 100]
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            xaxis: {
+                categories: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return "€ " + val
+                    }
+                }
+            }
+        };
+
+        var monthlySalesChart = new ApexCharts(document.querySelector("#chart-monthly-sales"), monthlySalesOptions);
+        monthlySalesChart.render();
+
+        // Gráfica de ventas por plataforma
+        var platformSalesOptions = {
+            series: [44, 25, 20, 11],
+            chart: {
+                type: 'donut',
+                height: 350
+            },
+            labels: ['PC', 'PlayStation', 'Xbox', 'Nintendo'],
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    chart: {
+                        width: 300
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }],
+            colors: ['#435ebe', '#55c6e8', '#5ddab4', '#f3616d']
+        };
+
+        var platformSalesChart = new ApexCharts(document.querySelector("#chart-platform-sales"), platformSalesOptions);
+        platformSalesChart.render();
+    </script>
+</body>
+
+</html>

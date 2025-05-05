@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Plataformas - GGDeals</title>
+    
+    <!-- Enlaces CSS para que funcionen tanto en Thymeleaf como directamente -->
+    <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon" th:href="@{/assets/compiled/svg/favicon.svg}">
+    <link rel="stylesheet" href="./assets/compiled/css/app.css" th:href="@{/assets/compiled/css/app.css}">
+    <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" th:href="@{/assets/compiled/css/app-dark.css}">
+    <link rel="stylesheet" href="./assets/compiled/css/iconly.css" th:href="@{/assets/compiled/css/iconly.css}">
+    <link rel="stylesheet" href="./assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css" th:href="@{/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css}">
+    <link rel="stylesheet" href="./assets/compiled/css/table-datatable-jquery.css" th:href="@{/assets/compiled/css/table-datatable-jquery.css}">
+    <link rel="stylesheet" href="./assets/extensions/bootstrap-icons/font/bootstrap-icons.css" th:href="@{/assets/extensions/bootstrap-icons/font/bootstrap-icons.css}">
+</head>
+
+<body>
+    <script th:src="@{/assets/static/js/initTheme.js}"></script>
+    <div id="app">
+        <div id="main" class="layout-horizontal">
+            <header class="mb-5">
+                <div class="header-top">
+                    <div class="container">
+                        <div class="logo">
+                            <a th:href="@{/admin}"><img th:src="@{/assets/compiled/svg/logo.svg}" alt="Logo"> </a>
+                        </div>
+                        <div class="header-top-right">
+                            <div class="dropdown">
+                                <a href="#" id="topbarUserDropdown" class="user-dropdown d-flex align-items-center dropend dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="avatar avatar-md2" >
+                                        <img th:src="@{/assets/compiled/jpg/1.jpg}" alt="Avatar">
+                                    </div>
+                                    <div class="text">
+                                        <h6 class="user-dropdown-name" th:text="${#authentication.principal.name}">Administrador</h6>
+                                        <p class="user-dropdown-status text-sm text-muted" th:text="${#authentication.principal.role}">Administrador</p>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="topbarUserDropdown">
+                                  <li><a class="dropdown-item" th:href="@{/admin/profile}">Mi Perfil</a></li>
+                                  <li><a class="dropdown-item" th:href="@{/admin/password}">Cambiar Contraseña</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item" th:href="@{/logout}">Cerrar Sesión</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Burger button responsive -->
+                            <a href="#" class="burger-btn d-block d-xl-none">
+                                <i class="bi bi-justify fs-3"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <nav class="main-navbar">
+                    <div class="container">
+                        <ul>
+                            <li class="menu-item">
+                                <a th:href="@{/admin}" class='menu-link'>
+                                    <span><i class="bi bi-grid-fill"></i> Dashboard</span>
+                                </a>
+                            </li>
+                            
+                            <li class="menu-item">
+                                <a th:href="@{/admin/users}" class='menu-link'>
+                                    <span><i class="bi bi-people-fill"></i> Usuarios</span>
+                                </a>
+                            </li>
+                            
+                            <li class="menu-item">
+                                <a th:href="@{/admin/games}" class='menu-link'>
+                                    <span><i class="bi bi-joystick"></i> Videojuegos</span>
+                                </a>
+                            </li>
+                            
+                            <li class="menu-item">
+                                <a th:href="@{/admin/keys}" class='menu-link'>
+                                    <span><i class="bi bi-key-fill"></i> Réplicas</span>
+                                </a>
+                            </li>
+                            
+                            <li class="menu-item">
+                                <a th:href="@{/admin/sales}" class='menu-link'>
+                                    <span><i class="bi bi-cart-fill"></i> Ventas</span>
+                                </a>
+                            </li>
+                            
+                            <li class="menu-item">
+                                <a th:href="@{/admin/reservations}" class='menu-link'>
+                                    <span><i class="bi bi-bookmark-fill"></i> Reservas</span>
+                                </a>
+                            </li>
+                            
+                            <li class="menu-item has-sub active">
+                                <a href="#" class='menu-link'>
+                                    <span><i class="bi bi-list-check"></i> Catálogos</span>
+                                </a>
+                                <div class="submenu">
+                                    <div class="submenu-group-wrapper">
+                                        <ul class="submenu-group">
+                                            <li class="submenu-item active">
+                                                <a th:href="@{/admin/platforms}" class='submenu-link'>Plataformas</a>
+                                            </li>
+                                            <li class="submenu-item">
+                                                <a th:href="@{/admin/editions}" class='submenu-link'>Ediciones</a>
+                                            </li>
+                                            <li class="submenu-item">
+                                                <a th:href="@{/admin/features}" class='submenu-link'>Características</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+            <div class="content-wrapper container">
+                <div class="page-heading">
+                    <div class="d-flex justify-content-between">
+                        <h3>Gestión de Plataformas</h3>
+                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPlatformModal">
+                            <i class="bi bi-plus"></i> Nueva Plataforma
+                        </a>
+                    </div>
+                </div>
+                <div class="page-content">
+                    <section class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Lista de Plataformas</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped" id="platformsTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Logo</th>
+                                                    <th>Nombre</th>
+                                                    <th>Fabricante</th>
+                                                    <th>Estado</th>
+                                                    <th>Juegos</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="platform : ${platforms}">
+                                                    <td th:text="${platform.id}">1</td>
+                                                    <td>
+                                                        <div class="avatar avatar-md">
+                                                            <img th:src="${platform.logoUrl}" th:alt="${platform.name}" alt="PlayStation 5">
+                                                        </div>
+                                                    </td>
+                                                    <td th:text="${platform.name}">PlayStation 5</td>
+                                                    <td th:text="${platform.manufacturer}">Sony</td>
+                                                    <td>
+                                                        <span th:if="${platform.active}" class="badge bg-success">Activa</span>
+                                                        <span th:unless="${platform.active}" class="badge bg-secondary">Inactiva</span>
+                                                    </td>
+                                                    <td th:text="${platform.gamesCount}">42</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="bi bi-three-dots-vertical"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editPlatformModal" 
+                                                                       th:data-id="${platform.id}" 
+                                                                       th:data-name="${platform.name}" 
+                                                                       th:data-manufacturer="${platform.manufacturer}"
+                                                                       th:data-description="${platform.description}"
+                                                                       th:data-logo-url="${platform.logoUrl}"
+                                                                       th:data-active="${platform.active}">
+                                                                       <i class="bi bi-pencil"></i> Editar</a>
+                                                                </li>
+                                                                <li th:if="${platform.active}">
+                                                                    <a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#deactivatePlatformModal" 
+                                                                       th:data-id="${platform.id}" 
+                                                                       th:data-name="${platform.name}">
+                                                                       <i class="bi bi-toggle-off"></i> Desactivar</a>
+                                                                </li>
+                                                                <li th:unless="${platform.active}">
+                                                                    <a class="dropdown-item text-success" href="#" data-bs-toggle="modal" data-bs-target="#activatePlatformModal" 
+                                                                       th:data-id="${platform.id}" 
+                                                                       th:data-name="${platform.name}">
+                                                                       <i class="bi bi-toggle-on"></i> Activar</a>
+                                                                </li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deletePlatformModal" 
+                                                                       th:data-id="${platform.id}" 
+                                                                       th:data-name="${platform.name}"
+                                                                       th:data-games="${platform.gamesCount}">
+                                                                       <i class="bi bi-trash"></i> Eliminar</a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <!-- Ejemplos estáticos para visualización -->
+                                                <tr th:if="${#lists.isEmpty(platforms)}">
+                                                    <td>1</td>
+                                                    <td>
+                                                        <div class="avatar avatar-md">
+                                                            <img src="/assets/compiled/svg/ps5.svg" alt="PlayStation 5">
+                                                        </div>
+                                                    </td>
+                                                    <td>PlayStation 5</td>
+                                                    <td>Sony</td>
+                                                    <td><span class="badge bg-success">Activa</span></td>
+                                                    <td>42</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="bi bi-three-dots-vertical"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editPlatformModal"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#deactivatePlatformModal"><i class="bi bi-toggle-off"></i> Desactivar</a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deletePlatformModal"><i class="bi bi-trash"></i> Eliminar</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr th:if="${#lists.isEmpty(platforms)}">
+                                                    <td>2</td>
+                                                    <td>
+                                                        <div class="avatar avatar-md">
+                                                            <img src="/assets/compiled/svg/xbox.svg" alt="Xbox Series X">
+                                                        </div>
+                                                    </td>
+                                                    <td>Xbox Series X</td>
+                                                    <td>Microsoft</td>
+                                                    <td><span class="badge bg-success">Activa</span></td>
+                                                    <td>36</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="bi bi-three-dots-vertical"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editPlatformModal"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#deactivatePlatformModal"><i class="bi bi-toggle-off"></i> Desactivar</a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deletePlatformModal"><i class="bi bi-trash"></i> Eliminar</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr th:if="${#lists.isEmpty(platforms)}">
+                                                    <td>3</td>
+                                                    <td>
+                                                        <div class="avatar avatar-md">
+                                                            <img src="/assets/compiled/svg/switch.svg" alt="Nintendo Switch">
+                                                        </div>
+                                                    </td>
+                                                    <td>Nintendo Switch</td>
+                                                    <td>Nintendo</td>
+                                                    <td><span class="badge bg-success">Activa</span></td>
+                                                    <td>28</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="bi bi-three-dots-vertical"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editPlatformModal"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#deactivatePlatformModal"><i class="bi bi-toggle-off"></i> Desactivar</a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deletePlatformModal"><i class="bi bi-trash"></i> Eliminar</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr th:if="${#lists.isEmpty(platforms)}">
+                                                    <td>4</td>
+                                                    <td>
+                                                        <div class="avatar avatar-md">
+                                                            <img src="/assets/compiled/svg/pc.svg" alt="PC">
+                                                        </div>
+                                                    </td>
+                                                    <td>PC</td>
+                                                    <td>Varios</td>
+                                                    <td><span class="badge bg-success">Activa</span></td>
+                                                    <td>56</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="bi bi-three-dots-vertical"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editPlatformModal"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#deactivatePlatformModal"><i class="bi bi-toggle-off"></i> Desactivar</a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deletePlatformModal"><i class="bi bi-trash"></i> Eliminar</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr th:if="${#lists.isEmpty(platforms)}">
+                                                    <td>5</td>
+                                                    <td>
+                                                        <div class="avatar avatar-md">
+                                                            <img src="/assets/compiled/svg/ps4.svg" alt="PlayStation 4">
+                                                        </div>
+                                                    </td>
+                                                    <td>PlayStation 4</td>
+                                                    <td>Sony</td>
+                                                    <td><span class="badge bg-success">Activa</span></td>
+                                                    <td>38</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="bi bi-three-dots-vertical"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editPlatformModal"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#deactivatePlatformModal"><i class="bi bi-toggle-off"></i> Desactivar</a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deletePlatformModal"><i class="bi bi-trash"></i> Eliminar</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr th:if="${#lists.isEmpty(platforms)}">
+                                                    <td>6</td>
+                                                    <td>
+                                                        <div class="avatar avatar-md">
+                                                            <img src="/assets/compiled/svg/ps3.svg" alt="PlayStation 3">
+                                                        </div>
+                                                    </td>
+                                                    <td>PlayStation 3</td>
+                                                    <td>Sony</td>
+                                                    <td><span class="badge bg-secondary">Inactiva</span></td>
+                                                    <td>12</td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="bi bi-three-dots-vertical"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editPlatformModal"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><a class="dropdown-item text-success" href="#" data-bs-toggle="modal" data-bs-target="#activatePlatformModal"><i class="bi bi-toggle-on"></i> Activar</a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deletePlatformModal"><i class="bi bi-trash"></i> Eliminar</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <footer>
+                <div class="container">
+                    <div class="footer clearfix mb-0 text-muted">
+                        <div class="float-start">
+                            <p>2025 &copy; GGDeals Admin</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Modales -->
+    <!-- Modal Añadir Plataforma -->
+    <div class="modal fade" id="addPlatformModal" tabindex="-1" aria-labelledby="addPlatformModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPlatformModalLabel">Añadir Nueva Plataforma</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addPlatformForm" th:action="@{/admin/platforms/add}" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="platformName" class="form-label">Nombre de la Plataforma</label>
+                                <input type="text" class="form-control" id="platformName" name="name" required placeholder="Ej. PlayStation 5">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="platformManufacturer" class="form-label">Fabricante</label>
+                                <input type="text" class="form-control" id="platformManufacturer" name="manufacturer" required placeholder="Ej. Sony">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="platformDescription" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="platformDescription" name="description" rows="3" placeholder="Describe brevemente esta plataforma..."></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="platformLogo" class="form-label">Logo</label>
+                            <input type="file" class="form-control" id="platformLogo" name="logo" accept="image/*">
+                            <div class="form-text">Formato recomendado: SVG o PNG con fondo transparente. Tamaño máximo: 2MB.</div>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="platformActive" name="active" checked>
+                            <label class="form-check-label" for="platformActive">
+                                Plataforma Activa
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="addPlatformForm" class="btn btn-primary">Guardar Plataforma</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editar Plataforma -->
+    <div class="modal fade" id="editPlatformModal" tabindex="-1" aria-labelledby="editPlatformModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editPlatformModalLabel">Editar Plataforma</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editPlatformForm" th:action="@{/admin/platforms/edit}" method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="editPlatformId" name="id">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="editPlatformName" class="form-label">Nombre de la Plataforma</label>
+                                <input type="text" class="form-control" id="editPlatformName" name="name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editPlatformManufacturer" class="form-label">Fabricante</label>
+                                <input type="text" class="form-control" id="editPlatformManufacturer" name="manufacturer" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPlatformDescription" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="editPlatformDescription" name="description" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center mb-2">
+                                <label class="me-3">Logo Actual:</label>
+                                <div class="avatar avatar-lg">
+                                    <img id="currentLogo" src="/assets/compiled/svg/ps5.svg" alt="Logo actual">
+                                </div>
+                            </div>
+                            <label for="editPlatformLogo" class="form-label">Nuevo Logo (opcional)</label>
+                            <input type="file" class="form-control" id="editPlatformLogo" name="logo" accept="image/*">
+                            <div class="form-text">Deja este campo vacío para mantener el logo actual.</div>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="editPlatformActive" name="active">
+                            <label class="form-check-label" for="editPlatformActive">
+                                Plataforma Activa
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="editPlatformForm" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Activar Plataforma -->
+    <div class="modal fade" id="activatePlatformModal" tabindex="-1" aria-labelledby="activatePlatformModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="activatePlatformModalLabel">Activar Plataforma</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-toggle-on text-success" style="font-size: 3rem;"></i>
+                        <h4 class="mt-3">¿Activar esta plataforma?</h4>
+                        <p>Vas a activar la plataforma <strong id="activatePlatformName">PlayStation 3</strong>. Esto la hará visible para todos los usuarios y permitirá añadir nuevos juegos para esta plataforma.</p>
+                    </div>
+                    <form id="activatePlatformForm" th:action="@{/admin/platforms/activate}" method="post">
+                        <input type="hidden" id="activatePlatformId" name="id">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="activatePlatformForm" class="btn btn-success">Activar Plataforma</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Desactivar Plataforma -->
+    <div class="modal fade" id="deactivatePlatformModal" tabindex="-1" aria-labelledby="deactivatePlatformModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deactivatePlatformModalLabel">Desactivar Plataforma</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-toggle-off text-warning" style="font-size: 3rem;"></i>
+                        <h4 class="mt-3">¿Desactivar esta plataforma?</h4>
+                        <p>Vas a desactivar la plataforma <strong id="deactivatePlatformName">PlayStation 5</strong>. Esto la ocultará para los usuarios y no se podrán añadir nuevos juegos para esta plataforma.</p>
+                    </div>
+                    <div class="alert alert-warning">
+                        <i class="bi bi-exclamation-circle"></i> Los juegos asociados a esta plataforma seguirán existiendo pero no estarán disponibles para nuevas compras. Las ventas y reservas existentes no se verán afectadas.
+                    </div>
+                    <form id="deactivatePlatformForm" th:action="@{/admin/platforms/deactivate}" method="post">
+                        <input type="hidden" id="deactivatePlatformId" name="id">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="deactivatePlatformForm" class="btn btn-warning">Desactivar Plataforma</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Eliminar Plataforma -->
+    <div class="modal fade" id="deletePlatformModal" tabindex="-1" aria-labelledby="deletePlatformModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deletePlatformModalLabel">Eliminar Plataforma</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-exclamation-triangle text-danger" style="font-size: 3rem;"></i>
+                        <h4 class="mt-3">¿Estás seguro?</h4>
+                        <p>¿Realmente deseas eliminar la plataforma <strong id="deletePlatformName">PlayStation 5</strong>?</p>
+                    </div>
+                    <div id="deletePlatformWarning" class="alert alert-danger">
+                        <i class="bi bi-exclamation-circle"></i> Esta plataforma tiene <strong id="deletePlatformGames">42</strong> juegos asociados. No se puede eliminar hasta que se eliminen estas asociaciones.
+                    </div>
+                    <div id="deletePlatformConfirm" class="alert alert-warning" style="display: none;">
+                        <i class="bi bi-exclamation-circle"></i> Esta acción no se puede deshacer. Se eliminará permanentemente la plataforma del sistema.
+                    </div>
+                    <form id="deletePlatformForm" th:action="@{/admin/platforms/delete}" method="post">
+                        <input type="hidden" id="deletePlatformId" name="id">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" form="deletePlatformForm" class="btn btn-danger" id="deletePlatformButton" disabled>Eliminar Plataforma</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{/assets/static/js/components/dark.js}"></script>
+    <script th:src="@{/assets/static/js/pages/horizontal-layout.js}"></script>
+    <script th:src="@{/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
+    <script th:src="@{/assets/compiled/js/app.js}"></script>
+    <script th:src="@{/assets/extensions/jquery/jquery.min.js}"></script>
+    <script th:src="@{/assets/extensions/datatables.net/js/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js}"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Inicializar DataTable
+            $('#platformsTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
+                }
+            });
+            
+            // Cargar datos en los modales
+            $('#editPlatformModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('id');
+                var name = button.data('name');
+                var manufacturer = button.data('manufacturer');
+                var description = button.data('description');
+                var logoUrl = button.data('logo-url');
+                var active = button.data('active');
+                
+                $('#editPlatformId').val(id);
+                $('#editPlatformName').val(name);
+                $('#editPlatformManufacturer').val(manufacturer);
+                $('#editPlatformDescription').val(description);
+                $('#currentLogo').attr('src', logoUrl);
+                $('#currentLogo').attr('alt', name);
+                $('#editPlatformActive').prop('checked', active);
+            });
+            
+            $('#activatePlatformModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('id');
+                var name = button.data('name');
+                
+                $('#activatePlatformId').val(id);
+                $('#activatePlatformName').text(name);
+            });
+            
+            $('#deactivatePlatformModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('id');
+                var name = button.data('name');
+                
+                $('#deactivatePlatformId').val(id);
+                $('#deactivatePlatformName').text(name);
+            });
+            
+            $('#deletePlatformModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('id');
+                var name = button.data('name');
+                var games = button.data('games');
+                
+                $('#deletePlatformId').val(id);
+                $('#deletePlatformName').text(name);
+                $('#deletePlatformGames').text(games);
+                
+                if (games > 0) {
+                    $('#deletePlatformWarning').show();
+                    $('#deletePlatformConfirm').hide();
+                    $('#deletePlatformButton').prop('disabled', true);
+                } else {
+                    $('#deletePlatformWarning').hide();
+                    $('#deletePlatformConfirm').show();
+                    $('#deletePlatformButton').prop('disabled', false);
+                }
+            });
+            
+            // Vista previa de logo subido para nueva plataforma
+            $('#platformLogo').on('change', function(event) {
+                var file = event.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        // Aquí podrías mostrar una vista previa si quieres
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Vista previa de logo subido para editar plataforma
+            $('#editPlatformLogo').on('change', function(event) {
+                var file = event.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#currentLogo').attr('src', e.target.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
