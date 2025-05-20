@@ -23870,11 +23870,6 @@ body .bi:before,
     font-size: .8rem
 }
 
-.bi {
-    /* width: 1rem;
-    height: 1rem */
-}
-
 .bi.bi-middle:before {
     vertical-align: middle
 }

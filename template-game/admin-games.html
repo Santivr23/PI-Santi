@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Videojuegos - GGDeals</title>
     
-    <!-- Enlaces CSS para que funcionen tanto en Thymeleaf como directamente -->
-    <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon" th:href="@{/assets/compiled/svg/favicon.svg}">
-    <link rel="stylesheet" href="./assets/compiled/css/app.css" th:href="@{/assets/compiled/css/app.css}">
-    <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" th:href="@{/assets/compiled/css/app-dark.css}">
-    <link rel="stylesheet" href="./assets/compiled/css/iconly.css" th:href="@{/assets/compiled/css/iconly.css}">
-    <link rel="stylesheet" href="./assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css" th:href="@{/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css}">
-    <link rel="stylesheet" href="./assets/compiled/css/table-datatable-jquery.css" th:href="@{/assets/compiled/css/table-datatable-jquery.css}">
-    <link rel="stylesheet" href="./assets/extensions/bootstrap-icons/font/bootstrap-icons.css" th:href="@{/assets/extensions/bootstrap-icons/font/bootstrap-icons.css}">
+    <!-- Enlaces CSS -->
+    <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/compiled/css/app.css">
+    <link rel="stylesheet" href="./assets/compiled/css/app-dark.css">
+    <link rel="stylesheet" href="./assets/compiled/css/iconly.css">
+    <link rel="stylesheet" href="./assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="./assets/compiled/css/table-datatable-jquery.css">
+    <link rel="stylesheet" href="./assets/extensions/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- CSS de Flatpickr para el calendario -->
+    <link rel="stylesheet" href="./assets/extensions/flatpickr/flatpickr.min.css">
 </head>
 
 <body>
@@ -148,10 +150,10 @@
                                                     <th>ID</th>
                                                     <th>Imagen</th>
                                                     <th>Título</th>
-                                                    <th>Plataformas</th>
+                                                    <th>Desarrollo</th>
+                                                    <th>Nombre</th>
                                                     <th>Fecha Lanzamiento</th>
-                                                    <th>Precio Base</th>
-                                                    <th>Estado</th>
+                                                    <th>Fecha Publicación</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
@@ -160,14 +162,10 @@
                                                     <td>1</td>
                                                     <td><img src="./assets/compiled/jpg/1.jpg" width="50" height="50" class="rounded" alt="Game"></td>
                                                     <td>The Witcher 3: Wild Hunt</td>
-                                                    <td>
-                                                        <span class="badge bg-primary">PC</span>
-                                                        <span class="badge bg-info">PS5</span>
-                                                        <span class="badge bg-success">Xbox</span>
-                                                    </td>
+                                                    <td>CD Projekt RED</td>
+                                                    <td>Witcher 3</td>
                                                     <td>19/05/2015</td>
-                                                    <td>€29.99</td>
-                                                    <td><span class="badge bg-success">Publicado</span></td>
+                                                    <td>19/05/2015</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -188,14 +186,10 @@
                                                     <td>2</td>
                                                     <td><img src="./assets/compiled/jpg/2.jpg" width="50" height="50" class="rounded" alt="Game"></td>
                                                     <td>Cyberpunk 2077</td>
-                                                    <td>
-                                                        <span class="badge bg-primary">PC</span>
-                                                        <span class="badge bg-info">PS5</span>
-                                                        <span class="badge bg-success">Xbox</span>
-                                                    </td>
+                                                    <td>CD Projekt RED</td>
+                                                    <td>Cyberpunk</td>
                                                     <td>10/12/2020</td>
-                                                    <td>€49.99</td>
-                                                    <td><span class="badge bg-success">Publicado</span></td>
+                                                    <td>10/12/2020</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -216,14 +210,10 @@
                                                     <td>3</td>
                                                     <td><img src="./assets/compiled/jpg/3.jpg" width="50" height="50" class="rounded" alt="Game"></td>
                                                     <td>Red Dead Redemption 2</td>
-                                                    <td>
-                                                        <span class="badge bg-primary">PC</span>
-                                                        <span class="badge bg-info">PS5</span>
-                                                        <span class="badge bg-success">Xbox</span>
-                                                    </td>
+                                                    <td>Rockstar Games</td>
+                                                    <td>RDR2</td>
                                                     <td>26/10/2018</td>
-                                                    <td>€39.99</td>
-                                                    <td><span class="badge bg-success">Publicado</span></td>
+                                                    <td>26/10/2018</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -244,14 +234,10 @@
                                                     <td>4</td>
                                                     <td><img src="./assets/compiled/jpg/4.jpg" width="50" height="50" class="rounded" alt="Game"></td>
                                                     <td>GTA VI</td>
-                                                    <td>
-                                                        <span class="badge bg-primary">PC</span>
-                                                        <span class="badge bg-info">PS5</span>
-                                                        <span class="badge bg-success">Xbox</span>
-                                                    </td>
+                                                    <td>Rockstar Games</td>
+                                                    <td>GTA6</td>
                                                     <td>15/10/2025</td>
-                                                    <td>€69.99</td>
-                                                    <td><span class="badge bg-warning">Próximamente</span></td>
+                                                    <td>No publicado</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -272,14 +258,10 @@
                                                     <td>5</td>
                                                     <td><img src="./assets/compiled/jpg/5.jpg" width="50" height="50" class="rounded" alt="Game"></td>
                                                     <td>Elder Scrolls VI</td>
-                                                    <td>
-                                                        <span class="badge bg-primary">PC</span>
-                                                        <span class="badge bg-info">PS5</span>
-                                                        <span class="badge bg-success">Xbox</span>
-                                                    </td>
+                                                    <td>Bethesda</td>
+                                                    <td>ESVI</td>
                                                     <td>22/11/2025</td>
-                                                    <td>€59.99</td>
-                                                    <td><span class="badge bg-warning">Próximamente</span></td>
+                                                    <td>No publicado</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -300,12 +282,10 @@
                                                     <td>6</td>
                                                     <td><img src="./assets/compiled/jpg/6.jpg" width="50" height="50" class="rounded" alt="Game"></td>
                                                     <td>Juego en Desarrollo</td>
-                                                    <td>
-                                                        <span class="badge bg-primary">PC</span>
-                                                    </td>
+                                                    <td>Estudio Indie</td>
+                                                    <td>Indie Game</td>
                                                     <td>Pendiente</td>
-                                                    <td>€49.99</td>
-                                                    <td><span class="badge bg-secondary">No Publicado</span></td>
+                                                    <td>No publicado</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -454,53 +434,26 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="gameTitle" class="form-label">Título</label>
-                                <input type="text" class="form-control" id="gameTitle" placeholder="Título del juego">
+                                <input type="text" class="form-control" id="gameTitle" name="title" placeholder="Título del juego">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="gameDeveloper" class="form-label">Desarrollador</label>
-                                <input type="text" class="form-control" id="gameDeveloper" placeholder="Desarrollador del juego">
+                                <label for="gameDesarrollo" class="form-label">Desarrollo</label>
+                                <input type="text" class="form-control" id="gameDesarrollo" name="desarrollo" placeholder="Desarrollo del juego">
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row"></div>
                             <div class="col-md-6 mb-3">
-                                <label for="gamePublisher" class="form-label">Distribuidor</label>
-                                <input type="text" class="form-control" id="gamePublisher" placeholder="Distribuidor del juego">
+                                <label for="gameName" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="gameName" name="name" placeholder="Nombre del juego">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="gameReleaseDate" class="form-label">Fecha de Lanzamiento</label>
-                                <input type="text" class="form-control flatpickr" id="gameReleaseDate" placeholder="Seleccionar fecha">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="gameBasePrice" class="form-label">Precio Base (€)</label>
-                                <input type="number" step="0.01" class="form-control" id="gameBasePrice" placeholder="0.00">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="gamePlatforms" class="form-label">Plataformas</label>
-                                <select class="form-select" id="gamePlatforms" multiple>
-                                    <option value="pc">PC</option>
-                                    <option value="ps5">PlayStation 5</option>
-                                    <option value="ps4">PlayStation 4</option>
-                                    <option value="xbox">Xbox Series X|S</option>
-                                    <option value="xboxone">Xbox One</option>
-                                    <option value="switch">Nintendo Switch</option>
-                                </select>
+                                <input type="text" class="form-control flatpickr" id="gameReleaseDate" name="release_date" placeholder="Seleccionar fecha">
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="gameDescription" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="gameDescription" rows="4" placeholder="Descripción del juego"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="gameThumbnail" class="form-label">Imagen Principal</label>
-                            <input type="file" class="filepond" id="gameThumbnail">
-                        </div>
-                        <div class="mb-3">
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="gamePublished">
-                                <label class="form-check-label" for="gamePublished">Publicar inmediatamente</label>
-                            </div>
+                            <label for="gameIsPublished" class="form-label">Fecha de Publicación</label>
+                            <input type="text" class="form-control flatpickr" id="gameIsPublished" name="is_published" placeholder="Seleccionar fecha de publicación">
                         </div>
                     </form>
                 </div>
@@ -522,46 +475,30 @@
                 </div>
                 <div class="modal-body">
                     <form>
+                        <input type="hidden" id="editGameId" name="id">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="editGameTitle" class="form-label">Título</label>
-                                <input type="text" class="form-control" id="editGameTitle" value="The Witcher 3: Wild Hunt">
+                                <input type="text" class="form-control" id="editGameTitle" name="title" placeholder="Título del juego">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="editGameDeveloper" class="form-label">Desarrollador</label>
-                                <input type="text" class="form-control" id="editGameDeveloper" value="CD Projekt RED">
+                                <label for="editGameDesarrollo" class="form-label">Desarrollo</label>
+                                <input type="text" class="form-control" id="editGameDesarrollo" name="desarrollo" placeholder="Desarrollo del juego">
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row"></div>
                             <div class="col-md-6 mb-3">
-                                <label for="editGamePublisher" class="form-label">Distribuidor</label>
-                                <input type="text" class="form-control" id="editGamePublisher" value="CD Projekt">
+                                <label for="editGameName" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="editGameName" name="name" placeholder="Nombre del juego">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="editGameReleaseDate" class="form-label">Fecha de Lanzamiento</label>
-                                <input type="text" class="form-control flatpickr" id="editGameReleaseDate" value="19/05/2015">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="editGameBasePrice" class="form-label">Precio Base (€)</label>
-                                <input type="number" step="0.01" class="form-control" id="editGameBasePrice" value="29.99">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="editGamePlatforms" class="form-label">Plataformas</label>
-                                <select class="form-select" id="editGamePlatforms" multiple>
-                                    <option value="pc" selected>PC</option>
-                                    <option value="ps5" selected>PlayStation 5</option>
-                                    <option value="ps4" selected>PlayStation 4</option>
-                                    <option value="xbox" selected>Xbox Series X|S</option>
-                                    <option value="xboxone" selected>Xbox One</option>
-                                    <option value="switch">Nintendo Switch</option>
-                                </select>
+                                <input type="text" class="form-control flatpickr" id="editGameReleaseDate" name="release_date" placeholder="Seleccionar fecha">
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="editGameDescription" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="editGameDescription" rows="4">The Witcher 3: Wild Hunt es un videojuego de rol desarrollado y publicado por la compañía polaca CD Projekt RED. Fue lanzado mundialmente para Microsoft Windows, PlayStation 4 y Xbox One el 19 de mayo de 2015. Es la tercera parte de la serie de videojuegos basada en la saga literaria de Geralt de Rivia por el escritor polaco Andrzej Sapkowski.</textarea>
+                            <label for="editGameIsPublished" class="form-label">Fecha de Publicación</label>
+                            <input type="text" class="form-control flatpickr" id="editGameIsPublished" name="is_published" placeholder="Seleccionar fecha de publicación">
                         </div>
                         <div class="mb-3">
                             <label for="editGameThumbnail" class="form-label">Imagen Principal</label>
@@ -570,12 +507,6 @@
                                 <span class="text-muted">Imagen actual - Cargar una nueva para reemplazar</span>
                             </div>
                             <input type="file" class="filepond" id="editGameThumbnail">
-                        </div>
-                        <div class="mb-3">
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="editGamePublished" checked>
-                                <label class="form-check-label" for="editGamePublished">Publicado</label>
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -589,46 +520,162 @@
 
     <!-- Modal Gestionar Imágenes -->
     <div class="modal fade" id="manageGameMediaModal" tabindex="-1" aria-labelledby="manageGameMediaModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="manageGameMediaModalLabel">Gestionar Imágenes - The Witcher 3: Wild Hunt</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="mb-4">
-                        <h6>Imágenes Actuales</h6>
-                        <div class="row g-3 mb-3">
-                            <div class="col-md-4">
-                                <div class="position-relative">
-                                    <img src="./assets/compiled/jpg/1.jpg" class="img-fluid rounded" alt="Game Image">
-                                    <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
+                    <ul class="nav nav-tabs" id="mediaTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="gallery-tab" data-bs-toggle="tab" data-bs-target="#gallery" type="button" role="tab" aria-controls="gallery" aria-selected="true">Galería</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="table-tab" data-bs-toggle="tab" data-bs-target="#table" type="button" role="tab" aria-controls="table" aria-selected="false">Tabla de Medios</button>
+                        </li>
+                    </ul>
+                    
+                    <div class="tab-content mt-3" id="mediaTabContent">
+                        <!-- Pestaña de Galería -->
+                        <div class="tab-pane fade show active" id="gallery" role="tabpanel" aria-labelledby="gallery-tab">
+                            <div class="mb-4">
+                                <h6>Imágenes Actuales</h6>
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-4">
+                                        <div class="position-relative">
+                                            <img src="./assets/compiled/jpg/1.jpg" class="img-fluid rounded" alt="Game Image">
+                                            <div class="position-absolute top-0 end-0 m-2">
+                                                <button type="button" class="btn btn-light btn-sm me-1" data-bs-toggle="tooltip" title="Establecer como miniatura">
+                                                    <i class="bi bi-star"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-danger btn-sm">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                            <div class="position-absolute bottom-0 start-0 m-2 bg-dark bg-opacity-75 text-white rounded px-2 py-1">
+                                                <small><i class="bi bi-star-fill text-warning me-1"></i> Miniatura</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="position-relative">
+                                            <img src="./assets/compiled/jpg/2.jpg" class="img-fluid rounded" alt="Game Image">
+                                            <div class="position-absolute top-0 end-0 m-2">
+                                                <button type="button" class="btn btn-light btn-sm me-1" data-bs-toggle="tooltip" title="Establecer como miniatura">
+                                                    <i class="bi bi-star"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-danger btn-sm">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="position-relative">
+                                            <img src="./assets/compiled/jpg/3.jpg" class="img-fluid rounded" alt="Game Image">
+                                            <div class="position-absolute top-0 end-0 m-2">
+                                                <button type="button" class="btn btn-light btn-sm me-1" data-bs-toggle="tooltip" title="Establecer como miniatura">
+                                                    <i class="bi bi-star"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-danger btn-sm">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="position-relative">
-                                    <img src="./assets/compiled/jpg/2.jpg" class="img-fluid rounded" alt="Game Image">
-                                    <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="position-relative">
-                                    <img src="./assets/compiled/jpg/3.jpg" class="img-fluid rounded" alt="Game Image">
-                                    <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-2">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </div>
+                            <div>
+                                <h6>Subir Nuevas Imágenes</h6>
+                                <input type="file" class="filepond" id="gameMediaUpload" multiple>
+                                <small class="text-muted">Puedes subir múltiples imágenes a la vez. Formatos permitidos: JPG, PNG, WebP. Tamaño máximo: 5MB por archivo.</small>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <h6>Subir Nuevas Imágenes</h6>
-                        <input type="file" class="filepond" id="gameMediaUpload" multiple>
-                        <small class="text-muted">Puedes subir múltiples imágenes a la vez. Formatos permitidos: JPG, PNG, WebP. Tamaño máximo: 5MB por archivo.</small>
+                        
+                        <!-- Pestaña de Tabla -->
+                        <div class="tab-pane fade" id="table" role="tabpanel" aria-labelledby="table-tab">
+                            <div class="mb-3 d-flex justify-content-end">
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addMediaModal">
+                                    <i class="bi bi-plus-lg"></i> Añadir Medio
+                                </button>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped" id="gameMediaTable">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Vista Previa</th>
+                                            <th>Ruta de Archivo</th>
+                                            <th>Es Miniatura</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>
+                                                <img src="./assets/compiled/jpg/1.jpg" width="80" height="45" class="rounded" alt="Media">
+                                            </td>
+                                            <td>/uploads/games/witcher3/cover.jpg</td>
+                                            <td>
+                                                <span class="badge bg-success">Sí</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editMediaModal">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteMediaModal">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>
+                                                <img src="./assets/compiled/jpg/2.jpg" width="80" height="45" class="rounded" alt="Media">
+                                            </td>
+                                            <td>/uploads/games/witcher3/screenshot1.jpg</td>
+                                            <td>
+                                                <span class="badge bg-secondary">No</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editMediaModal">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteMediaModal">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>
+                                                <img src="./assets/compiled/jpg/3.jpg" width="80" height="45" class="rounded" alt="Media">
+                                            </td>
+                                            <td>/uploads/games/witcher3/screenshot2.jpg</td>
+                                            <td>
+                                                <span class="badge bg-secondary">No</span>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editMediaModal">
+                                                        <i class="bi bi-pencil"></i>
+                                                    </button>
+                                                    <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteMediaModal">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -799,6 +846,102 @@
         </div>
     </div>
 
+    <!-- Modal Añadir Medio -->
+    <div class="modal fade" id="addMediaModal" tabindex="-1" aria-labelledby="addMediaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addMediaModalLabel">Añadir Nuevo Medio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="mediaFile" class="form-label">Archivo de Imagen</label>
+                            <input type="file" class="filepond" id="mediaFile" name="media">
+                            <small class="text-muted">Formatos permitidos: JPG, PNG, WebP. Tamaño máximo: 5MB.</small>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="mediaIsThumbnail" name="is_thumbnail">
+                            <label class="form-check-label" for="mediaIsThumbnail">Establecer como miniatura principal</label>
+                            <small class="d-block text-muted">Si se marca, esta imagen se usará como miniatura principal del juego.</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Guardar Medio</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editar Medio -->
+    <div class="modal fade" id="editMediaModal" tabindex="-1" aria-labelledby="editMediaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editMediaModalLabel">Editar Medio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" id="editMediaId" name="id" value="1">
+                        <div class="mb-3">
+                            <label for="editMediaPreview" class="form-label">Imagen Actual</label>
+                            <div class="text-center mb-2">
+                                <img src="./assets/compiled/jpg/1.jpg" class="img-fluid rounded" style="max-height: 200px;" alt="Media Preview">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editMediaFile" class="form-label">Reemplazar Imagen (opcional)</label>
+                            <input type="file" class="filepond" id="editMediaFile" name="media">
+                            <small class="text-muted">Deja vacío para mantener la imagen actual.</small>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="editMediaIsThumbnail" name="is_thumbnail" checked>
+                            <label class="form-check-label" for="editMediaIsThumbnail">Establecer como miniatura principal</label>
+                            <small class="d-block text-muted">Si se marca, esta imagen se usará como miniatura principal del juego.</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Eliminar Medio -->
+    <div class="modal fade" id="deleteMediaModal" tabindex="-1" aria-labelledby="deleteMediaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteMediaModalLabel">Eliminar Medio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <i class="bi bi-exclamation-triangle text-danger" style="font-size: 3rem;"></i>
+                        <h4 class="mt-3">¿Estás seguro?</h4>
+                        <p>¿Realmente deseas eliminar esta imagen? Esta acción no se puede deshacer.</p>
+                        <div class="mt-3 mb-3 text-center">
+                            <img src="./assets/compiled/jpg/1.jpg" class="img-fluid rounded" style="max-height: 150px;" alt="Media Preview">
+                        </div>
+                    </div>
+                    <div class="alert alert-warning">
+                        <i class="bi bi-exclamation-circle"></i> Si eliminas la imagen miniatura principal, deberás establecer una nueva imagen como miniatura.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger">Eliminar Imagen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="assets/static/js/components/dark.js"></script>
     <script src="assets/static/js/pages/horizontal-layout.js"></script>
     <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
@@ -823,6 +966,20 @@
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
                 }
+            });
+            
+            // Inicializar DataTable para game_media
+            var mediaTable = $('#gameMediaTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
+                },
+                "columnDefs": [
+                    { "width": "10%", "targets": 0 },
+                    { "width": "15%", "targets": 1 },
+                    { "width": "50%", "targets": 2 },
+                    { "width": "10%", "targets": 3 },
+                    { "width": "15%", "targets": 4 }
+                ]
             });
             
             // Filtros de estado
@@ -872,6 +1029,12 @@
                 });
             });
             
+            // Inicializar tooltips de Bootstrap
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            });
+            
             // Inicializar Flatpickr (Selector de fechas)
             flatpickr(".flatpickr", {
                 dateFormat: "d/m/Y",
@@ -895,6 +1058,123 @@
             
             $('#cancelAddEdition').click(function() {
                 $('#addEditionForm').addClass('d-none');
+            });
+            
+            // Solución para los modales anidados
+            // 1. Interceptar el botón para abrir modales desde manageGameMediaModal
+            $('#table-tab').on('click', 'button[data-bs-target="#addMediaModal"]', function(e) {
+                e.preventDefault();
+                // Guardar estado actual para restaurarlo después
+                var gameData = {
+                    title: $('#manageGameMediaModalLabel').text()
+                };
+                // Cerrar el modal principal primero
+                $('#manageGameMediaModal').modal('hide');
+                // Esperar a que se cierre completamente antes de abrir el segundo
+                setTimeout(function() {
+                    $('#addMediaModal').modal('show');
+                    // Guardar datos para cuando se cierre
+                    $('#addMediaModal').data('gameData', gameData);
+                }, 500);
+            });
+            
+            // Interceptar los botones de editar y eliminar media
+            $('#gameMediaTable').on('click', 'button[data-bs-toggle="modal"]', function(e) {
+                e.preventDefault();
+                var targetModal = $(this).data('bs-target');
+                var row = $(this).closest('tr');
+                var id = row.find('td:first').text();
+                var imgSrc = row.find('img').attr('src');
+                
+                // Guardar estado actual para restaurarlo después
+                var gameData = {
+                    title: $('#manageGameMediaModalLabel').text(),
+                    mediaId: id,
+                    imgSrc: imgSrc
+                };
+                
+                // Cerrar el modal principal primero
+                $('#manageGameMediaModal').modal('hide');
+                
+                // Esperar a que se cierre completamente antes de abrir el segundo
+                setTimeout(function() {
+                    // Configurar el modal según el tipo
+                    if(targetModal === '#editMediaModal') {
+                        $('#editMediaId').val(gameData.mediaId);
+                        $('#editMediaModal').find('.modal-body img').attr('src', gameData.imgSrc);
+                        $('#editMediaModal').data('gameData', gameData);
+                        $('#editMediaModal').modal('show');
+                    } else if(targetModal === '#deleteMediaModal') {
+                        $('#deleteMediaModal').find('.modal-body img').attr('src', gameData.imgSrc);
+                        $('#deleteMediaModal').data('media-id', gameData.mediaId);
+                        $('#deleteMediaModal').data('gameData', gameData);
+                        $('#deleteMediaModal').modal('show');
+                    }
+                }, 500);
+            });
+            
+            // Cuando se cierra un modal secundario, volver a abrir el principal
+            $('#addMediaModal, #editMediaModal, #deleteMediaModal').on('hidden.bs.modal', function (e) {
+                var gameData = $(this).data('gameData');
+                if(gameData) {
+                    setTimeout(function() {
+                        $('#manageGameMediaModal').modal('show');
+                        // Activar la pestaña de la tabla
+                        $('#table-tab').tab('show');
+                        // Refrescar datos si es necesario (en un caso real, recargarías de la BD)
+                    }, 500);
+                }
+            });
+            
+            // Botones para guardar cambios en los modales
+            $('#addMediaModal .btn-primary').click(function() {
+                // Lógica para guardar un nuevo medio
+                console.log('Guardando nuevo medio');
+                $('#addMediaModal').modal('hide');
+                
+                // Mostrar mensaje de éxito
+                Toastify({
+                    text: "Medio añadido correctamente",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "#4fbe87",
+                }).showToast();
+            });
+            
+            $('#editMediaModal .btn-primary').click(function() {
+                // Lógica para guardar cambios en un medio
+                var id = $('#editMediaId').val();
+                console.log('Actualizando medio con ID: ' + id);
+                $('#editMediaModal').modal('hide');
+                
+                // Mostrar mensaje de éxito
+                Toastify({
+                    text: "Medio actualizado correctamente",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "#4fbe87",
+                }).showToast();
+            });
+            
+            $('#deleteMediaModal .btn-danger').click(function() {
+                // Lógica para eliminar un medio
+                var id = $('#deleteMediaModal').data('media-id');
+                console.log('Eliminando medio con ID: ' + id);
+                $('#deleteMediaModal').modal('hide');
+                
+                // Mostrar mensaje de éxito
+                Toastify({
+                    text: "Medio eliminado correctamente",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "#4fbe87",
+                }).showToast();
             });
         });
     </script>

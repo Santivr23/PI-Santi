@@ -1,47 +1,49 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Características - GGDeals</title>
     
-    <!-- Enlaces CSS para que funcionen tanto en Thymeleaf como directamente -->
-    <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon" th:href="@{/assets/compiled/svg/favicon.svg}">
-    <link rel="stylesheet" href="./assets/compiled/css/app.css" th:href="@{/assets/compiled/css/app.css}">
-    <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" th:href="@{/assets/compiled/css/app-dark.css}">
-    <link rel="stylesheet" href="./assets/compiled/css/iconly.css" th:href="@{/assets/compiled/css/iconly.css}">
-    <link rel="stylesheet" href="./assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css" th:href="@{/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css}">
-    <link rel="stylesheet" href="./assets/compiled/css/table-datatable-jquery.css" th:href="@{/assets/compiled/css/table-datatable-jquery.css}">
-    <link rel="stylesheet" href="./assets/extensions/bootstrap-icons/font/bootstrap-icons.css" th:href="@{/assets/extensions/bootstrap-icons/font/bootstrap-icons.css}">
+    <!-- Enlaces CSS -->
+    <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/compiled/css/app.css">
+    <link rel="stylesheet" href="./assets/compiled/css/app-dark.css">
+    <link rel="stylesheet" href="./assets/compiled/css/iconly.css">
+    <link rel="stylesheet" href="./assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="./assets/compiled/css/table-datatable-jquery.css">
+    <link rel="stylesheet" href="./assets/extensions/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- Fix para modales -->
+    <link rel="stylesheet" href="./assets/compiled/css/modal-fixes.css">
 </head>
 
 <body>
-    <script th:src="@{/assets/static/js/initTheme.js}"></script>
+    <script src="./assets/static/js/initTheme.js"></script>
     <div id="app">
         <div id="main" class="layout-horizontal">
             <header class="mb-5">
                 <div class="header-top">
                     <div class="container">
                         <div class="logo">
-                            <a th:href="@{/admin}"><img th:src="@{/assets/compiled/svg/logo.svg}" alt="Logo"> </a>
+                            <a href="admin.html"><img src="./assets/compiled/svg/logo.svg" alt="Logo"> </a>
                         </div>
                         <div class="header-top-right">
                             <div class="dropdown">
                                 <a href="#" id="topbarUserDropdown" class="user-dropdown d-flex align-items-center dropend dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="avatar avatar-md2" >
-                                        <img th:src="@{/assets/compiled/jpg/1.jpg}" alt="Avatar">
+                                        <img src="./assets/compiled/jpg/1.jpg" alt="Avatar">
                                     </div>
                                     <div class="text">
-                                        <h6 class="user-dropdown-name" th:text="${#authentication.principal.name}">Administrador</h6>
-                                        <p class="user-dropdown-status text-sm text-muted" th:text="${#authentication.principal.role}">Administrador</p>
+                                        <h6 class="user-dropdown-name">Administrador</h6>
+                                        <p class="user-dropdown-status text-sm text-muted">Administrador</p>
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="topbarUserDropdown">
-                                  <li><a class="dropdown-item" th:href="@{/admin/profile}">Mi Perfil</a></li>
-                                  <li><a class="dropdown-item" th:href="@{/admin/password}">Cambiar Contraseña</a></li>
+                                  <li><a class="dropdown-item" href="admin-profile.html">Mi Perfil</a></li>
+                                  <li><a class="dropdown-item" href="admin-password.html">Cambiar Contraseña</a></li>
                                   <li><hr class="dropdown-divider"></li>
-                                  <li><a class="dropdown-item" th:href="@{/logout}">Cerrar Sesión</a></li>
+                                  <li><a class="dropdown-item" href="index.html">Cerrar Sesión</a></li>
                                 </ul>
                             </div>
 
@@ -56,37 +58,37 @@
                     <div class="container">
                         <ul>
                             <li class="menu-item">
-                                <a th:href="@{/admin}" class='menu-link'>
+                                <a href="admin.html" class='menu-link'>
                                     <span><i class="bi bi-grid-fill"></i> Dashboard</span>
                                 </a>
                             </li>
                             
                             <li class="menu-item">
-                                <a th:href="@{/admin/users}" class='menu-link'>
+                                <a href="admin-users.html" class='menu-link'>
                                     <span><i class="bi bi-people-fill"></i> Usuarios</span>
                                 </a>
                             </li>
                             
                             <li class="menu-item">
-                                <a th:href="@{/admin/games}" class='menu-link'>
+                                <a href="admin-games.html" class='menu-link'>
                                     <span><i class="bi bi-joystick"></i> Videojuegos</span>
                                 </a>
                             </li>
                             
                             <li class="menu-item">
-                                <a th:href="@{/admin/keys}" class='menu-link'>
+                                <a href="admin-keys.html" class='menu-link'>
                                     <span><i class="bi bi-key-fill"></i> Réplicas</span>
                                 </a>
                             </li>
                             
                             <li class="menu-item">
-                                <a th:href="@{/admin/sales}" class='menu-link'>
+                                <a href="admin-sales.html" class='menu-link'>
                                     <span><i class="bi bi-cart-fill"></i> Ventas</span>
                                 </a>
                             </li>
                             
                             <li class="menu-item">
-                                <a th:href="@{/admin/reservations}" class='menu-link'>
+                                <a href="admin-reservations.html" class='menu-link'>
                                     <span><i class="bi bi-bookmark-fill"></i> Reservas</span>
                                 </a>
                             </li>
@@ -99,13 +101,13 @@
                                     <div class="submenu-group-wrapper">
                                         <ul class="submenu-group">
                                             <li class="submenu-item">
-                                                <a th:href="@{/admin/platforms}" class='submenu-link'>Plataformas</a>
+                                                <a href="admin-platforms.html" class='submenu-link'>Plataformas</a>
                                             </li>
                                             <li class="submenu-item">
-                                                <a th:href="@{/admin/editions}" class='submenu-link'>Ediciones</a>
+                                                <a href="admin-editions.html" class='submenu-link'>Ediciones</a>
                                             </li>
                                             <li class="submenu-item active">
-                                                <a th:href="@{/admin/features}" class='submenu-link'>Características</a>
+                                                <a href="admin-features.html" class='submenu-link'>Características</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -147,50 +149,24 @@
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Nombre</th>
-                                                    <th>Descripción</th>
-                                                    <th>Categoría</th>
-                                                    <th>Icono</th>
-                                                    <th>Color</th>
-                                                    <th>Juegos</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr th:each="feature : ${features}">
-                                                    <td th:text="${feature.id}">1</td>
-                                                    <td th:text="${feature.name}">Multijugador</td>
-                                                    <td th:text="${feature.description}">Soporte para juego con múltiples jugadores</td>
-                                                    <td th:text="${feature.category}">Jugabilidad</td>
-                                                    <td>
-                                                        <i th:class="${'bi bi-' + feature.icon}" class="bi bi-people"></i>
-                                                        <span class="ms-1" th:text="${feature.icon}">people</span>
-                                                    </td>
-                                                    <td>
-                                                        <span class="badge" th:style="${'background-color:' + feature.color}" style="background-color: #0d6efd">
-                                                            <span th:text="${feature.color}">#0d6efd</span>
-                                                        </span>
-                                                    </td>
-                                                    <td th:text="${feature.gamesCount}">32</td>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Multijugador</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editFeatureModal" 
-                                                                       th:data-id="${feature.id}" 
-                                                                       th:data-name="${feature.name}" 
-                                                                       th:data-description="${feature.description}"
-                                                                       th:data-category="${feature.category}"
-                                                                       th:data-icon="${feature.icon}"
-                                                                       th:data-color="${feature.color}">
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editFeatureModal" data-id="1" data-nombre="Multijugador">
                                                                        <i class="bi bi-pencil"></i> Editar</a>
                                                                 </li>
                                                                 <li><hr class="dropdown-divider"></li>
-                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteFeatureModal" 
-                                                                       th:data-id="${feature.id}" 
-                                                                       th:data-name="${feature.name}"
-                                                                       th:data-games="${feature.gamesCount}">
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteFeatureModal" data-id="1" data-nombre="Multijugador">
                                                                        <i class="bi bi-trash"></i> Eliminar</a>
                                                                 </li>
                                                             </ul>
@@ -198,128 +174,82 @@
                                                     </td>
                                                 </tr>
                                                 <!-- Ejemplos estáticos para visualización -->
-                                                <tr th:if="${#lists.isEmpty(features)}">
-                                                    <td>1</td>
-                                                    <td>Multijugador</td>
-                                                    <td>Soporte para juego con múltiples jugadores</td>
-                                                    <td>Jugabilidad</td>
-                                                    <td><i class="bi bi-people"></i> people</td>
-                                                    <td><span class="badge" style="background-color: #0d6efd">#0d6efd</span></td>
-                                                    <td>32</td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="bi bi-three-dots-vertical"></i>
-                                                            </button>
-                                                            <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editFeatureModal"><i class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><hr class="dropdown-divider"></li>
-                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteFeatureModal"><i class="bi bi-trash"></i> Eliminar</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr th:if="${#lists.isEmpty(features)}">
+                                                <tr>
                                                     <td>2</td>
                                                     <td>Un jugador</td>
-                                                    <td>Experiencia para un solo jugador</td>
-                                                    <td>Jugabilidad</td>
-                                                    <td><i class="bi bi-person"></i> person</td>
-                                                    <td><span class="badge" style="background-color: #6c757d">#6c757d</span></td>
-                                                    <td>45</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editFeatureModal"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editFeatureModal" data-id="2" data-nombre="Un jugador"><i class="bi bi-pencil"></i> Editar</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
-                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteFeatureModal"><i class="bi bi-trash"></i> Eliminar</a></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteFeatureModal" data-id="2" data-nombre="Un jugador"><i class="bi bi-trash"></i> Eliminar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr th:if="${#lists.isEmpty(features)}">
+                                                <tr>
                                                     <td>3</td>
                                                     <td>Mundo abierto</td>
-                                                    <td>Ambientación en un mundo abierto explorable</td>
-                                                    <td>Jugabilidad</td>
-                                                    <td><i class="bi bi-globe"></i> globe</td>
-                                                    <td><span class="badge" style="background-color: #198754">#198754</span></td>
-                                                    <td>18</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editFeatureModal"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editFeatureModal" data-id="3" data-nombre="Mundo abierto"><i class="bi bi-pencil"></i> Editar</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
-                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteFeatureModal"><i class="bi bi-trash"></i> Eliminar</a></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteFeatureModal" data-id="3" data-nombre="Mundo abierto"><i class="bi bi-trash"></i> Eliminar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr th:if="${#lists.isEmpty(features)}">
+                                                <tr>
                                                     <td>4</td>
                                                     <td>4K</td>
-                                                    <td>Soporte para resolución 4K</td>
-                                                    <td>Técnica</td>
-                                                    <td><i class="bi bi-badge-4k"></i> badge-4k</td>
-                                                    <td><span class="badge" style="background-color: #dc3545">#dc3545</span></td>
-                                                    <td>26</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editFeatureModal"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editFeatureModal" data-id="4" data-nombre="4K"><i class="bi bi-pencil"></i> Editar</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
-                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteFeatureModal"><i class="bi bi-trash"></i> Eliminar</a></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteFeatureModal" data-id="4" data-nombre="4K"><i class="bi bi-trash"></i> Eliminar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr th:if="${#lists.isEmpty(features)}">
+                                                <tr>
                                                     <td>5</td>
                                                     <td>HDR</td>
-                                                    <td>Soporte para High Dynamic Range</td>
-                                                    <td>Técnica</td>
-                                                    <td><i class="bi bi-brightness-high"></i> brightness-high</td>
-                                                    <td><span class="badge" style="background-color: #ffc107">#ffc107</span></td>
-                                                    <td>22</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editFeatureModal"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editFeatureModal" data-id="5" data-nombre="HDR"><i class="bi bi-pencil"></i> Editar</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
-                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteFeatureModal"><i class="bi bi-trash"></i> Eliminar</a></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteFeatureModal" data-id="5" data-nombre="HDR"><i class="bi bi-trash"></i> Eliminar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr th:if="${#lists.isEmpty(features)}">
+                                                <tr>
                                                     <td>6</td>
                                                     <td>Violencia</td>
-                                                    <td>Contiene escenas de violencia</td>
-                                                    <td>Contenido</td>
-                                                    <td><i class="bi bi-exclamation-triangle"></i> exclamation-triangle</td>
-                                                    <td><span class="badge" style="background-color: #dc3545">#dc3545</span></td>
-                                                    <td>30</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editFeatureModal"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editFeatureModal" data-id="6" data-nombre="Violencia"><i class="bi bi-pencil"></i> Editar</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
-                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteFeatureModal"><i class="bi bi-trash"></i> Eliminar</a></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteFeatureModal" data-id="6" data-nombre="Violencia"><i class="bi bi-trash"></i> Eliminar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
@@ -357,43 +287,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="addFeatureForm" th:action="@{/admin/features/add}" method="post">
+                    <form id="addFeatureForm" action="./admin/features/add" method="post">
                         <div class="mb-3">
-                            <label for="featureName" class="form-label">Nombre de la Característica</label>
-                            <input type="text" class="form-control" id="featureName" name="name" required placeholder="Ej. Ray Tracing">
-                        </div>
-                        <div class="mb-3">
-                            <label for="featureDescription" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="featureDescription" name="description" rows="2" placeholder="Describe brevemente esta característica..."></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="featureCategory" class="form-label">Categoría</label>
-                            <select class="form-select" id="featureCategory" name="category" required>
-                                <option value="" selected disabled>Seleccionar categoría</option>
-                                <option value="Jugabilidad">Jugabilidad</option>
-                                <option value="Técnica">Técnica</option>
-                                <option value="Contenido">Contenido</option>
-                                <option value="Otra">Otra</option>
-                            </select>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="featureIcon" class="form-label">Icono</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="bi bi-people" id="iconPreview"></i></span>
-                                    <input type="text" class="form-control" id="featureIcon" name="icon" value="people" required>
-                                </div>
-                                <div class="form-text">
-                                    <a href="https://icons.getbootstrap.com/" target="_blank">Ver lista de iconos disponibles</a>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="featureColor" class="form-label">Color</label>
-                                <div class="input-group">
-                                    <input type="color" class="form-control form-control-color" id="featureColorPicker" value="#0d6efd">
-                                    <input type="text" class="form-control" id="featureColor" name="color" value="#0d6efd" required>
-                                </div>
-                            </div>
+                            <label for="featureNombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="featureNombre" name="nombre" required placeholder="Ej. Multijugador">
                         </div>
                     </form>
                 </div>
@@ -414,43 +311,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editFeatureForm" th:action="@{/admin/features/edit}" method="post">
+                    <form id="editFeatureForm" action="./admin/features/edit" method="post">
                         <input type="hidden" id="editFeatureId" name="id">
                         <div class="mb-3">
-                            <label for="editFeatureName" class="form-label">Nombre de la Característica</label>
-                            <input type="text" class="form-control" id="editFeatureName" name="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editFeatureDescription" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="editFeatureDescription" name="description" rows="2"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editFeatureCategory" class="form-label">Categoría</label>
-                            <select class="form-select" id="editFeatureCategory" name="category" required>
-                                <option value="Jugabilidad">Jugabilidad</option>
-                                <option value="Técnica">Técnica</option>
-                                <option value="Contenido">Contenido</option>
-                                <option value="Otra">Otra</option>
-                            </select>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="editFeatureIcon" class="form-label">Icono</label>
-                                <div class="input-group">
-                                    <span class="input-group-text"><i class="bi bi-people" id="editIconPreview"></i></span>
-                                    <input type="text" class="form-control" id="editFeatureIcon" name="icon" required>
-                                </div>
-                                <div class="form-text">
-                                    <a href="https://icons.getbootstrap.com/" target="_blank">Ver lista de iconos disponibles</a>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="editFeatureColor" class="form-label">Color</label>
-                                <div class="input-group">
-                                    <input type="color" class="form-control form-control-color" id="editFeatureColorPicker">
-                                    <input type="text" class="form-control" id="editFeatureColor" name="color" required>
-                                </div>
-                            </div>
+                            <label for="editFeatureNombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="editFeatureNombre" name="nombre" required>
                         </div>
                     </form>
                 </div>
@@ -474,12 +339,12 @@
                     <div class="text-center mb-4">
                         <i class="bi bi-exclamation-triangle text-danger" style="font-size: 3rem;"></i>
                         <h4 class="mt-3">¿Estás seguro?</h4>
-                        <p>¿Realmente deseas eliminar la característica <strong id="deleteFeatureName">Multijugador</strong>?</p>
+                        <p>¿Realmente deseas eliminar la característica <strong id="deleteFeatureNombre">Multijugador</strong>?</p>
                     </div>
                     <div id="deleteFeatureWarning" class="alert alert-danger">
-                        <i class="bi bi-exclamation-circle"></i> Esta característica está asociada a <strong id="deleteFeatureGames">32</strong> juegos. Al eliminarla, se quitará esta característica de todos esos juegos.
+                        <i class="bi bi-exclamation-circle"></i> Esta característica se eliminará de forma permanente de la base de datos.
                     </div>
-                    <form id="deleteFeatureForm" th:action="@{/admin/features/delete}" method="post">
+                    <form id="deleteFeatureForm" action="./admin/features/delete" method="post">
                         <input type="hidden" id="deleteFeatureId" name="id">
                     </form>
                 </div>
@@ -491,13 +356,13 @@
         </div>
     </div>
 
-    <script th:src="@{/assets/static/js/components/dark.js}"></script>
-    <script th:src="@{/assets/static/js/pages/horizontal-layout.js}"></script>
-    <script th:src="@{/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
-    <script th:src="@{/assets/compiled/js/app.js}"></script>
-    <script th:src="@{/assets/extensions/jquery/jquery.min.js}"></script>
-    <script th:src="@{/assets/extensions/datatables.net/js/jquery.dataTables.min.js}"></script>
-    <script th:src="@{/assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js}"></script>
+    <script src="./assets/static/js/components/dark.js"></script>
+    <script src="./assets/static/js/pages/horizontal-layout.js"></script>
+    <script src="./assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="./assets/compiled/js/app.js"></script>
+    <script src="./assets/extensions/jquery/jquery.min.js"></script>
+    <script src="./assets/extensions/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="./assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
     
     <script>
         $(document).ready(function() {
@@ -508,92 +373,45 @@
                 }
             });
             
-            // Filtros por categoría
-            $('#filter-all-features').click(function() {
-                table.column(3).search('').draw();
-                $('.btn-outline-primary').removeClass('active');
-                $(this).addClass('active');
-            });
-            
-            $('#filter-gameplay-features').click(function() {
-                table.column(3).search('Jugabilidad').draw();
-                $('.btn-outline-primary').removeClass('active');
-                $(this).addClass('active');
-            });
-            
-            $('#filter-technical-features').click(function() {
-                table.column(3).search('Técnica').draw();
-                $('.btn-outline-primary').removeClass('active');
-                $(this).addClass('active');
-            });
-            
-            $('#filter-content-features').click(function() {
-                table.column(3).search('Contenido').draw();
-                $('.btn-outline-primary').removeClass('active');
-                $(this).addClass('active');
-            });
-            
-            // Vista previa de iconos
-            $('#featureIcon').on('input', function() {
-                $('#iconPreview').attr('class', 'bi bi-' + $(this).val());
-            });
-            
-            $('#editFeatureIcon').on('input', function() {
-                $('#editIconPreview').attr('class', 'bi bi-' + $(this).val());
-            });
-            
-            // Selector de color
-            $('#featureColorPicker').on('input', function() {
-                $('#featureColor').val($(this).val());
-            });
-            
-            $('#featureColor').on('input', function() {
-                $('#featureColorPicker').val($(this).val());
-            });
-            
-            $('#editFeatureColorPicker').on('input', function() {
-                $('#editFeatureColor').val($(this).val());
-            });
-            
-            $('#editFeatureColor').on('input', function() {
-                $('#editFeatureColorPicker').val($(this).val());
-            });
-            
             // Cargar datos en los modales
             $('#editFeatureModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget);
                 var id = button.data('id');
-                var name = button.data('name');
-                var description = button.data('description');
-                var category = button.data('category');
-                var icon = button.data('icon');
-                var color = button.data('color');
+                var nombre = button.data('nombre');
                 
                 $('#editFeatureId').val(id);
-                $('#editFeatureName').val(name);
-                $('#editFeatureDescription').val(description);
-                $('#editFeatureCategory').val(category);
-                $('#editFeatureIcon').val(icon);
-                $('#editIconPreview').attr('class', 'bi bi-' + icon);
-                $('#editFeatureColor').val(color);
-                $('#editFeatureColorPicker').val(color);
+                $('#editFeatureNombre').val(nombre);
             });
             
             $('#deleteFeatureModal').on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget);
                 var id = button.data('id');
-                var name = button.data('name');
-                var games = button.data('games');
+                var nombre = button.data('nombre');
                 
                 $('#deleteFeatureId').val(id);
-                $('#deleteFeatureName').text(name);
-                $('#deleteFeatureGames').text(games);
-                
-                if (games > 0) {
-                    $('#deleteFeatureWarning').show();
+                $('#deleteFeatureNombre').text(nombre);
+            });
+            
+            // Fix para asegurar que los modales funcionen correctamente
+            $('.modal').on('shown.bs.modal', function () {
+                $(document.body).addClass('modal-open');
+            });
+            
+            $('.modal').on('hidden.bs.modal', function () {
+                if($('.modal:visible').length) {
+                    $(document.body).addClass('modal-open');
                 } else {
-                    $('#deleteFeatureWarning').hide();
+                    $(document.body).removeClass('modal-open');
                 }
+            });
+            
+            // Asegurar que el fondo del modal se muestre correctamente
+            $(document).on('show.bs.modal', '.modal', function () {
+                var zIndex = 1040 + (10 * $('.modal:visible').length);
+                $(this).css('z-index', zIndex);
+                setTimeout(function() {
+                    $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+                }, 0);
             });
         });
     </script>

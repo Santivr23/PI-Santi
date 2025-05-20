@@ -1,46 +1,52 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Perfil - GGDeals</title>
-    
-    <!-- Enlaces CSS para que funcionen tanto en Thymeleaf como directamente -->
-    <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon" th:href="@{/assets/compiled/svg/favicon.svg}">
-    <link rel="stylesheet" href="./assets/compiled/css/app.css" th:href="@{/assets/compiled/css/app.css}">
-    <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" th:href="@{/assets/compiled/css/app-dark.css}">
-    <link rel="stylesheet" href="./assets/compiled/css/iconly.css" th:href="@{/assets/compiled/css/iconly.css}">
-    <link rel="stylesheet" href="./assets/extensions/bootstrap-icons/font/bootstrap-icons.css" th:href="@{/assets/extensions/bootstrap-icons/font/bootstrap-icons.css}">
+    <title>Perfil de Administrador - GGDeals</title>
+
+    <!-- Enlaces CSS -->
+    <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/compiled/css/app.css">
+    <link rel="stylesheet" href="./assets/compiled/css/app-dark.css">
+    <link rel="stylesheet" href="./assets/compiled/css/iconly.css">
+    <link rel="stylesheet" href="./assets/extensions/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="./assets/extensions/filepond/filepond.css">
+    <link rel="stylesheet" href="./assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.css">
 </head>
 
 <body>
-    <!-- Script de inicialización de tema con soporte para Thymeleaf y sin Thymeleaf -->
-    <script src="./assets/static/js/initTheme.js" th:src="@{/assets/static/js/initTheme.js}"></script>
+    <script src="./assets/static/js/initTheme.js"></script>
     <div id="app">
         <div id="main" class="layout-horizontal">
             <header class="mb-5">
                 <div class="header-top">
                     <div class="container">
                         <div class="logo">
-                            <a th:href="@{/admin}"><img th:src="@{/assets/compiled/svg/logo.svg}" alt="Logo"> </a>
+                            <a href="admin.html"><img src="./assets/compiled/svg/logo.svg" alt="Logo"> </a>
                         </div>
                         <div class="header-top-right">
                             <div class="dropdown">
-                                <a href="#" id="topbarUserDropdown" class="user-dropdown d-flex align-items-center dropend dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
-                                    <div class="avatar avatar-md2" >
-                                        <img th:src="${#authentication.principal.imageUrl != null ? #authentication.principal.imageUrl : '/assets/compiled/jpg/1.jpg'}" alt="Avatar">
+                                <a href="#" id="topbarUserDropdown"
+                                    class="user-dropdown d-flex align-items-center dropend dropdown-toggle "
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="avatar avatar-md2">
+                                        <img src="./assets/compiled/jpg/1.jpg" alt="Avatar">
                                     </div>
                                     <div class="text">
-                                        <h6 class="user-dropdown-name" th:text="${#authentication.principal.name}">Administrador</h6>
-                                        <p class="user-dropdown-status text-sm text-muted" th:text="${#authentication.principal.role}">Administrador</p>
+                                        <h6 class="user-dropdown-name">Administrador</h6>
+                                        <p class="user-dropdown-status text-sm text-muted">Administrador</p>
                                     </div>
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="topbarUserDropdown">
-                                  <li><a class="dropdown-item" th:href="@{/admin/profile}" href="admin-profile.html">Mi Perfil</a></li>
-                                  <li><a class="dropdown-item" th:href="@{/admin/password}" href="admin-password.html">Cambiar Contraseña</a></li>
-                                  <li><hr class="dropdown-divider"></li>
-                                  <li><a class="dropdown-item" th:href="@{/logout}" href="login.html">Cerrar Sesión</a></li>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-lg"
+                                    aria-labelledby="topbarUserDropdown">
+                                    <li><a class="dropdown-item" href="admin-profile.html">Mi Perfil</a></li>
+                                    <li><a class="dropdown-item" href="admin-password.html">Cambiar Contraseña</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="login.html">Cerrar Sesión</a></li>
                                 </ul>
                             </div>
 
@@ -55,41 +61,41 @@
                     <div class="container">
                         <ul>
                             <li class="menu-item">
-                                <a th:href="@{/admin}" class='menu-link'>
+                                <a href="admin.html" class='menu-link'>
                                     <span><i class="bi bi-grid-fill"></i> Dashboard</span>
                                 </a>
                             </li>
-                            
+
                             <li class="menu-item">
-                                <a th:href="@{/admin/users}" class='menu-link'>
+                                <a href="admin-users.html" class='menu-link'>
                                     <span><i class="bi bi-people-fill"></i> Usuarios</span>
                                 </a>
                             </li>
-                            
+
                             <li class="menu-item">
-                                <a th:href="@{/admin/games}" class='menu-link'>
+                                <a href="admin-games.html" class='menu-link'>
                                     <span><i class="bi bi-joystick"></i> Videojuegos</span>
                                 </a>
                             </li>
-                            
+
                             <li class="menu-item">
-                                <a th:href="@{/admin/keys}" class='menu-link'>
+                                <a href="admin-keys.html" class='menu-link'>
                                     <span><i class="bi bi-key-fill"></i> Réplicas</span>
                                 </a>
                             </li>
-                            
+
                             <li class="menu-item">
-                                <a th:href="@{/admin/sales}" class='menu-link'>
+                                <a href="admin-sales.html" class='menu-link'>
                                     <span><i class="bi bi-cart-fill"></i> Ventas</span>
                                 </a>
                             </li>
-                            
+
                             <li class="menu-item">
-                                <a th:href="@{/admin/reservations}" class='menu-link'>
+                                <a href="admin-reservations.html" class='menu-link'>
                                     <span><i class="bi bi-bookmark-fill"></i> Reservas</span>
                                 </a>
                             </li>
-                            
+
                             <li class="menu-item has-sub">
                                 <a href="#" class='menu-link'>
                                     <span><i class="bi bi-list-check"></i> Catálogos</span>
@@ -98,13 +104,13 @@
                                     <div class="submenu-group-wrapper">
                                         <ul class="submenu-group">
                                             <li class="submenu-item">
-                                                <a th:href="@{/admin/platforms}" class='submenu-link'>Plataformas</a>
+                                                <a href="admin-platforms.html" class='submenu-link'>Plataformas</a>
                                             </li>
                                             <li class="submenu-item">
-                                                <a th:href="@{/admin/editions}" class='submenu-link'>Ediciones</a>
+                                                <a href="admin-editions.html" class='submenu-link'>Ediciones</a>
                                             </li>
                                             <li class="submenu-item">
-                                                <a th:href="@{/admin/features}" class='submenu-link'>Características</a>
+                                                <a href="admin-features.html" class='submenu-link'>Características</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -121,227 +127,73 @@
                 </div>
                 <div class="page-content">
                     <section class="row">
-                        <div class="col-md-4 col-12">
+                        <div class="col-12 col-lg-4">
                             <div class="card">
-                                <div class="card-body py-4 px-4">
-                                    <div class="d-flex align-items-center">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-center align-items-center flex-column">
                                         <div class="avatar avatar-xl">
-                                            <img th:src="${adminProfile.imageUrl != null ? adminProfile.imageUrl : '/assets/compiled/jpg/1.jpg'}" alt="Avatar">
+                                            <img src="./assets/compiled/jpg/1.jpg" alt="Avatar">
                                         </div>
-                                        <div class="ms-3 name">
-                                            <h5 class="font-bold" th:text="${adminProfile.name}">Administrador</h5>
-                                            <h6 class="text-muted mb-0" th:text="${adminProfile.email}">admin@gamestore.com</h6>
-                                        </div>
+                                        <h4 class="mt-3">Administrador GGDeals</h4>
+                                        <p class="text-small">Administrador del Sistema</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Detalles del Perfil</h4>
+                                    <h4>Información Adicional</h4>
                                 </div>
                                 <div class="card-body">
-                                    <div class="mb-4">
-                                        <h6 class="text-muted mb-2"><i class="bi bi-calendar me-2"></i> Cuenta creada el</h6>
-                                        <p th:text="${#temporals.format(adminProfile.createdAt, 'dd/MM/yyyy')}">01/01/2025</p>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h6 class="mb-0">Fecha de Registro</h6>
+                                        <p class="mb-0 text-muted">1 de Enero, 2025</p>
                                     </div>
-                                    <div class="mb-4">
-                                        <h6 class="text-muted mb-2"><i class="bi bi-clock-history me-2"></i> Último acceso</h6>
-                                        <p th:text="${#temporals.format(adminProfile.lastLogin, 'dd/MM/yyyy HH:mm')}">04/05/2025 14:30</p>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h6 class="mb-0">Última Sesión</h6>
+                                        <p class="mb-0 text-muted">Hoy</p>
                                     </div>
-                                    <div class="mb-4">
-                                        <h6 class="text-muted mb-2"><i class="bi bi-shield-check me-2"></i> Rol</h6>
-                                        <p><span class="badge bg-primary" th:text="${adminProfile.role}">Administrador</span></p>
-                                    </div>
-                                    <div class="mb-0">
-                                        <h6 class="text-muted mb-2"><i class="bi bi-telephone me-2"></i> Teléfono</h6>
-                                        <p th:text="${adminProfile.phone != null ? adminProfile.phone : 'No especificado'}">+34 612 345 678</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>Estadísticas</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="mb-3">
-                                        <h6 class="text-muted mb-2">Total acciones</h6>
-                                        <h5 th:text="${adminProfile.totalActions}">1,253</h5>
-                                    </div>
-                                    <div class="mb-3">
-                                        <h6 class="text-muted mb-2">Ventas gestionadas</h6>
-                                        <h5 th:text="${adminProfile.salesCount}">142</h5>
-                                    </div>
-                                    <div class="mb-0">
-                                        <h6 class="text-muted mb-2">Juegos añadidos</h6>
-                                        <h5 th:text="${adminProfile.gamesCount}">38</h5>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h6 class="mb-0">Estado</h6>
+                                        <span class="badge bg-success">Activo</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8 col-12">
+                        <div class="col-12 col-lg-8">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Editar Información Personal</h4>
+                                    <h4>Editar Perfil</h4>
                                 </div>
                                 <div class="card-body">
-                                    <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
-                                        <i class="bi bi-check-circle me-1"></i>
-                                        <span th:text="${successMessage}">Tus datos se han actualizado correctamente.</span>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                    <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <i class="bi bi-exclamation-circle me-1"></i>
-                                        <span th:text="${errorMessage}">Ha ocurrido un error al actualizar tus datos.</span>
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                    <form method="post" th:action="@{/admin/profile/update}" enctype="multipart/form-data">
-                                        <div class="row">
-                                            <div class="col-md-6 col-12 mb-3">
-                                                <div class="form-group">
-                                                    <label for="name">Nombre</label>
-                                                    <input type="text" class="form-control" id="name" name="name" th:value="${adminProfile.name}" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12 mb-3">
-                                                <div class="form-group">
-                                                    <label for="email">Email</label>
-                                                    <input type="email" class="form-control" id="email" name="email" th:value="${adminProfile.email}" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12 mb-3">
-                                                <div class="form-group">
-                                                    <label for="phone">Teléfono</label>
-                                                    <input type="text" class="form-control" id="phone" name="phone" th:value="${adminProfile.phone}">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 col-12 mb-3">
-                                                <div class="form-group">
-                                                    <label for="role">Rol</label>
-                                                    <input type="text" class="form-control" id="role" th:value="${adminProfile.role}" readonly>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 mb-3">
-                                                <label for="profileImage">Imagen de Perfil</label>
-                                                <input type="file" class="filepond" id="profileImage" name="image" accept="image/*">
-                                                <small class="text-muted">Formatos permitidos: JPG, PNG. Tamaño máximo: 5MB.</small>
-                                            </div>
-                                            <div class="col-12 d-flex justify-content-end">
-                                                <button type="submit" class="btn btn-primary me-1 mb-1">Guardar Cambios</button>
-                                                <button type="reset" class="btn btn-light-secondary me-1 mb-1">Restablecer</button>
-                                            </div>
+                                    <form id="profileForm">
+                                        <div class="form-group">
+                                            <label for="name">Nombre Completo</label>
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                value="Administrador GGDeals" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                value="admin@ggdeals.com" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="phone">Teléfono</label>
+                                            <input type="tel" class="form-control" id="phone" name="phone"
+                                                value="+34 600 123 456">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="avatarUpload">Cambiar Avatar</label>
+                                            <input type="file" class="profile-file-pond" id="avatarUpload"
+                                                name="avatar">
+                                        </div>
+
+                                        <div class="form-group mt-4">
+                                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                                         </div>
                                     </form>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>Preferencias</h4>
-                                </div>
-                                <div class="card-body">
-                                    <form method="post" th:action="@{/admin/profile/preferences}">
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" id="darkMode" name="darkMode" th:checked="${adminProfile.preferences?.darkMode}">
-                                            <label class="form-check-label" for="darkMode">Usar modo oscuro</label>
-                                        </div>
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" id="emailNotifications" name="emailNotifications" th:checked="${adminProfile.preferences?.emailNotifications}">
-                                            <label class="form-check-label" for="emailNotifications">Recibir notificaciones por email</label>
-                                        </div>
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" id="saleNotifications" name="saleNotifications" th:checked="${adminProfile.preferences?.saleNotifications}">
-                                            <label class="form-check-label" for="saleNotifications">Notificar nuevas ventas</label>
-                                        </div>
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" id="reservationNotifications" name="reservationNotifications" th:checked="${adminProfile.preferences?.reservationNotifications}">
-                                            <label class="form-check-label" for="reservationNotifications">Notificar nuevas reservas</label>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="dataTableLength" class="form-label">Filas por página en tablas</label>
-                                            <select class="form-select" id="dataTableLength" name="dataTableLength">
-                                                <option value="10" th:selected="${adminProfile.preferences?.dataTableLength == 10}">10</option>
-                                                <option value="25" th:selected="${adminProfile.preferences?.dataTableLength == 25}">25</option>
-                                                <option value="50" th:selected="${adminProfile.preferences?.dataTableLength == 50}">50</option>
-                                                <option value="100" th:selected="${adminProfile.preferences?.dataTableLength == 100}">100</option>
-                                            </select>
-                                        </div>
-                                        <div class="d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary me-1 mb-1">Guardar Preferencias</button>
-                                            <button type="reset" class="btn btn-light-secondary me-1 mb-1">Restablecer</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>Actividad Reciente</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="timeline">
-                                        <div class="timeline-item" th:each="activity : ${adminProfile.recentActivities}">
-                                            <div class="timeline-left">
-                                                <div class="timeline-date" th:text="${#temporals.format(activity.timestamp, 'dd/MM/yyyy')}">04/05/2025</div>
-                                                <div class="timeline-time" th:text="${#temporals.format(activity.timestamp, 'HH:mm')}">14:30</div>
-                                            </div>
-                                            <div class="timeline-content">
-                                                <div class="timeline-icon" th:classappend="${activity.type == 'EDIT' ? 'bg-primary' : (activity.type == 'CREATE' ? 'bg-success' : 'bg-danger')}">
-                                                    <i th:class="${activity.type == 'EDIT' ? 'bi bi-pencil' : (activity.type == 'CREATE' ? 'bi bi-plus' : 'bi bi-trash')}"></i>
-                                                </div>
-                                                <div class="timeline-header" th:text="${activity.description}">Editó información del juego "The Witcher 3"</div>
-                                                <div class="timeline-body">
-                                                    <span class="badge bg-light-secondary" th:text="${activity.module}">Juegos</span>
-                                                    <span class="text-muted" th:if="${activity.details}" th:text="${activity.details}">Cambió precio de €59.99 a €49.99</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Ejemplo estático para diseño -->
-                                        <div class="timeline-item" th:if="${#lists.isEmpty(adminProfile.recentActivities)}">
-                                            <div class="timeline-left">
-                                                <div class="timeline-date">04/05/2025</div>
-                                                <div class="timeline-time">14:30</div>
-                                            </div>
-                                            <div class="timeline-content">
-                                                <div class="timeline-icon bg-primary">
-                                                    <i class="bi bi-pencil"></i>
-                                                </div>
-                                                <div class="timeline-header">Editó información del juego "The Witcher 3"</div>
-                                                <div class="timeline-body">
-                                                    <span class="badge bg-light-secondary">Juegos</span>
-                                                    <span class="text-muted">Cambió precio de €59.99 a €49.99</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="timeline-item" th:if="${#lists.isEmpty(adminProfile.recentActivities)}">
-                                            <div class="timeline-left">
-                                                <div class="timeline-date">04/05/2025</div>
-                                                <div class="timeline-time">13:45</div>
-                                            </div>
-                                            <div class="timeline-content">
-                                                <div class="timeline-icon bg-success">
-                                                    <i class="bi bi-plus"></i>
-                                                </div>
-                                                <div class="timeline-header">Añadió un nuevo juego "Elden Ring"</div>
-                                                <div class="timeline-body">
-                                                    <span class="badge bg-light-secondary">Juegos</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="timeline-item" th:if="${#lists.isEmpty(adminProfile.recentActivities)}">
-                                            <div class="timeline-left">
-                                                <div class="timeline-date">03/05/2025</div>
-                                                <div class="timeline-time">16:20</div>
-                                            </div>
-                                            <div class="timeline-content">
-                                                <div class="timeline-icon bg-danger">
-                                                    <i class="bi bi-trash"></i>
-                                                </div>
-                                                <div class="timeline-header">Eliminó la plataforma "PS3"</div>
-                                                <div class="timeline-body">
-                                                    <span class="badge bg-light-secondary">Plataformas</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -355,66 +207,68 @@
                         <div class="float-start">
                             <p>2025 &copy; GGDeals Admin</p>
                         </div>
-                        
                     </div>
                 </div>
             </footer>
         </div>
     </div>
 
-    <!-- Scripts para que funcionen tanto en Thymeleaf como directamente -->
-    <script src="./assets/static/js/components/dark.js" th:src="@{/assets/static/js/components/dark.js}"></script>
-    <script src="./assets/static/js/pages/horizontal-layout.js" th:src="@{/assets/static/js/pages/horizontal-layout.js}"></script>
-    <script src="./assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js" th:src="@{/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
-    <script src="./assets/compiled/js/app.js" th:src="@{/assets/compiled/js/app.js}"></script>
-    <script src="./assets/extensions/jquery/jquery.min.js" th:src="@{/assets/extensions/jquery/jquery.min.js}"></script>
-    <script src="./assets/extensions/bootstrap/js/bootstrap.bundle.min.js" th:src="@{/assets/extensions/bootstrap/js/bootstrap.bundle.min.js}"></script>
-    
+    <!-- Modales -->
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-success">
+                    <h5 class="modal-title text-white" id="successModalLabel">¡Éxito!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>El perfil ha sido actualizado correctamente.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/static/js/components/dark.js"></script>
+    <script src="./assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="./assets/static/js/pages/horizontal-layout.js"></script>
+    <script src="./assets/compiled/js/app.js"></script>
+
     <!-- FilePond -->
-    <script src="./assets/extensions/filepond/filepond.js" th:src="@{/assets/extensions/filepond/filepond.js}"></script>
-    <script src="./assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.js" th:src="@{/assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.js}"></script>
-    <script src="./assets/extensions/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.js" th:src="@{/assets/extensions/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.js}"></script>
-    <script src="./assets/extensions/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.js" th:src="@{/assets/extensions/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.js}"></script>
-    <script src="./assets/extensions/filepond-plugin-image-crop/filepond-plugin-image-crop.js" th:src="@{/assets/extensions/filepond-plugin-image-crop/filepond-plugin-image-crop.js}"></script>
-    <script src="./assets/extensions/filepond-plugin-image-resize/filepond-plugin-image-resize.js" th:src="@{/assets/extensions/filepond-plugin-image-resize/filepond-plugin-image-resize.js}"></script>
-    
+    <script src="./assets/extensions/filepond/filepond.js"></script>
+    <script src="./assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.js"></script>
+    <script src="./assets/extensions/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.js"></script>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Inicializar FilePond
-            FilePond.registerPlugin(
-                FilePondPluginImagePreview,
-                FilePondPluginFileValidateType,
-                FilePondPluginFileValidateSize,
-                FilePondPluginImageCrop,
-                FilePondPluginImageResize
-            );
-            
-            FilePond.create(document.getElementById('profileImage'), {
-                labelIdle: 'Arrastra y suelta tu imagen o <span class="filepond--label-action">Examina</span>',
-                imagePreviewHeight: 170,
-                imageCropAspectRatio: '1:1',
-                imageResizeTargetWidth: 200,
-                imageResizeTargetHeight: 200,
-                stylePanelLayout: 'compact circle',
-                styleLoadIndicatorPosition: 'center bottom',
-                styleButtonRemoveItemPosition: 'center bottom',
-                acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
-                maxFileSize: '5MB'
+        document.addEventListener('DOMContentLoaded', function () {
+            // Configuración de FilePond para subir avatares
+            FilePond.registerPlugin(FilePondPluginImagePreview, FilePondPluginFileValidateType);
+
+            FilePond.create(document.querySelector('.profile-file-pond'), {
+                credits: null,
+                allowImagePreview: true,
+                allowFileTypeValidation: true,
+                acceptedFileTypes: ['image/png', 'image/jpg', 'image/jpeg'],
+                labelFileTypeNotAllowed: 'Solo se permiten archivos de imagen',
+                fileValidateTypeDetectType: (source, type) => new Promise((resolve, reject) => {
+                    resolve(type);
+                }),
+                storeAsFile: true,
+                labelIdle: `Arrastra y suelta tu imagen o <span class="filepond--label-action">Buscar</span>`
             });
-            
-            // Dark Mode Toggle
-            const darkModeToggle = document.getElementById('darkMode');
-            if (darkModeToggle) {
-                darkModeToggle.addEventListener('change', function() {
-                    if (this.checked) {
-                        document.body.classList.add('theme-dark');
-                        localStorage.setItem('theme', 'dark');
-                    } else {
-                        document.body.classList.remove('theme-dark');
-                        localStorage.setItem('theme', 'light');
-                    }
-                });
-            }
+
+            // Validación del formulario
+            const profileForm = document.getElementById('profileForm');
+            profileForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                // Para demo, mostrar modal de éxito
+                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+            });
         });
     </script>
 </body>

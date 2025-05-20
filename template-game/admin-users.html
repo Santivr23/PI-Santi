@@ -6,23 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Usuarios - GGDeals</title>
 
+    <!-- Enlaces CSS -->
     <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="./assets/compiled/css/app.css">
     <link rel="stylesheet" href="./assets/compiled/css/app-dark.css">
     <link rel="stylesheet" href="./assets/compiled/css/iconly.css">
     <link rel="stylesheet" href="./assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="./assets/compiled/css/table-datatable-jquery.css">
+    <link rel="stylesheet" href="./assets/extensions/bootstrap-icons/font/bootstrap-icons.css">
 </head>
 
 <body>
-    <script src="assets/static/js/initTheme.js"></script>
+    <script src="./assets/static/js/initTheme.js"></script>
     <div id="app">
         <div id="main" class="layout-horizontal">
             <header class="mb-5">
                 <div class="header-top">
                     <div class="container">
                         <div class="logo">
-                            <a href="admin.html"><img src="./assets/compiled/svg/logo.svg" alt="Logo">
+                            <a href="admin.html"><img src="./assets/compiled/svg/logo.svg" alt="Logo"> </a>
                         </div>
                         <div class="header-top-right">
                             <div class="dropdown">
@@ -44,7 +46,7 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="index.html">Cerrar Sesión</a></li>
+                                    <li><a class="dropdown-item" href="login.html">Cerrar Sesión</a></li>
                                 </ul>
                             </div>
 
@@ -152,220 +154,179 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Nombre</th>
+                                                    <th>Nombre Usuario</th>
                                                     <th>Email</th>
-                                                    <th>Verificado</th>
                                                     <th>Rol</th>
+                                                    <th>Fecha Verificación</th>
+                                                    <th>Estado</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
-                                                    <td>Juan Pérez</td>
-                                                    <td>juan.perez@email.com</td>
-                                                    <td><span class="badge bg-success">Sí</span></td>
-                                                    <td><span class="badge bg-primary">Cliente</span></td>
+                                                    <td>admin</td>
+                                                    <td>admin@ggdeals.com</td>
+                                                    <td>Administrador</td>
+                                                    <td>01/01/2025</td>
+                                                    <td><span class="badge bg-success">Activo</span></td>
                                                     <td>
                                                         <div class="dropdown">
-                                                            <button class="btn btn-sm dropdown-toggle" type="button"
-                                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#viewUserModal"><i
-                                                                            class="bi bi-eye"></i> Ver Detalles</a></li>
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#editUserModal"><i
-                                                                            class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#userHistoryModal"><i
-                                                                            class="bi bi-clock-history"></i>
-                                                                        Historial</a></li>
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#verifyUserModal"><i
-                                                                            class="bi bi-check-circle"></i>
-                                                                        Verificar</a></li>
-                                                                <li>
-                                                                    <hr class="dropdown-divider">
-                                                                </li>
-                                                                <li><a class="dropdown-item text-danger" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#deleteUserModal"><i
-                                                                            class="bi bi-trash"></i> Eliminar</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewUserModal" data-id="1"><i class="bi bi-eye"></i> Ver detalle</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editUserModal" data-id="1"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deactivateUserModal" data-id="1"><i class="bi bi-slash-circle"></i> Desactivar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
-                                                    <td>Ana López</td>
-                                                    <td>ana.lopez@email.com</td>
-                                                    <td><span class="badge bg-success">Sí</span></td>
-                                                    <td><span class="badge bg-danger">Administrador</span></td>
+                                                    <td>miguel</td>
+                                                    <td>miguel@example.com</td>
+                                                    <td>Cliente</td>
+                                                    <td>15/01/2025</td>
+                                                    <td><span class="badge bg-success">Activo</span></td>
                                                     <td>
                                                         <div class="dropdown">
-                                                            <button class="btn btn-sm dropdown-toggle" type="button"
-                                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#viewUserModal"><i
-                                                                            class="bi bi-eye"></i> Ver Detalles</a></li>
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#editUserModal"><i
-                                                                            class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#userHistoryModal"><i
-                                                                            class="bi bi-clock-history"></i>
-                                                                        Historial</a></li>
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#verifyUserModal"><i
-                                                                            class="bi bi-check-circle"></i>
-                                                                        Verificar</a></li>
-                                                                <li>
-                                                                    <hr class="dropdown-divider">
-                                                                </li>
-                                                                <li><a class="dropdown-item text-danger" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#deleteUserModal"><i
-                                                                            class="bi bi-trash"></i> Eliminar</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewUserModal" data-id="2"><i class="bi bi-eye"></i> Ver detalle</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editUserModal" data-id="2"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deactivateUserModal" data-id="2"><i class="bi bi-slash-circle"></i> Desactivar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>3</td>
-                                                    <td>Mario García</td>
-                                                    <td>mario.garcia@email.com</td>
-                                                    <td><span class="badge bg-warning">No</span></td>
-                                                    <td><span class="badge bg-primary">Cliente</span></td>
+                                                    <td>laura</td>
+                                                    <td>laura@example.com</td>
+                                                    <td>Cliente</td>
+                                                    <td>20/01/2025</td>
+                                                    <td><span class="badge bg-success">Activo</span></td>
                                                     <td>
                                                         <div class="dropdown">
-                                                            <button class="btn btn-sm dropdown-toggle" type="button"
-                                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#viewUserModal"><i
-                                                                            class="bi bi-eye"></i> Ver Detalles</a></li>
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#editUserModal"><i
-                                                                            class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#userHistoryModal"><i
-                                                                            class="bi bi-clock-history"></i>
-                                                                        Historial</a></li>
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#verifyUserModal"><i
-                                                                            class="bi bi-check-circle"></i>
-                                                                        Verificar</a></li>
-                                                                <li>
-                                                                    <hr class="dropdown-divider">
-                                                                </li>
-                                                                <li><a class="dropdown-item text-danger" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#deleteUserModal"><i
-                                                                            class="bi bi-trash"></i> Eliminar</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewUserModal" data-id="3"><i class="bi bi-eye"></i> Ver detalle</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editUserModal" data-id="3"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deactivateUserModal" data-id="3"><i class="bi bi-slash-circle"></i> Desactivar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>4</td>
-                                                    <td>Laura Martínez</td>
-                                                    <td>laura.martinez@email.com</td>
-                                                    <td><span class="badge bg-success">Sí</span></td>
-                                                    <td><span class="badge bg-primary">Cliente</span></td>
+                                                    <td>carlos</td>
+                                                    <td>carlos@example.com</td>
+                                                    <td>Cliente</td>
+                                                    <td>05/02/2025</td>
+                                                    <td><span class="badge bg-success">Activo</span></td>
                                                     <td>
                                                         <div class="dropdown">
-                                                            <button class="btn btn-sm dropdown-toggle" type="button"
-                                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#viewUserModal"><i
-                                                                            class="bi bi-eye"></i> Ver Detalles</a></li>
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#editUserModal"><i
-                                                                            class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#userHistoryModal"><i
-                                                                            class="bi bi-clock-history"></i>
-                                                                        Historial</a></li>
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#verifyUserModal"><i
-                                                                            class="bi bi-check-circle"></i>
-                                                                        Verificar</a></li>
-                                                                <li>
-                                                                    <hr class="dropdown-divider">
-                                                                </li>
-                                                                <li><a class="dropdown-item text-danger" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#deleteUserModal"><i
-                                                                            class="bi bi-trash"></i> Eliminar</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewUserModal" data-id="4"><i class="bi bi-eye"></i> Ver detalle</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editUserModal" data-id="4"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deactivateUserModal" data-id="4"><i class="bi bi-slash-circle"></i> Desactivar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>5</td>
-                                                    <td>Roberto Sánchez</td>
-                                                    <td>roberto.sanchez@email.com</td>
-                                                    <td><span class="badge bg-success">Sí</span></td>
-                                                    <td><span class="badge bg-primary">Cliente</span></td>
+                                                    <td>elena</td>
+                                                    <td>elena@example.com</td>
+                                                    <td>Cliente</td>
+                                                    <td>10/02/2025</td>
+                                                    <td><span class="badge bg-success">Activo</span></td>
                                                     <td>
                                                         <div class="dropdown">
-                                                            <button class="btn btn-sm dropdown-toggle" type="button"
-                                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#viewUserModal"><i
-                                                                            class="bi bi-eye"></i> Ver Detalles</a></li>
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#editUserModal"><i
-                                                                            class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#userHistoryModal"><i
-                                                                            class="bi bi-clock-history"></i>
-                                                                        Historial</a></li>
-                                                                <li><a class="dropdown-item" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#verifyUserModal"><i
-                                                                            class="bi bi-check-circle"></i>
-                                                                        Verificar</a></li>
-                                                                <li>
-                                                                    <hr class="dropdown-divider">
-                                                                </li>
-                                                                <li><a class="dropdown-item text-danger" href="#"
-                                                                        data-bs-toggle="modal"
-                                                                        data-bs-target="#deleteUserModal"><i
-                                                                            class="bi bi-trash"></i> Eliminar</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewUserModal" data-id="5"><i class="bi bi-eye"></i> Ver detalle</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editUserModal" data-id="5"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deactivateUserModal" data-id="5"><i class="bi bi-slash-circle"></i> Desactivar</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>6</td>
+                                                    <td>javier</td>
+                                                    <td>javier@example.com</td>
+                                                    <td>Cliente</td>
+                                                    <td>15/02/2025</td>
+                                                    <td><span class="badge bg-success">Activo</span></td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="bi bi-three-dots-vertical"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewUserModal" data-id="6"><i class="bi bi-eye"></i> Ver detalle</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editUserModal" data-id="6"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deactivateUserModal" data-id="6"><i class="bi bi-slash-circle"></i> Desactivar</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>7</td>
+                                                    <td>ana</td>
+                                                    <td>ana@example.com</td>
+                                                    <td>Cliente</td>
+                                                    <td>-</td>
+                                                    <td><span class="badge bg-warning">Pendiente</span></td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="bi bi-three-dots-vertical"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewUserModal" data-id="7"><i class="bi bi-eye"></i> Ver detalle</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editUserModal" data-id="7"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deactivateUserModal" data-id="7"><i class="bi bi-slash-circle"></i> Desactivar</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>8</td>
+                                                    <td>marta</td>
+                                                    <td>marta@example.com</td>
+                                                    <td>Cliente</td>
+                                                    <td>01/03/2025</td>
+                                                    <td><span class="badge bg-danger">Desactivado</span></td>
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="bi bi-three-dots-vertical"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewUserModal" data-id="8"><i class="bi bi-eye"></i> Ver detalle</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editUserModal" data-id="8"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-success" href="#" data-bs-toggle="modal" data-bs-target="#activateUserModal" data-id="8"><i class="bi bi-check-circle"></i> Activar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
@@ -386,315 +347,14 @@
                         <div class="float-start">
                             <p>2025 &copy; GGDeals Admin</p>
                         </div>
-                        
+
                     </div>
                 </div>
             </footer>
         </div>
     </div>
 
-    <!-- Modales -->
-    <!-- Modal Ver Usuario -->
-    <div class="modal fade" id="viewUserModal" tabindex="-1" aria-labelledby="viewUserModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="viewUserModalLabel">Detalles del Usuario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row mb-4">
-                        <div class="col-md-3 text-center">
-                            <img src="./assets/compiled/jpg/1.jpg" alt="Foto de perfil"
-                                class="img-fluid rounded-circle mb-3" style="width: 120px; height: 120px;">
-                            <h5 class="mb-0">Juan Pérez</h5>
-                            <p class="text-muted">Cliente</p>
-                        </div>
-                        <div class="col-md-9">
-                            <h6>Información Personal</h6>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <p class="mb-1"><strong>Nombre:</strong> Juan Pérez</p>
-                                    <p class="mb-1"><strong>Email:</strong> juan.perez@email.com</p>
-                                    <p class="mb-1"><strong>Teléfono:</strong> +34 612 345 678</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <p class="mb-1"><strong>Fecha de registro:</strong> 12/04/2023</p>
-                                    <p class="mb-1"><strong>Último acceso:</strong> 03/05/2025</p>
-                                    <p class="mb-1"><strong>Verificado:</strong> Sí</p>
-                                </div>
-                            </div>
-                            <h6>Estadísticas</h6>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="card border shadow-none">
-                                        <div class="card-body p-3 text-center">
-                                            <h3 class="mb-0">8</h3>
-                                            <p class="mb-0">Compras</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card border shadow-none">
-                                        <div class="card-body p-3 text-center">
-                                            <h3 class="mb-0">2</h3>
-                                            <p class="mb-0">Reservas</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="card border shadow-none">
-                                        <div class="card-body p-3 text-center">
-                                            <h3 class="mb-0">€420</h3>
-                                            <p class="mb-0">Total Gastado</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" data-bs-toggle="modal"
-                        data-bs-target="#editUserModal">Editar Usuario</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Editar Usuario -->
-    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editUserModalLabel">Editar Usuario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="editName" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="editName" value="Juan Pérez">
-                        </div>
-                        <div class="mb-3">
-                            <label for="editEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="editEmail" value="juan.perez@email.com">
-                        </div>
-                        <div class="mb-3">
-                            <label for="editPhone" class="form-label">Teléfono</label>
-                            <input type="text" class="form-control" id="editPhone" value="+34 612 345 678">
-                        </div>
-                        <div class="mb-3">
-                            <label for="editRole" class="form-label">Rol</label>
-                            <select class="form-select" id="editRole">
-                                <option value="cliente" selected>Cliente</option>
-                                <option value="admin">Administrador</option>
-                            </select>
-                        </div>
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="editVerified" checked>
-                            <label class="form-check-label" for="editVerified">
-                                Usuario Verificado
-                            </label>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Guardar Cambios</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Historial de Usuario -->
-    <div class="modal fade" id="userHistoryModal" tabindex="-1" aria-labelledby="userHistoryModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="userHistoryModalLabel">Historial de Juan Pérez</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <ul class="nav nav-tabs" id="historyTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="purchases-tab" data-bs-toggle="tab"
-                                data-bs-target="#purchases" type="button" role="tab" aria-controls="purchases"
-                                aria-selected="true">Compras</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="reservations-tab" data-bs-toggle="tab"
-                                data-bs-target="#reservations" type="button" role="tab" aria-controls="reservations"
-                                aria-selected="false">Reservas</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="activity-tab" data-bs-toggle="tab" data-bs-target="#activity"
-                                type="button" role="tab" aria-controls="activity"
-                                aria-selected="false">Actividad</button>
-                        </li>
-                    </ul>
-                    <div class="tab-content pt-3" id="historyTabContent">
-                        <div class="tab-pane fade show active" id="purchases" role="tabpanel"
-                            aria-labelledby="purchases-tab">
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Fecha</th>
-                                            <th>Juego</th>
-                                            <th>Plataforma</th>
-                                            <th>Precio</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>05/04/2025</td>
-                                            <td>The Witcher 3: Wild Hunt</td>
-                                            <td>PC</td>
-                                            <td>€29.99</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>22/03/2025</td>
-                                            <td>Cyberpunk 2077</td>
-                                            <td>PlayStation 5</td>
-                                            <td>€59.99</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>15/02/2025</td>
-                                            <td>Red Dead Redemption 2</td>
-                                            <td>Xbox Series X</td>
-                                            <td>€45.99</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="reservations" role="tabpanel" aria-labelledby="reservations-tab">
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Fecha Reserva</th>
-                                            <th>Juego</th>
-                                            <th>Plataforma</th>
-                                            <th>Estado</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>12/04/2025</td>
-                                            <td>GTA VI</td>
-                                            <td>PlayStation 5</td>
-                                            <td><span class="badge bg-warning">Pendiente</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>01/03/2025</td>
-                                            <td>Elder Scrolls VI</td>
-                                            <td>PC</td>
-                                            <td><span class="badge bg-warning">Pendiente</span></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="activity" role="tabpanel" aria-labelledby="activity-tab">
-                            <div class="timeline">
-                                <div class="timeline-item">
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h6 class="mb-0">03/05/2025 - 14:23</h6>
-                                        <p>Inicio de sesión</p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h6 class="mb-0">01/05/2025 - 10:15</h6>
-                                        <p>Actualizó su información de perfil</p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-marker"></div>
-                                    <div class="timeline-content">
-                                        <h6 class="mb-0">28/04/2025 - 18:45</h6>
-                                        <p>Realizó una compra</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Verificar Usuario -->
-    <div class="modal fade" id="verifyUserModal" tabindex="-1" aria-labelledby="verifyUserModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="verifyUserModalLabel">Verificar Usuario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>El usuario <strong>Mario García</strong> no está verificado. Puedes verificarlo manualmente.</p>
-                    <div class="alert alert-info">
-                        <i class="bi bi-info-circle"></i> La verificación manual permite al usuario acceder a todas las
-                        funcionalidades de la plataforma sin necesidad de verificación por email.
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success">Verificar Usuario</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Eliminar Usuario -->
-    <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteUserModalLabel">Eliminar Usuario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="text-center mb-4">
-                        <i class="bi bi-exclamation-triangle text-danger" style="font-size: 3rem;"></i>
-                        <h4 class="mt-3">¿Estás seguro?</h4>
-                        <p>¿Realmente deseas eliminar al usuario <strong>Juan Pérez</strong>? Esta acción no se puede
-                            deshacer.</p>
-                    </div>
-                    <div class="alert alert-warning">
-                        <i class="bi bi-exclamation-circle"></i> Esta acción eliminará todos los datos del usuario,
-                        incluyendo su historial de compras y reservas. Considera desactivar la cuenta en lugar de
-                        eliminarla.
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-danger">Eliminar Usuario</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Agregar Usuario -->
+    <!-- Modal para agregar usuario -->
     <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -703,88 +363,212 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="addUserForm">
                         <div class="mb-3">
-                            <label for="addName" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="addName" placeholder="Nombre completo">
+                            <label for="userName" class="form-label">Nombre de usuario</label>
+                            <input type="text" class="form-control" id="userName" required>
                         </div>
                         <div class="mb-3">
-                            <label for="addEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="addEmail" placeholder="correo@ejemplo.com">
+                            <label for="userEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="userEmail" required>
                         </div>
                         <div class="mb-3">
-                            <label for="addPhone" class="form-label">Teléfono</label>
-                            <input type="text" class="form-control" id="addPhone" placeholder="+34 600 000 000">
+                            <label for="userPassword" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="userPassword" required>
                         </div>
                         <div class="mb-3">
-                            <label for="addPassword" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="addPassword">
-                        </div>
-                        <div class="mb-3">
-                            <label for="addRole" class="form-label">Rol</label>
-                            <select class="form-select" id="addRole">
-                                <option value="cliente" selected>Cliente</option>
-                                <option value="admin">Administrador</option>
+                            <label for="userRole" class="form-label">Rol</label>
+                            <select class="form-select" id="userRole" required>
+                                <option value="">Seleccionar rol</option>
+                                <option value="Cliente">Cliente</option>
+                                <option value="Administrador">Administrador</option>
                             </select>
                         </div>
                         <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="addVerified">
-                            <label class="form-check-label" for="addVerified">
-                                Usuario Verificado
+                            <input class="form-check-input" type="checkbox" id="userVerified">
+                            <label class="form-check-label" for="userVerified">
+                                Email verificado
                             </label>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Crear Usuario</button>
+                    <button type="button" class="btn btn-primary" id="saveUserBtn">Guardar</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Enviar Factura -->
-    <div class="modal fade" id="sendInvoiceModal" tabindex="-1" aria-labelledby="sendInvoiceModalLabel"
-        aria-hidden="true">
+    <!-- Modal para editar usuario -->
+    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="sendInvoiceModalLabel">Enviar Factura</h5>
+                    <h5 class="modal-title" id="editUserModalLabel">Editar Usuario</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="editUserForm">
+                        <input type="hidden" id="editUserId">
                         <div class="mb-3">
-                            <label for="invoiceSubject" class="form-label">Asunto</label>
-                            <input type="text" class="form-control" id="invoiceSubject"
-                                value="Tu factura para la compra #1 - GGDeals">
+                            <label for="editUserName" class="form-label">Nombre de usuario</label>
+                            <input type="text" class="form-control" id="editUserName" required>
                         </div>
                         <div class="mb-3">
-                            <label for="invoiceMessage" class="form-label">Mensaje</label>
-                            <textarea class="form-control" id="invoiceMessage" rows="4">Estimado Juan Pérez,
-
-Adjunto encontrarás la factura de tu reciente compra en GGDeals. Gracias por tu compra.
-
-Saludos,
-El equipo de GGDeals</textarea>
+                            <label for="editUserEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="editUserEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editUserRole" class="form-label">Rol</label>
+                            <select class="form-select" id="editUserRole" required>
+                                <option value="Cliente">Cliente</option>
+                                <option value="Administrador">Administrador</option>
+                            </select>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="editUserVerified">
+                            <label class="form-check-label" for="editUserVerified">
+                                Email verificado
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="editUserActive">
+                            <label class="form-check-label" for="editUserActive">
+                                Usuario activo
+                            </label>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Enviar Factura</button>
+                    <button type="button" class="btn btn-primary" id="updateUserBtn">Actualizar</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="assets/static/js/components/dark.js"></script>
-    <script src="assets/static/js/pages/horizontal-layout.js"></script>
-    <script src="assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/compiled/js/app.js"></script>
-    <script src="assets/extensions/jquery/jquery.min.js"></script>
-    <script src="assets/extensions/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Modal para ver detalles de usuario -->
+    <div class="modal fade" id="viewUserModal" tabindex="-1" aria-labelledby="viewUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewUserModalLabel">Detalles del Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center mb-4">
+                        <div class="avatar avatar-xl mb-3">
+                            <img src="assets/compiled/jpg/1.jpg" alt="Avatar">
+                        </div>
+                        <h4 id="viewUserName">Nombre del Usuario</h4>
+                        <p class="text-muted" id="viewUserRole">Rol del Usuario</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 text-end fw-bold">ID:</div>
+                        <div class="col-8" id="viewUserId"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-4 text-end fw-bold">Email:</div>
+                        <div class="col-8" id="viewUserEmail"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-4 text-end fw-bold">Fecha Verificación:</div>
+                        <div class="col-8" id="viewUserVerified"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-4 text-end fw-bold">Estado:</div>
+                        <div class="col-8" id="viewUserStatus"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-4 text-end fw-bold">Registro:</div>
+                        <div class="col-8" id="viewUserRegistration"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-4 text-end fw-bold">Última conexión:</div>
+                        <div class="col-8" id="viewUserLastLogin"></div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <h6>Historial de compras</h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Juego</th>
+                                            <th>Fecha</th>
+                                            <th>Importe</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="userPurchaseHistory">
+                                        <!-- Se llena dinámicamente -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para desactivar usuario -->
+    <div class="modal fade" id="deactivateUserModal" tabindex="-1" aria-labelledby="deactivateUserModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deactivateUserModalLabel">Desactivar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de que deseas desactivar al usuario <span id="deactivateUserName"
+                            class="fw-bold"></span>?</p>
+                    <p>El usuario no podrá acceder a su cuenta mientras esté desactivado.</p>
+                    <input type="hidden" id="deactivateUserId">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeactivateBtn">Desactivar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para activar usuario -->
+    <div class="modal fade" id="activateUserModal" tabindex="-1" aria-labelledby="activateUserModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="activateUserModalLabel">Activar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de que deseas activar al usuario <span id="activateUserName"
+                            class="fw-bold"></span>?</p>
+                    <p>El usuario podrá acceder a su cuenta nuevamente.</p>
+                    <input type="hidden" id="activateUserId">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="confirmActivateBtn">Activar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/static/js/components/dark.js"></script>
+    <script src="./assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="./assets/static/js/pages/horizontal-layout.js"></script>
+    <script src="./assets/compiled/js/app.js"></script>
+    <script src="./assets/extensions/jquery/jquery.min.js"></script>
+    <script src="./assets/extensions/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="./assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -812,6 +596,136 @@ El equipo de GGDeals</textarea>
                 table.column(4).search('Administrador').draw();
                 $('.btn-outline-primary').removeClass('active');
                 $(this).addClass('active');
+            });
+
+            // Cargar datos en modal de edición
+            $('#editUserModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('id');
+                var name = button.data('name');
+                var email = button.data('email');
+                var role = button.data('role');
+
+                $('#editUserId').val(id);
+                $('#editUserName').val(name);
+                $('#editUserEmail').val(email);
+                $('#editUserRole').val(role);
+                $('#editUserVerified').prop('checked', true);
+                $('#editUserActive').prop('checked', true);
+            });
+
+            // Cargar datos en modal de vista
+            $('#viewUserModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('id');
+                var name = button.data('name');
+                var email = button.data('email');
+                var role = button.data('role');
+
+                $('#viewUserId').text(id);
+                $('#viewUserName').text(name);
+                $('#viewUserEmail').text(email);
+                $('#viewUserRole').text(role);
+                $('#viewUserStatus').html('<span class="badge bg-success">Activo</span>');
+                $('#viewUserVerified').html('<span class="badge bg-success">Sí</span>');
+                $('#viewUserRegistration').text('01/01/2025');
+                $('#viewUserLastLogin').text('14/05/2025');
+
+                // Limpiar y cargar historial de compras
+                $('#userPurchaseHistory').empty();
+                if (id == 2) {
+                    $('#userPurchaseHistory').append(`
+                        <tr>
+                            <td>#84253</td>
+                            <td>The Last of Us Part II</td>
+                            <td>14/05/2025</td>
+                            <td>€59.99</td>
+                        </tr>
+                        <tr>
+                            <td>#82149</td>
+                            <td>Cyberpunk 2077</td>
+                            <td>02/04/2025</td>
+                            <td>€39.99</td>
+                        </tr>
+                    `);
+                } else if (id == 3) {
+                    $('#userPurchaseHistory').append(`
+                        <tr>
+                            <td>#84252</td>
+                            <td>FIFA 25</td>
+                            <td>14/05/2025</td>
+                            <td>€69.99</td>
+                        </tr>
+                    `);
+                } else if (id == 4) {
+                    $('#userPurchaseHistory').append(`
+                        <tr>
+                            <td>#84251</td>
+                            <td>Hogwarts Legacy</td>
+                            <td>13/05/2025</td>
+                            <td>€49.99</td>
+                        </tr>
+                    `);
+                } else {
+                    $('#userPurchaseHistory').append(`
+                        <tr>
+                            <td colspan="4" class="text-center">No hay compras registradas</td>
+                        </tr>
+                    `);
+                }
+            });
+
+            // Cargar datos en modal de desactivación
+            $('#deactivateUserModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('id');
+                var name = button.data('name');
+
+                $('#deactivateUserId').val(id);
+                $('#deactivateUserName').text(name);
+            });
+
+            // Cargar datos en modal de activación
+            $('#activateUserModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('id');
+                var name = button.data('name');
+
+                $('#activateUserId').val(id);
+                $('#activateUserName').text(name);
+            });
+
+            // Guardar nuevo usuario
+            $('#saveUserBtn').click(function () {
+                if ($('#addUserForm')[0].checkValidity()) {
+                    alert('Usuario creado correctamente');
+                    $('#addUserModal').modal('hide');
+                    $('#addUserForm')[0].reset();
+                } else {
+                    $('#addUserForm')[0].reportValidity();
+                }
+            });
+
+            // Actualizar usuario
+            $('#updateUserBtn').click(function () {
+                if ($('#editUserForm')[0].checkValidity()) {
+                    alert('Usuario actualizado correctamente');
+                    $('#editUserModal').modal('hide');
+                } else {
+                    $('#editUserForm')[0].reportValidity();
+                }
+            });
+
+            // Desactivar usuario
+            $('#confirmDeactivateBtn').click(function () {
+                alert('Usuario desactivado correctamente');
+                $('#deactivateUserModal').modal('hide');
+            });
+
+            // Activar usuario
+            $('#confirmActivateBtn').click(function () {
+                alert('Usuario activado correctamente');
+                $('#activateUserModal').modal('hide');
             });
         });
     </script>

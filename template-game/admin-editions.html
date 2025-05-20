@@ -1,47 +1,47 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Ediciones - GGDeals</title>
     
-    <!-- Enlaces CSS para que funcionen tanto en Thymeleaf como directamente -->
-    <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon" th:href="@{/assets/compiled/svg/favicon.svg}">
-    <link rel="stylesheet" href="./assets/compiled/css/app.css" th:href="@{/assets/compiled/css/app.css}">
-    <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" th:href="@{/assets/compiled/css/app-dark.css}">
-    <link rel="stylesheet" href="./assets/compiled/css/iconly.css" th:href="@{/assets/compiled/css/iconly.css}">
-    <link rel="stylesheet" href="./assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css" th:href="@{/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css}">
-    <link rel="stylesheet" href="./assets/compiled/css/table-datatable-jquery.css" th:href="@{/assets/compiled/css/table-datatable-jquery.css}">
-    <link rel="stylesheet" href="./assets/extensions/bootstrap-icons/font/bootstrap-icons.css" th:href="@{/assets/extensions/bootstrap-icons/font/bootstrap-icons.css}">
+    <!-- Enlaces CSS -->
+    <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/compiled/css/app.css">
+    <link rel="stylesheet" href="./assets/compiled/css/app-dark.css">
+    <link rel="stylesheet" href="./assets/compiled/css/iconly.css">
+    <link rel="stylesheet" href="./assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="./assets/compiled/css/table-datatable-jquery.css">
+    <link rel="stylesheet" href="./assets/extensions/bootstrap-icons/font/bootstrap-icons.css">
 </head>
 
 <body>
-    <script th:src="@{/assets/static/js/initTheme.js}"></script>
+    <script src="assets/static/js/initTheme.js"></script>
     <div id="app">
         <div id="main" class="layout-horizontal">
             <header class="mb-5">
                 <div class="header-top">
                     <div class="container">
                         <div class="logo">
-                            <a th:href="@{/admin}"><img th:src="@{/assets/compiled/svg/logo.svg}" alt="Logo"> </a>
+                            <a href="admin.html"><img src="./assets/compiled/svg/logo.svg" alt="Logo"> </a>
                         </div>
                         <div class="header-top-right">
                             <div class="dropdown">
                                 <a href="#" id="topbarUserDropdown" class="user-dropdown d-flex align-items-center dropend dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="avatar avatar-md2" >
-                                        <img th:src="@{/assets/compiled/jpg/1.jpg}" alt="Avatar">
+                                        <img src="./assets/compiled/jpg/1.jpg" alt="Avatar">
                                     </div>
                                     <div class="text">
-                                        <h6 class="user-dropdown-name" th:text="${#authentication.principal.name}">Administrador</h6>
-                                        <p class="user-dropdown-status text-sm text-muted" th:text="${#authentication.principal.role}">Administrador</p>
+                                        <h6 class="user-dropdown-name">Administrador</h6>
+                                        <p class="user-dropdown-status text-sm text-muted">Administrador</p>
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="topbarUserDropdown">
-                                  <li><a class="dropdown-item" th:href="@{/admin/profile}">Mi Perfil</a></li>
-                                  <li><a class="dropdown-item" th:href="@{/admin/password}">Cambiar Contraseña</a></li>
+                                  <li><a class="dropdown-item" href="admin-profile.html">Mi Perfil</a></li>
+                                  <li><a class="dropdown-item" href="admin-password.html">Cambiar Contraseña</a></li>
                                   <li><hr class="dropdown-divider"></li>
-                                  <li><a class="dropdown-item" th:href="@{/logout}">Cerrar Sesión</a></li>
+                                  <li><a class="dropdown-item" href="index.html">Cerrar Sesión</a></li>
                                 </ul>
                             </div>
 
@@ -56,37 +56,37 @@
                     <div class="container">
                         <ul>
                             <li class="menu-item">
-                                <a th:href="@{/admin}" class='menu-link'>
+                                <a href="admin.html" class='menu-link'>
                                     <span><i class="bi bi-grid-fill"></i> Dashboard</span>
                                 </a>
                             </li>
                             
                             <li class="menu-item">
-                                <a th:href="@{/admin/users}" class='menu-link'>
+                                <a href="admin-users.html" class='menu-link'>
                                     <span><i class="bi bi-people-fill"></i> Usuarios</span>
                                 </a>
                             </li>
                             
                             <li class="menu-item">
-                                <a th:href="@{/admin/games}" class='menu-link'>
+                                <a href="admin-games.html" class='menu-link'>
                                     <span><i class="bi bi-joystick"></i> Videojuegos</span>
                                 </a>
                             </li>
                             
                             <li class="menu-item">
-                                <a th:href="@{/admin/keys}" class='menu-link'>
+                                <a href="admin-keys.html" class='menu-link'>
                                     <span><i class="bi bi-key-fill"></i> Réplicas</span>
                                 </a>
                             </li>
                             
                             <li class="menu-item">
-                                <a th:href="@{/admin/sales}" class='menu-link'>
+                                <a href="admin-sales.html" class='menu-link'>
                                     <span><i class="bi bi-cart-fill"></i> Ventas</span>
                                 </a>
                             </li>
                             
                             <li class="menu-item">
-                                <a th:href="@{/admin/reservations}" class='menu-link'>
+                                <a href="admin-reservations.html" class='menu-link'>
                                     <span><i class="bi bi-bookmark-fill"></i> Reservas</span>
                                 </a>
                             </li>
@@ -99,13 +99,13 @@
                                     <div class="submenu-group-wrapper">
                                         <ul class="submenu-group">
                                             <li class="submenu-item">
-                                                <a th:href="@{/admin/platforms}" class='submenu-link'>Plataformas</a>
+                                                <a href="admin-platforms.html" class='submenu-link'>Plataformas</a>
                                             </li>
                                             <li class="submenu-item active">
-                                                <a th:href="@{/admin/editions}" class='submenu-link'>Ediciones</a>
+                                                <a href="admin-editions.html" class='submenu-link'>Ediciones</a>
                                             </li>
                                             <li class="submenu-item">
-                                                <a th:href="@{/admin/features}" class='submenu-link'>Características</a>
+                                                <a href="admin-features.html" class='submenu-link'>Características</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -140,89 +140,35 @@
                                                     <th>ID</th>
                                                     <th>Nombre</th>
                                                     <th>Descripción</th>
-                                                    <th>Incremento de Precio</th>
-                                                    <th>Estado</th>
-                                                    <th>Juegos</th>
+                                                    <th>Precio</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr th:each="edition : ${editions}">
-                                                    <td th:text="${edition.id}">1</td>
-                                                    <td th:text="${edition.name}">Estándar</td>
-                                                    <td th:text="${edition.description}">Edición básica del juego sin contenido adicional</td>
-                                                    <td th:text="${edition.priceIncrement + '%'}">0%</td>
-                                                    <td>
-                                                        <span th:if="${edition.active}" class="badge bg-success">Activa</span>
-                                                        <span th:unless="${edition.active}" class="badge bg-secondary">Inactiva</span>
-                                                    </td>
-                                                    <td th:text="${edition.gamesCount}">45</td>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>Estándar</td>
+                                                    <td>Edición básica del juego sin contenido adicional</td>
+                                                    <td>29.99€</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editEditionModal" 
-                                                                       th:data-id="${edition.id}" 
-                                                                       th:data-name="${edition.name}" 
-                                                                       th:data-description="${edition.description}"
-                                                                       th:data-price-increment="${edition.priceIncrement}"
-                                                                       th:data-active="${edition.active}">
-                                                                       <i class="bi bi-pencil"></i> Editar</a>
-                                                                </li>
-                                                                <li th:if="${edition.active}">
-                                                                    <a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#deactivateEditionModal" 
-                                                                       th:data-id="${edition.id}" 
-                                                                       th:data-name="${edition.name}">
-                                                                       <i class="bi bi-toggle-off"></i> Desactivar</a>
-                                                                </li>
-                                                                <li th:unless="${edition.active}">
-                                                                    <a class="dropdown-item text-success" href="#" data-bs-toggle="modal" data-bs-target="#activateEditionModal" 
-                                                                       th:data-id="${edition.id}" 
-                                                                       th:data-name="${edition.name}">
-                                                                       <i class="bi bi-toggle-on"></i> Activar</a>
-                                                                </li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editEditionModal"><i class="bi bi-pencil"></i> Editar</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
-                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteEditionModal" 
-                                                                       th:data-id="${edition.id}" 
-                                                                       th:data-name="${edition.name}"
-                                                                       th:data-games="${edition.gamesCount}">
-                                                                       <i class="bi bi-trash"></i> Eliminar</a>
-                                                                </li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteEditionModal"><i class="bi bi-trash"></i> Eliminar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <!-- Ejemplos estáticos para visualización -->
-                                                <tr th:if="${#lists.isEmpty(editions)}">
-                                                    <td>1</td>
-                                                    <td>Estándar</td>
-                                                    <td>Edición básica del juego sin contenido adicional</td>
-                                                    <td>0%</td>
-                                                    <td><span class="badge bg-success">Activa</span></td>
-                                                    <td>45</td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="bi bi-three-dots-vertical"></i>
-                                                            </button>
-                                                            <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editEditionModal"><i class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#deactivateEditionModal"><i class="bi bi-toggle-off"></i> Desactivar</a></li>
-                                                                <li><hr class="dropdown-divider"></li>
-                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteEditionModal"><i class="bi bi-trash"></i> Eliminar</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr th:if="${#lists.isEmpty(editions)}">
+                                                <tr>
                                                     <td>2</td>
                                                     <td>Deluxe</td>
                                                     <td>Versión premium con contenido digital adicional</td>
-                                                    <td>25%</td>
-                                                    <td><span class="badge bg-success">Activa</span></td>
-                                                    <td>32</td>
+                                                    <td>49.99€</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -230,20 +176,17 @@
                                                             </button>
                                                             <ul class="dropdown-menu">
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editEditionModal"><i class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#deactivateEditionModal"><i class="bi bi-toggle-off"></i> Desactivar</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
                                                                 <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteEditionModal"><i class="bi bi-trash"></i> Eliminar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr th:if="${#lists.isEmpty(editions)}">
+                                                <tr>
                                                     <td>3</td>
                                                     <td>Coleccionista</td>
                                                     <td>Edición premium con contenido físico exclusivo como figuras, artbooks, etc.</td>
-                                                    <td>75%</td>
-                                                    <td><span class="badge bg-success">Activa</span></td>
-                                                    <td>18</td>
+                                                    <td>89.99€</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -251,20 +194,17 @@
                                                             </button>
                                                             <ul class="dropdown-menu">
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editEditionModal"><i class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#deactivateEditionModal"><i class="bi bi-toggle-off"></i> Desactivar</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
                                                                 <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteEditionModal"><i class="bi bi-trash"></i> Eliminar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr th:if="${#lists.isEmpty(editions)}">
+                                                <tr>
                                                     <td>4</td>
                                                     <td>Gold</td>
                                                     <td>Edición completa con juego base y todos los DLCs</td>
-                                                    <td>50%</td>
-                                                    <td><span class="badge bg-success">Activa</span></td>
-                                                    <td>15</td>
+                                                    <td>69.99€</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -272,20 +212,17 @@
                                                             </button>
                                                             <ul class="dropdown-menu">
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editEditionModal"><i class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#deactivateEditionModal"><i class="bi bi-toggle-off"></i> Desactivar</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
                                                                 <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteEditionModal"><i class="bi bi-trash"></i> Eliminar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr th:if="${#lists.isEmpty(editions)}">
+                                                <tr>
                                                     <td>5</td>
                                                     <td>Ultimate</td>
                                                     <td>La edición más completa con todos los contenidos y extras exclusivos</td>
-                                                    <td>100%</td>
-                                                    <td><span class="badge bg-success">Activa</span></td>
-                                                    <td>10</td>
+                                                    <td>99.99€</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -293,28 +230,6 @@
                                                             </button>
                                                             <ul class="dropdown-menu">
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editEditionModal"><i class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item text-warning" href="#" data-bs-toggle="modal" data-bs-target="#deactivateEditionModal"><i class="bi bi-toggle-off"></i> Desactivar</a></li>
-                                                                <li><hr class="dropdown-divider"></li>
-                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteEditionModal"><i class="bi bi-trash"></i> Eliminar</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr th:if="${#lists.isEmpty(editions)}">
-                                                    <td>6</td>
-                                                    <td>Digital</td>
-                                                    <td>Versión solo digital del juego</td>
-                                                    <td>-10%</td>
-                                                    <td><span class="badge bg-secondary">Inactiva</span></td>
-                                                    <td>5</td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="bi bi-three-dots-vertical"></i>
-                                                            </button>
-                                                            <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editEditionModal"><i class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item text-success" href="#" data-bs-toggle="modal" data-bs-target="#activateEditionModal"><i class="bi bi-toggle-on"></i> Activar</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
                                                                 <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteEditionModal"><i class="bi bi-trash"></i> Eliminar</a></li>
                                                             </ul>
@@ -354,28 +269,18 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="addEditionForm" th:action="@{/admin/editions/add}" method="post">
+                    <form id="addEditionForm">
                         <div class="mb-3">
-                            <label for="editionName" class="form-label">Nombre de la Edición</label>
-                            <input type="text" class="form-control" id="editionName" name="name" required placeholder="Ej. Deluxe">
+                            <label for="editionNombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="editionNombre" name="nombre" required placeholder="Ej. Deluxe">
                         </div>
                         <div class="mb-3">
-                            <label for="editionDescription" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="editionDescription" name="description" rows="3" placeholder="Describe brevemente esta edición..."></textarea>
+                            <label for="editionFeature" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="editionFeature" name="feature" rows="3" placeholder="Describe esta edición..."></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="editionPriceIncrement" class="form-label">Incremento de Precio (%)</label>
-                            <div class="input-group">
-                                <input type="number" class="form-control" id="editionPriceIncrement" name="priceIncrement" required placeholder="25" min="-50" max="200">
-                                <span class="input-group-text">%</span>
-                            </div>
-                            <div class="form-text">Porcentaje de incremento sobre el precio base del juego. Puede ser negativo para descuentos.</div>
-                        </div>
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="editionActive" name="active" checked>
-                            <label class="form-check-label" for="editionActive">
-                                Edición Activa
-                            </label>
+                            <label for="editionPrice" class="form-label">Precio (€)</label>
+                            <input type="number" step="0.01" class="form-control" id="editionPrice" name="price" required placeholder="0.00" min="0">
                         </div>
                     </form>
                 </div>
@@ -396,29 +301,19 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="editEditionForm" th:action="@{/admin/editions/edit}" method="post">
+                    <form id="editEditionForm">
                         <input type="hidden" id="editEditionId" name="id">
                         <div class="mb-3">
-                            <label for="editEditionName" class="form-label">Nombre de la Edición</label>
-                            <input type="text" class="form-control" id="editEditionName" name="name" required>
+                            <label for="editEditionNombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="editEditionNombre" name="nombre" required>
                         </div>
                         <div class="mb-3">
-                            <label for="editEditionDescription" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="editEditionDescription" name="description" rows="3"></textarea>
+                            <label for="editEditionFeature" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="editEditionFeature" name="feature" rows="3"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="editEditionPriceIncrement" class="form-label">Incremento de Precio (%)</label>
-                            <div class="input-group">
-                                <input type="number" class="form-control" id="editEditionPriceIncrement" name="priceIncrement" required min="-50" max="200">
-                                <span class="input-group-text">%</span>
-                            </div>
-                            <div class="form-text">Porcentaje de incremento sobre el precio base del juego. Puede ser negativo para descuentos.</div>
-                        </div>
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="editEditionActive" name="active">
-                            <label class="form-check-label" for="editEditionActive">
-                                Edición Activa
-                            </label>
+                            <label for="editEditionPrice" class="form-label">Precio (€)</label>
+                            <input type="number" step="0.01" class="form-control" id="editEditionPrice" name="price" required min="0">
                         </div>
                     </form>
                 </div>
@@ -444,7 +339,7 @@
                         <h4 class="mt-3">¿Activar esta edición?</h4>
                         <p>Vas a activar la edición <strong id="activateEditionName">Digital</strong>. Esto la hará visible para todos los usuarios y permitirá añadir nuevos juegos con esta edición.</p>
                     </div>
-                    <form id="activateEditionForm" th:action="@{/admin/editions/activate}" method="post">
+                    <form id="activateEditionForm" action="/admin/editions/activate" method="post">
                         <input type="hidden" id="activateEditionId" name="id">
                     </form>
                 </div>
@@ -473,7 +368,7 @@
                     <div class="alert alert-warning">
                         <i class="bi bi-exclamation-circle"></i> Los juegos asociados a esta edición seguirán existiendo pero no estarán disponibles para nuevas compras. Las ventas y reservas existentes no se verán afectadas.
                     </div>
-                    <form id="deactivateEditionForm" th:action="@{/admin/editions/deactivate}" method="post">
+                    <form id="deactivateEditionForm" action="/admin/editions/deactivate" method="post">
                         <input type="hidden" id="deactivateEditionId" name="id">
                     </form>
                 </div>
@@ -505,7 +400,7 @@
                     <div id="deleteEditionConfirm" class="alert alert-warning" style="display: none;">
                         <i class="bi bi-exclamation-circle"></i> Esta acción no se puede deshacer. Se eliminará permanentemente la edición del sistema.
                     </div>
-                    <form id="deleteEditionForm" th:action="@{/admin/editions/delete}" method="post">
+                    <form id="deleteEditionForm" action="/admin/editions/delete" method="post">
                         <input type="hidden" id="deleteEditionId" name="id">
                     </form>
                 </div>
@@ -517,13 +412,13 @@
         </div>
     </div>
 
-    <script th:src="@{/assets/static/js/components/dark.js}"></script>
-    <script th:src="@{/assets/static/js/pages/horizontal-layout.js}"></script>
-    <script th:src="@{/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js}"></script>
-    <script th:src="@{/assets/compiled/js/app.js}"></script>
-    <script th:src="@{/assets/extensions/jquery/jquery.min.js}"></script>
-    <script th:src="@{/assets/extensions/datatables.net/js/jquery.dataTables.min.js}"></script>
-    <script th:src="@{/assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js}"></script>
+    <script src="./assets/static/js/components/dark.js"></script>
+    <script src="./assets/static/js/pages/horizontal-layout.js"></script>
+    <script src="./assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="./assets/compiled/js/app.js"></script>
+    <script src="./assets/extensions/jquery/jquery.min.js"></script>
+    <script src="./assets/extensions/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="./assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
     
     <script>
         $(document).ready(function() {

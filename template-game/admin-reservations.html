@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"="width=device-width, initial-scale=1.0">
     <title>Gestión de Reservas - GGDeals</title>
     
+    <!-- Enlaces CSS -->
     <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="./assets/compiled/css/app.css">
     <link rel="stylesheet" href="./assets/compiled/css/app-dark.css">
     <link rel="stylesheet" href="./assets/compiled/css/iconly.css">
     <link rel="stylesheet" href="./assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="./assets/compiled/css/table-datatable-jquery.css">
+    <link rel="stylesheet" href="./assets/extensions/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- CSS de Flatpickr para el calendario -->
     <link rel="stylesheet" href="./assets/extensions/flatpickr/flatpickr.min.css">
 </head>
 
@@ -278,24 +281,18 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Fecha Reserva</th>
-                                                    <th>Usuario</th>
-                                                    <th>Juego</th>
-                                                    <th>Fecha Lanzamiento</th>
-                                                    <th>Plataforma</th>
-                                                    <th>Estado</th>
+                                                    <th>Fecha Disponible</th>
+                                                    <th>ID Usuario</th>
+                                                    <th>ID Juego</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
-                                                    <td>12/04/2025</td>
-                                                    <td>Juan Pérez</td>
-                                                    <td>GTA VI</td>
                                                     <td>15/10/2025</td>
-                                                    <td>PlayStation 5</td>
-                                                    <td><span class="badge bg-success">Activa</span></td>
+                                                    <td>1</td>
+                                                    <td>4</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -304,7 +301,6 @@
                                                             <ul class="dropdown-menu">
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewReservationModal"><i class="bi bi-eye"></i> Ver Detalles</a></li>
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editReservationModal"><i class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#confirmReservationModal"><i class="bi bi-check-circle"></i> Confirmar Reserva</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
                                                                 <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#cancelReservationModal"><i class="bi bi-x-circle"></i> Cancelar Reserva</a></li>
                                                             </ul>
@@ -313,12 +309,9 @@
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
-                                                    <td>10/04/2025</td>
-                                                    <td>Ana López</td>
-                                                    <td>Elder Scrolls VI</td>
                                                     <td>22/11/2025</td>
-                                                    <td>PC</td>
-                                                    <td><span class="badge bg-success">Activa</span></td>
+                                                    <td>2</td>
+                                                    <td>5</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -327,7 +320,6 @@
                                                             <ul class="dropdown-menu">
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewReservationModal"><i class="bi bi-eye"></i> Ver Detalles</a></li>
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editReservationModal"><i class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#confirmReservationModal"><i class="bi bi-check-circle"></i> Confirmar Reserva</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
                                                                 <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#cancelReservationModal"><i class="bi bi-x-circle"></i> Cancelar Reserva</a></li>
                                                             </ul>
@@ -336,12 +328,9 @@
                                                 </tr>
                                                 <tr>
                                                     <td>3</td>
-                                                    <td>08/04/2025</td>
-                                                    <td>Mario García</td>
-                                                    <td>Elden Ring DLC</td>
                                                     <td>15/06/2025</td>
-                                                    <td>Xbox Series X</td>
-                                                    <td><span class="badge bg-info">Confirmada</span></td>
+                                                    <td>3</td>
+                                                    <td>2</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -350,7 +339,6 @@
                                                             <ul class="dropdown-menu">
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewReservationModal"><i class="bi bi-eye"></i> Ver Detalles</a></li>
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editReservationModal"><i class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#convertToSaleModal"><i class="bi bi-cart-plus"></i> Convertir a Venta</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
                                                                 <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#cancelReservationModal"><i class="bi bi-x-circle"></i> Cancelar Reserva</a></li>
                                                             </ul>
@@ -359,12 +347,9 @@
                                                 </tr>
                                                 <tr>
                                                     <td>4</td>
-                                                    <td>05/04/2025</td>
-                                                    <td>Laura Martínez</td>
-                                                    <td>Starfield</td>
                                                     <td>02/08/2025</td>
-                                                    <td>PlayStation 5</td>
-                                                    <td><span class="badge bg-success">Activa</span></td>
+                                                    <td>4</td>
+                                                    <td>3</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -373,7 +358,6 @@
                                                             <ul class="dropdown-menu">
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewReservationModal"><i class="bi bi-eye"></i> Ver Detalles</a></li>
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editReservationModal"><i class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#confirmReservationModal"><i class="bi bi-check-circle"></i> Confirmar Reserva</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
                                                                 <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#cancelReservationModal"><i class="bi bi-x-circle"></i> Cancelar Reserva</a></li>
                                                             </ul>
@@ -382,12 +366,9 @@
                                                 </tr>
                                                 <tr>
                                                     <td>5</td>
-                                                    <td>02/04/2025</td>
-                                                    <td>Roberto Sánchez</td>
-                                                    <td>Dragon Age: Dreadwolf</td>
                                                     <td>30/09/2025</td>
-                                                    <td>PC</td>
-                                                    <td><span class="badge bg-danger">Cancelada</span></td>
+                                                    <td>5</td>
+                                                    <td>1</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -395,7 +376,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu">
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewReservationModal"><i class="bi bi-eye"></i> Ver Detalles</a></li>
-                                                                <li><a class="dropdown-item text-success" href="#" data-bs-toggle="modal" data-bs-target="#restoreReservationModal"><i class="bi bi-arrow-repeat"></i> Restaurar Reserva</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editReservationModal"><i class="bi bi-pencil"></i> Editar</a></li>
+                                                                <li><hr class="dropdown-divider"></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#cancelReservationModal"><i class="bi bi-x-circle"></i> Cancelar Reserva</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
@@ -677,43 +660,32 @@
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
-                            <label for="editReservationStatus" class="form-label">Estado</label>
-                            <select class="form-select" id="editReservationStatus">
-                                <option value="active" selected>Activa</option>
-                                <option value="confirmed">Confirmada</option>
-                                <option value="cancelled">Cancelada</option>
+                            <label for="editReservationId" class="form-label">ID de Reserva</label>
+                            <input type="number" class="form-control" id="editReservationId" value="1" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editReservationDate" class="form-label">Fecha Disponible</label>
+                            <input type="date" class="form-control" id="editReservationDate" value="2025-10-15">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editReservationUserId" class="form-label">ID Usuario</label>
+                            <select class="form-select" id="editReservationUserId">
+                                <option value="1" selected>1 - Juan Pérez</option>
+                                <option value="2">2 - Ana López</option>
+                                <option value="3">3 - Mario García</option>
+                                <option value="4">4 - Laura Martínez</option>
+                                <option value="5">5 - Roberto Sánchez</option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="editReservationEdition" class="form-label">Edición</label>
-                            <select class="form-select" id="editReservationEdition">
-                                <option value="standard" selected>Estándar</option>
-                                <option value="deluxe">Deluxe</option>
-                                <option value="collector">Coleccionista</option>
+                            <label for="editReservationGameId" class="form-label">ID Juego</label>
+                            <select class="form-select" id="editReservationGameId">
+                                <option value="1">1 - GTA VI</option>
+                                <option value="2">2 - Elder Scrolls VI</option>
+                                <option value="3">3 - Elden Ring DLC</option>
+                                <option value="4" selected>4 - Starfield</option>
+                                <option value="5">5 - Dragon Age: Dreadwolf</option>
                             </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editReservationPlatform" class="form-label">Plataforma</label>
-                            <select class="form-select" id="editReservationPlatform">
-                                <option value="ps5" selected>PlayStation 5</option>
-                                <option value="ps4">PlayStation 4</option>
-                                <option value="xbox">Xbox Series X|S</option>
-                                <option value="xboxone">Xbox One</option>
-                                <option value="pc">PC</option>
-                                <option value="switch">Nintendo Switch</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editReservationPrice" class="form-label">Precio de Reserva (€)</label>
-                            <input type="number" step="0.01" class="form-control" id="editReservationPrice" value="69.99">
-                        </div>
-                        <div class="mb-3">
-                            <label for="editReservationDeposit" class="form-label">Anticipo Pagado (€)</label>
-                            <input type="number" step="0.01" class="form-control" id="editReservationDeposit" value="10.00">
-                        </div>
-                        <div class="mb-3">
-                            <label for="editReservationNotes" class="form-label">Notas</label>
-                            <textarea class="form-control" id="editReservationNotes" rows="3">El cliente ha solicitado ser notificado cuando el juego esté disponible para su recogida en tienda. Prefiere recibir notificaciones por WhatsApp.</textarea>
                         </div>
                         <div class="alert alert-warning">
                             <i class="bi bi-exclamation-circle"></i> Cambiar detalles de la reserva puede afectar a las estadísticas y reportes. Asegúrate de que los cambios son necesarios.
@@ -973,6 +945,52 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     <button type="button" class="btn btn-success">Completar Venta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Añadir Reserva -->
+    <div class="modal fade" id="addReservationModal" tabindex="-1" aria-labelledby="addReservationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addReservationModalLabel">Añadir Nueva Reserva</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="newReservationDate" class="form-label">Fecha Disponible</label>
+                            <input type="date" class="form-control" id="newReservationDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newReservationUserId" class="form-label">ID Usuario</label>
+                            <select class="form-select" id="newReservationUserId" required>
+                                <option value="" selected disabled>Seleccione un usuario</option>
+                                <option value="1">1 - Juan Pérez</option>
+                                <option value="2">2 - Ana López</option>
+                                <option value="3">3 - Mario García</option>
+                                <option value="4">4 - Laura Martínez</option>
+                                <option value="5">5 - Roberto Sánchez</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newReservationGameId" class="form-label">ID Juego</label>
+                            <select class="form-select" id="newReservationGameId" required>
+                                <option value="" selected disabled>Seleccione un juego</option>
+                                <option value="1">1 - GTA VI</option>
+                                <option value="2">2 - Elder Scrolls VI</option>
+                                <option value="3">3 - Elden Ring DLC</option>
+                                <option value="4">4 - Starfield</option>
+                                <option value="5">5 - Dragon Age: Dreadwolf</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
         </div>

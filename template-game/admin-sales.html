@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Ventas - GGDeals</title>
     
+    <!-- Enlaces CSS -->
     <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="./assets/compiled/css/app.css">
     <link rel="stylesheet" href="./assets/compiled/css/app-dark.css">
     <link rel="stylesheet" href="./assets/compiled/css/iconly.css">
     <link rel="stylesheet" href="./assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="./assets/compiled/css/table-datatable-jquery.css">
+    <link rel="stylesheet" href="./assets/extensions/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- CSS de Flatpickr para el calendario -->
     <link rel="stylesheet" href="./assets/extensions/flatpickr/flatpickr.min.css">
 </head>
 
@@ -117,153 +120,40 @@
 
             <div class="content-wrapper container">
                 <div class="page-heading">
-                    <h3>Gestión de Ventas</h3>
+                    <div class="d-flex justify-content-between">
+                        <h3>Gestión de Ventas</h3>
+                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSaleModal">
+                            <i class="bi bi-plus"></i> Nueva Venta
+                        </a>
+                    </div>
                 </div>
                 <div class="page-content">
-                    <!-- Filtros y Estadísticas -->
-                    <section class="row">
-                        <div class="col-12 col-lg-9">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>Filtros de Ventas</h4>
-                                </div>
-                                <div class="card-body">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-md-4 mb-3">
-                                                <label for="dateRangeFilter" class="form-label">Periodo</label>
-                                                <select class="form-select" id="dateRangeFilter">
-                                                    <option value="today">Hoy</option>
-                                                    <option value="yesterday">Ayer</option>
-                                                    <option value="last7days">Últimos 7 días</option>
-                                                    <option value="last30days" selected>Últimos 30 días</option>
-                                                    <option value="thisMonth">Este mes</option>
-                                                    <option value="lastMonth">Mes pasado</option>
-                                                    <option value="custom">Personalizado</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-8 mb-3" id="customDateRange" style="display: none;">
-                                                <label class="form-label">Rango Personalizado</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control flatpickr-range" placeholder="Seleccionar rango de fechas">
-                                                    <span class="input-group-text"><i class="bi bi-calendar"></i></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4 mb-3">
-                                                <label for="userFilter" class="form-label">Usuario</label>
-                                                <select class="form-select" id="userFilter">
-                                                    <option value="" selected>Todos los usuarios</option>
-                                                    <option value="1">Juan Pérez</option>
-                                                    <option value="2">Ana López</option>
-                                                    <option value="3">Mario García</option>
-                                                    <option value="4">Laura Martínez</option>
-                                                    <option value="5">Roberto Sánchez</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4 mb-3">
-                                                <label for="gameFilter" class="form-label">Juego</label>
-                                                <select class="form-select" id="gameFilter">
-                                                    <option value="" selected>Todos los juegos</option>
-                                                    <option value="1">The Witcher 3: Wild Hunt</option>
-                                                    <option value="2">Cyberpunk 2077</option>
-                                                    <option value="3">Red Dead Redemption 2</option>
-                                                    <option value="4">GTA V</option>
-                                                    <option value="5">Elden Ring</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4 mb-3">
-                                                <label for="platformFilter" class="form-label">Plataforma</label>
-                                                <select class="form-select" id="platformFilter">
-                                                    <option value="" selected>Todas las plataformas</option>
-                                                    <option value="1">PC</option>
-                                                    <option value="2">PlayStation 5</option>
-                                                    <option value="3">PlayStation 4</option>
-                                                    <option value="4">Xbox Series X|S</option>
-                                                    <option value="5">Xbox One</option>
-                                                    <option value="6">Nintendo Switch</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex justify-content-end">
-                                            <button type="button" class="btn btn-light me-2">Limpiar</button>
-                                            <button type="button" class="btn btn-primary">Aplicar Filtros</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-3">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>Resumen de Ventas</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="card border shadow-none mb-3">
-                                                <div class="card-body p-3">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="avatar avatar-md">
-                                                            <div class="avatar-initial bg-primary rounded">
-                                                                <i class="bi bi-receipt text-white"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="ms-3">
-                                                            <h5 class="mb-0">Total Ventas</h5>
-                                                            <p class="mb-0 text-muted">586</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="card border shadow-none mb-3">
-                                                <div class="card-body p-3">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="avatar avatar-md">
-                                                            <div class="avatar-initial bg-success rounded">
-                                                                <i class="bi bi-currency-euro text-white"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="ms-3">
-                                                            <h5 class="mb-0">Ingresos</h5>
-                                                            <p class="mb-0 text-muted">€ 28,945.50</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="card border shadow-none mb-0">
-                                                <div class="card-body p-3">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="avatar avatar-md">
-                                                            <div class="avatar-initial bg-info rounded">
-                                                                <i class="bi bi-graph-up-arrow text-white"></i>
-                                                            </div>
-                                                        </div>
-                                                        <div class="ms-3">
-                                                            <h5 class="mb-0">Precio Promedio</h5>
-                                                            <p class="mb-0 text-muted">€ 49.39</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    
-                    <!-- Lista de Ventas -->
                     <section class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Lista de Ventas</h4>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h4>Historial de Ventas</h4>
+                                        <div class="d-flex gap-2">
+                                            <select class="form-select form-select-sm" id="sale-filter-status">
+                                                <option value="all">Todos los periodos</option>
+                                                <option value="today">Hoy</option>
+                                                <option value="this-week">Esta semana</option>
+                                                <option value="this-month">Este mes</option>
+                                                <option value="last-30days">Últimos 30 días</option>
+                                                <option value="last-90days">Últimos 90 días</option>
+                                                <option value="this-year">Este año</option>
+                                            </select>
+                                            <select class="form-select form-select-sm" id="sale-filter-user">
+                                                <option value="all">Todos los usuarios</option>
+                                                <option value="1">Juan Pérez</option>
+                                                <option value="2">Ana López</option>
+                                                <option value="3">Mario García</option>
+                                                <option value="4">Laura Martínez</option>
+                                                <option value="5">Roberto Sánchez</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
@@ -271,12 +161,10 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Fecha</th>
+                                                    <th>Fecha de Compra</th>
+                                                    <th>Importe</th>
                                                     <th>Usuario</th>
-                                                    <th>Juego</th>
-                                                    <th>Edición</th>
-                                                    <th>Plataforma</th>
-                                                    <th>Precio</th>
+                                                    <th>Juego (Réplica)</th>
                                                     <th>Estado</th>
                                                     <th>Acciones</th>
                                                 </tr>
@@ -284,12 +172,10 @@
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
-                                                    <td>04/05/2025</td>
-                                                    <td>Juan Pérez</td>
-                                                    <td>The Witcher 3: Wild Hunt</td>
-                                                    <td>Game of the Year</td>
-                                                    <td>PC</td>
-                                                    <td>€ 39.99</td>
+                                                    <td>14/05/2025 10:23:45</td>
+                                                    <td>€59.99</td>
+                                                    <td>Juan Pérez (ID: 1)</td>
+                                                    <td>The Witcher 3: Wild Hunt (ID: 101)</td>
                                                     <td><span class="badge bg-success">Completada</span></td>
                                                     <td>
                                                         <div class="dropdown">
@@ -297,23 +183,21 @@
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewSaleModal"><i class="bi bi-eye"></i> Ver Detalles</a></li>
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editSaleModal"><i class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#sendInvoiceModal"><i class="bi bi-envelope"></i> Enviar Factura</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewSaleDetailsModal"><i class="bi bi-eye"></i> Ver Detalles</a></li>
+                                                                <li><a class="dropdown-item" href="#"><i class="bi bi-receipt"></i> Generar Factura</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
-                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#cancelSaleModal"><i class="bi bi-x-circle"></i> Cancelar Venta</a></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteSaleModal"><i class="bi bi-trash"></i> Eliminar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
-                                                    <td>03/05/2025</td>
-                                                    <td>Ana López</td>
-                                                    <td>Cyberpunk 2077</td>
-                                                    <td>Edición Deluxe</td>
-                                                    <td>PlayStation 5</td>
-                                                    <td>€ 59.99</td>
+                                                    <td>13/05/2025 15:30:22</td>
+                                                    <td>€49.99</td>
+                                                    <td>Ana López (ID: 2)</td>
+                                                    <td>Cyberpunk 2077 (ID: 102)</td>
                                                     <td><span class="badge bg-success">Completada</span></td>
                                                     <td>
                                                         <div class="dropdown">
@@ -321,23 +205,21 @@
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewSaleModal"><i class="bi bi-eye"></i> Ver Detalles</a></li>
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editSaleModal"><i class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#sendInvoiceModal"><i class="bi bi-envelope"></i> Enviar Factura</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewSaleDetailsModal"><i class="bi bi-eye"></i> Ver Detalles</a></li>
+                                                                <li><a class="dropdown-item" href="#"><i class="bi bi-receipt"></i> Generar Factura</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
-                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#cancelSaleModal"><i class="bi bi-x-circle"></i> Cancelar Venta</a></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteSaleModal"><i class="bi bi-trash"></i> Eliminar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>3</td>
-                                                    <td>02/05/2025</td>
-                                                    <td>Mario García</td>
-                                                    <td>Red Dead Redemption 2</td>
-                                                    <td>Ultimate Edition</td>
-                                                    <td>Xbox Series X</td>
-                                                    <td>€ 54.99</td>
+                                                    <td>12/05/2025 09:15:33</td>
+                                                    <td>€39.99</td>
+                                                    <td>Mario García (ID: 3)</td>
+                                                    <td>Red Dead Redemption 2 (ID: 103)</td>
                                                     <td><span class="badge bg-success">Completada</span></td>
                                                     <td>
                                                         <div class="dropdown">
@@ -345,59 +227,55 @@
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewSaleModal"><i class="bi bi-eye"></i> Ver Detalles</a></li>
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editSaleModal"><i class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#sendInvoiceModal"><i class="bi bi-envelope"></i> Enviar Factura</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewSaleDetailsModal"><i class="bi bi-eye"></i> Ver Detalles</a></li>
+                                                                <li><a class="dropdown-item" href="#"><i class="bi bi-receipt"></i> Generar Factura</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
-                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#cancelSaleModal"><i class="bi bi-x-circle"></i> Cancelar Venta</a></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteSaleModal"><i class="bi bi-trash"></i> Eliminar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>4</td>
-                                                    <td>01/05/2025</td>
-                                                    <td>Laura Martínez</td>
-                                                    <td>Elden Ring</td>
-                                                    <td>Estándar</td>
-                                                    <td>PC</td>
-                                                    <td>€ 49.99</td>
-                                                    <td><span class="badge bg-warning">Pendiente</span></td>
+                                                    <td>11/05/2025 14:45:10</td>
+                                                    <td>€29.99</td>
+                                                    <td>Laura Martínez (ID: 4)</td>
+                                                    <td>GTA V (ID: 104)</td>
+                                                    <td><span class="badge bg-success">Completada</span></td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewSaleModal"><i class="bi bi-eye"></i> Ver Detalles</a></li>
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editSaleModal"><i class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#sendInvoiceModal"><i class="bi bi-envelope"></i> Enviar Factura</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewSaleDetailsModal"><i class="bi bi-eye"></i> Ver Detalles</a></li>
+                                                                <li><a class="dropdown-item" href="#"><i class="bi bi-receipt"></i> Generar Factura</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
-                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#cancelSaleModal"><i class="bi bi-x-circle"></i> Cancelar Venta</a></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteSaleModal"><i class="bi bi-trash"></i> Eliminar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>5</td>
-                                                    <td>28/04/2025</td>
-                                                    <td>Roberto Sánchez</td>
-                                                    <td>GTA V</td>
-                                                    <td>Premium Edition</td>
-                                                    <td>PlayStation 4</td>
-                                                    <td>€ 29.99</td>
-                                                    <td><span class="badge bg-danger">Cancelada</span></td>
+                                                    <td>10/05/2025 11:20:55</td>
+                                                    <td>€59.99</td>
+                                                    <td>Roberto Sánchez (ID: 5)</td>
+                                                    <td>Elden Ring (ID: 105)</td>
+                                                    <td><span class="badge bg-success">Completada</span></td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                                 <i class="bi bi-three-dots-vertical"></i>
                                                             </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewSaleModal"><i class="bi bi-eye"></i> Ver Detalles</a></li>
                                                                 <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editSaleModal"><i class="bi bi-pencil"></i> Editar</a></li>
-                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#sendInvoiceModal"><i class="bi bi-envelope"></i> Enviar Factura</a></li>
+                                                                <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#viewSaleDetailsModal"><i class="bi bi-eye"></i> Ver Detalles</a></li>
+                                                                <li><a class="dropdown-item" href="#"><i class="bi bi-receipt"></i> Generar Factura</a></li>
                                                                 <li><hr class="dropdown-divider"></li>
-                                                                <li><a class="dropdown-item text-success" href="#" data-bs-toggle="modal" data-bs-target="#restoreSaleModal"><i class="bi bi-arrow-repeat"></i> Restaurar Venta</a></li>
+                                                                <li><a class="dropdown-item text-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteSaleModal"><i class="bi bi-trash"></i> Eliminar</a></li>
                                                             </ul>
                                                         </div>
                                                     </td>
@@ -410,148 +288,161 @@
                         </div>
                     </section>
                     
-                    <!-- Estadísticas Ventas por Juego -->
+                    <!-- Sección Estadísticas de Ventas -->
                     <section class="row">
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>Ventas por Juego</h4>
+                                    <h4>Resumen de Ventas</h4>
                                 </div>
                                 <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>Juego</th>
-                                                    <th>Cantidad Vendida</th>
-                                                    <th>Ingresos</th>
-                                                    <th>Precio Promedio</th>
-                                                    <th>% del Total</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="avatar avatar-md me-3">
-                                                                <img src="./assets/compiled/jpg/1.jpg">
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="mb-0">The Witcher 3: Wild Hunt</h6>
-                                                                <p class="text-muted mb-0">CD Projekt RED</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>254</td>
-                                                    <td>€ 9,652</td>
-                                                    <td>€ 38.00</td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <span class="me-2">33.4%</span>
-                                                            <div class="progress" style="width: 100px; height: 5px">
-                                                                <div class="progress-bar" role="progressbar" style="width: 33.4%" aria-valuenow="33.4" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="avatar avatar-md me-3">
-                                                                <img src="./assets/compiled/jpg/2.jpg">
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="mb-0">Cyberpunk 2077</h6>
-                                                                <p class="text-muted mb-0">CD Projekt RED</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>198</td>
-                                                    <td>€ 8,910</td>
-                                                    <td>€ 45.00</td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <span class="me-2">30.8%</span>
-                                                            <div class="progress" style="width: 100px; height: 5px">
-                                                                <div class="progress-bar" role="progressbar" style="width: 30.8%" aria-valuenow="30.8" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="avatar avatar-md me-3">
-                                                                <img src="./assets/compiled/jpg/3.jpg">
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="mb-0">Red Dead Redemption 2</h6>
-                                                                <p class="text-muted mb-0">Rockstar Games</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>157</td>
-                                                    <td>€ 7,065</td>
-                                                    <td>€ 45.00</td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <span class="me-2">24.4%</span>
-                                                            <div class="progress" style="width: 100px; height: 5px">
-                                                                <div class="progress-bar" role="progressbar" style="width: 24.4%" aria-valuenow="24.4" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="avatar avatar-md me-3">
-                                                                <img src="./assets/compiled/jpg/4.jpg">
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="mb-0">GTA V</h6>
-                                                                <p class="text-muted mb-0">Rockstar Games</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>102</td>
-                                                    <td>€ 3,060</td>
-                                                    <td>€ 30.00</td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <span class="me-2">10.6%</span>
-                                                            <div class="progress" style="width: 100px; height: 5px">
-                                                                <div class="progress-bar" role="progressbar" style="width: 10.6%" aria-valuenow="10.6" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="avatar avatar-md me-3">
-                                                                <img src="./assets/compiled/jpg/5.jpg">
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="mb-0">Elden Ring</h6>
-                                                                <p class="text-muted mb-0">FromSoftware</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>85</td>
-                                                    <td>€ 4,250</td>
-                                                    <td>€ 50.00</td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <span class="me-2">14.7%</span>
-                                                            <div class="progress" style="width: 100px; height: 5px">
-                                                                <div class="progress-bar" role="progressbar" style="width: 14.7%" aria-valuenow="14.7" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="stats-card mb-4">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <h6 class="text-muted">Ventas Totales</h6>
+                                                        <h3 class="mb-0">€240.95</h3>
+                                                    </div>
+                                                    <div class="avatar bg-primary p-2">
+                                                        <i class="bi bi-cash-stack text-white fs-3"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <span class="text-success"><i class="bi bi-arrow-up-right"></i> 12.5%</span>
+                                                    <span class="text-muted"> vs mes anterior</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="stats-card mb-4">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <h6 class="text-muted">Transacciones</h6>
+                                                        <h3 class="mb-0">5</h3>
+                                                    </div>
+                                                    <div class="avatar bg-success p-2">
+                                                        <i class="bi bi-bag-check text-white fs-3"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <span class="text-success"><i class="bi bi-arrow-up-right"></i> 8.2%</span>
+                                                    <span class="text-muted"> vs mes anterior</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="stats-card mb-4">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <h6 class="text-muted">Valor Promedio</h6>
+                                                        <h3 class="mb-0">€48.19</h3>
+                                                    </div>
+                                                    <div class="avatar bg-info p-2">
+                                                        <i class="bi bi-calculator text-white fs-3"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <span class="text-danger"><i class="bi bi-arrow-down-right"></i> 3.1%</span>
+                                                    <span class="text-muted"> vs mes anterior</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6">
+                                            <div class="stats-card mb-4">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <div>
+                                                        <h6 class="text-muted">Juego Más Vendido</h6>
+                                                        <h5 class="mb-0">The Witcher 3</h5>
+                                                    </div>
+                                                    <div class="avatar bg-warning p-2">
+                                                        <i class="bi bi-trophy text-white fs-3"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <span class="text-muted">2 unidades vendidas</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div>
+                                                <h6>Ventas por Plataforma</h6>
+                                                <div class="progress-wrapper mb-4">
+                                                    <div class="mb-1 d-flex justify-content-between">
+                                                        <span>PC</span>
+                                                        <span>45%</span>
+                                                    </div>
+                                                    <div class="progress progress-sm">
+                                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="progress-wrapper mb-4">
+                                                    <div class="mb-1 d-flex justify-content-between">
+                                                        <span>PlayStation</span>
+                                                        <span>30%</span>
+                                                    </div>
+                                                    <div class="progress progress-sm">
+                                                        <div class="progress-bar bg-info" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="progress-wrapper mb-4">
+                                                    <div class="mb-1 d-flex justify-content-between">
+                                                        <span>Xbox</span>
+                                                        <span>20%</span>
+                                                    </div>
+                                                    <div class="progress progress-sm">
+                                                        <div class="progress-bar bg-success" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="progress-wrapper mb-4">
+                                                    <div class="mb-1 d-flex justify-content-between">
+                                                        <span>Nintendo</span>
+                                                        <span>5%</span>
+                                                    </div>
+                                                    <div class="progress progress-sm">
+                                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 5%" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h6>Ventas por Categoría de Juego</h6>
+                                            <div class="table-responsive">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Categoría</th>
+                                                            <th>Ventas</th>
+                                                            <th>Ingresos</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>RPG</td>
+                                                            <td>2</td>
+                                                            <td>€99.98</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Acción/Aventura</td>
+                                                            <td>2</td>
+                                                            <td>€89.98</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Shooter</td>
+                                                            <td>1</td>
+                                                            <td>€49.99</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Estrategia</td>
+                                                            <td>0</td>
+                                                            <td>€0.00</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -566,115 +457,63 @@
                         <div class="float-start">
                             <p>2025 &copy; GGDeals Admin</p>
                         </div>
-                        
                     </div>
                 </div>
             </footer>
         </div>
     </div>
 
-    <!-- Modales -->
-    <!-- Modal Ver Venta -->
-    <div class="modal fade" id="viewSaleModal" tabindex="-1" aria-labelledby="viewSaleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+    <!-- Modal Añadir Venta -->
+    <div class="modal fade" id="addSaleModal" tabindex="-1" aria-labelledby="addSaleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="viewSaleModalLabel">Detalles de la Venta #1</h5>
+                    <h5 class="modal-title" id="addSaleModalLabel">Añadir Nueva Venta</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row mb-4">
-                        <div class="col-md-6">
-                            <h6 class="text-muted">Información de la Venta</h6>
-                            <div class="mt-3">
-                                <p class="mb-1"><strong>ID de Venta:</strong> #1</p>
-                                <p class="mb-1"><strong>Fecha:</strong> 04/05/2025 15:23:45</p>
-                                <p class="mb-1"><strong>Estado:</strong> <span class="badge bg-success">Completada</span></p>
-                                <p class="mb-1"><strong>Método de Pago:</strong> Tarjeta de Crédito</p>
-                                <p class="mb-1"><strong>Total:</strong> <span class="font-bold">€ 39.99</span></p>
+                    <form>
+                        <div class="mb-3">
+                            <label for="addSaleDate" class="form-label">Fecha de Compra</label>
+                            <input type="text" class="form-control flatpickr-datetime" id="addSaleDate" placeholder="Selecciona fecha y hora">
+                        </div>
+                        <div class="mb-3">
+                            <label for="addSaleAmount" class="form-label">Importe</label>
+                            <div class="input-group">
+                                <span class="input-group-text">€</span>
+                                <input type="number" class="form-control" id="addSaleAmount" placeholder="0.00" step="0.01">
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <h6 class="text-muted">Información del Cliente</h6>
-                            <div class="mt-3">
-                                <p class="mb-1"><strong>Nombre:</strong> Juan Pérez</p>
-                                <p class="mb-1"><strong>Email:</strong> juan.perez@email.com</p>
-                                <p class="mb-1"><strong>ID de Cliente:</strong> #1</p>
-                                <p class="mb-1"><strong>Tipo de Cliente:</strong> Regular</p>
-                                <p class="mb-1"><strong>Total Compras:</strong> 8</p>
-                            </div>
+                        <div class="mb-3">
+                            <label for="addSaleUserId" class="form-label">Usuario</label>
+                            <select class="form-select" id="addSaleUserId">
+                                <option value="" selected disabled>Selecciona un usuario</option>
+                                <option value="1">1 - Juan Pérez</option>
+                                <option value="2">2 - Ana López</option>
+                                <option value="3">3 - Mario García</option>
+                                <option value="4">4 - Laura Martínez</option>
+                                <option value="5">5 - Roberto Sánchez</option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <h6 class="text-muted">Producto Comprado</h6>
-                            <div class="table-responsive mt-3">
-                                <table class="table table-bordered table-hover">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>Producto</th>
-                                            <th>Edición</th>
-                                            <th>Plataforma</th>
-                                            <th>Clave de Activación</th>
-                                            <th>Precio</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <img src="./assets/compiled/jpg/1.jpg" width="40" height="40" class="rounded me-2">
-                                                    <span>The Witcher 3: Wild Hunt</span>
-                                                </div>
-                                            </td>
-                                            <td>Game of the Year</td>
-                                            <td>PC</td>
-                                            <td><code>AAAA-AAAA-AAAA-AAAA</code></td>
-                                            <td>€ 39.99</td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot class="table-light">
-                                        <tr>
-                                            <td colspan="4" class="text-end"><strong>Total</strong></td>
-                                            <td><strong>€ 39.99</strong></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
+                        <div class="mb-3">
+                            <label for="addSaleReplicaId" class="form-label">Réplica</label>
+                            <select class="form-select" id="addSaleReplicaId">
+                                <option value="" selected disabled>Selecciona una réplica</option>
+                                <option value="101">101 - The Witcher 3: Wild Hunt</option>
+                                <option value="102">102 - Cyberpunk 2077</option>
+                                <option value="103">103 - Red Dead Redemption 2</option>
+                                <option value="104">104 - GTA V</option>
+                                <option value="105">105 - Elden Ring</option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <h6 class="text-muted">Historial de la Venta</h6>
-                            <div class="timeline mt-3">
-                                <div class="timeline-item">
-                                    <div class="timeline-marker bg-success"></div>
-                                    <div class="timeline-content">
-                                        <h6 class="mb-0">04/05/2025 - 15:23:45</h6>
-                                        <p>Venta completada con éxito</p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-marker bg-info"></div>
-                                    <div class="timeline-content">
-                                        <h6 class="mb-0">04/05/2025 - 15:22:30</h6>
-                                        <p>Pago procesado correctamente</p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-marker bg-primary"></div>
-                                    <div class="timeline-content">
-                                        <h6 class="mb-0">04/05/2025 - 15:20:15</h6>
-                                        <p>Carrito confirmado</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle"></i> Al crear una venta, se registrará automáticamente y se actualizará el inventario.
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <a href="#" class="btn btn-primary"><i class="bi bi-printer"></i> Imprimir Factura</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Añadir Venta</button>
                 </div>
             </div>
         </div>
@@ -691,24 +530,48 @@
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
+                            <label for="editSaleId" class="form-label">ID</label>
+                            <input type="text" class="form-control" id="editSaleId" value="1" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editSaleDate" class="form-label">Fecha de Compra</label>
+                            <input type="text" class="form-control flatpickr-datetime" id="editSaleDate" value="14/05/2025 10:23:45">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editSaleAmount" class="form-label">Importe</label>
+                            <div class="input-group">
+                                <span class="input-group-text">€</span>
+                                <input type="number" class="form-control" id="editSaleAmount" value="59.99" step="0.01">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editSaleUserId" class="form-label">Usuario</label>
+                            <select class="form-select" id="editSaleUserId">
+                                <option value="1" selected>1 - Juan Pérez</option>
+                                <option value="2">2 - Ana López</option>
+                                <option value="3">3 - Mario García</option>
+                                <option value="4">4 - Laura Martínez</option>
+                                <option value="5">5 - Roberto Sánchez</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editSaleReplicaId" class="form-label">Réplica</label>
+                            <select class="form-select" id="editSaleReplicaId">
+                                <option value="101" selected>101 - The Witcher 3: Wild Hunt</option>
+                                <option value="102">102 - Cyberpunk 2077</option>
+                                <option value="103">103 - Red Dead Redemption 2</option>
+                                <option value="104">104 - GTA V</option>
+                                <option value="105">105 - Elden Ring</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <label for="editSaleStatus" class="form-label">Estado</label>
                             <select class="form-select" id="editSaleStatus">
                                 <option value="completed" selected>Completada</option>
-                                <option value="pending">Pendiente</option>
+                                <option value="processing">Procesando</option>
+                                <option value="refunded">Reembolsada</option>
                                 <option value="cancelled">Cancelada</option>
                             </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editSalePaymentMethod" class="form-label">Método de Pago</label>
-                            <select class="form-select" id="editSalePaymentMethod">
-                                <option value="credit_card" selected>Tarjeta de Crédito</option>
-                                <option value="paypal">PayPal</option>
-                                <option value="bank_transfer">Transferencia Bancaria</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editSaleDate" class="form-label">Fecha y Hora</label>
-                            <input type="text" class="form-control flatpickr-datetime" id="editSaleDate" value="04/05/2025 15:23:45">
                         </div>
                         <div class="alert alert-warning">
                             <i class="bi bi-exclamation-circle"></i> Cambiar detalles de la venta puede afectar a las estadísticas y reportes. Asegúrate de que los cambios son necesarios.
@@ -723,136 +586,185 @@
         </div>
     </div>
 
-    <!-- Modal Enviar Factura -->
-    <div class="modal fade" id="sendInvoiceModal" tabindex="-1" aria-labelledby="sendInvoiceModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+    <!-- Modal Ver Detalles de Venta -->
+    <div class="modal fade" id="viewSaleDetailsModal" tabindex="-1" aria-labelledby="viewSaleDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="sendInvoiceModalLabel">Enviar Factura</h5>
+                    <h5 class="modal-title" id="viewSaleDetailsModalLabel">Detalles de Venta #1</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="invoiceEmail" class="form-label">Email del Cliente</label>
-                            <input type="email" class="form-control" id="invoiceEmail" value="juan.perez@email.com">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Información de la Venta</h6>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <th>ID de Venta:</th>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <th>Fecha de Compra:</th>
+                                    <td>14/05/2025 10:23:45</td>
+                                </tr>
+                                <tr>
+                                    <th>Importe Total:</th>
+                                    <td>€59.99</td>
+                                </tr>
+                                <tr>
+                                    <th>Método de Pago:</th>
+                                    <td>Tarjeta de Crédito</td>
+                                </tr>
+                                <tr>
+                                    <th>Estado:</th>
+                                    <td><span class="badge bg-success">Completada</span></td>
+                                </tr>
+                                <tr>
+                                    <th>ID de Transacción:</th>
+                                    <td>TRX123456789</td>
+                                </tr>
+                            </table>
                         </div>
-                        <div class="mb-3">
-                            <label for="invoiceSubject" class="form-label">Asunto</label>
-                            <input type="text" class="form-control" id="invoiceSubject" value="Tu factura para la compra #1 - GGDeals">
+                        <div class="col-md-6">
+                            <h6>Información del Cliente</h6>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <th>ID de Usuario:</th>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <th>Nombre:</th>
+                                    <td>Juan Pérez</td>
+                                </tr>
+                                <tr>
+                                    <th>Email:</th>
+                                    <td>juan.perez@email.com</td>
+                                </tr>
+                                <tr>
+                                    <th>Fecha de Registro:</th>
+                                    <td>01/01/2025</td>
+                                </tr>
+                                <tr>
+                                    <th>Total de Compras:</th>
+                                    <td>3 compras</td>
+                                </tr>
+                                <tr>
+                                    <th>Valor Total de Compras:</th>
+                                    <td>€159.97</td>
+                                </tr>
+                            </table>
                         </div>
-                        <div class="mb-3">
-                            <label for="invoiceMessage" class="form-label">Mensaje</label>
-                            <textarea class="form-control" id="invoiceMessage" rows="4">Estimado Juan Pérez,
-
-Adjunto encontrarás la factura de tu reciente compra en GGDeals. Gracias por tu compra.
-
-Saludos,
-El equipo de GGDeals</textarea>
+                    </div>
+                    <hr>
+                    <h6>Productos Comprados</h6>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>ID Réplica</th>
+                                    <th>Plataforma</th>
+                                    <th>Edición</th>
+                                    <th>Precio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <div class="avatar avatar-md me-3">
+                                                <img src="./assets/compiled/jpg/1.jpg">
+                                            </div>
+                                            <div>
+                                                <h6 class="mb-0">The Witcher 3: Wild Hunt</h6>
+                                                <p class="text-muted mb-0">CD Projekt RED</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>101</td>
+                                    <td>PC</td>
+                                    <td>Game of the Year</td>
+                                    <td>€59.99</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="4" class="text-end">Total:</th>
+                                    <th>€59.99</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <hr>
+                    <h6>Historial de la Venta</h6>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-left">
+                                <div class="timeline-date">14/05/2025 10:23:45</div>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-title text-success">Compra realizada</div>
+                                <div class="timeline-subtitle">El usuario ha completado el proceso de compra.</div>
+                            </div>
                         </div>
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="attachInvoicePdf" checked>
-                            <label class="form-check-label" for="attachInvoicePdf">
-                                Adjuntar factura en PDF
-                            </label>
+                        <div class="timeline-item">
+                            <div class="timeline-left">
+                                <div class="timeline-date">14/05/2025 10:23:50</div>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Pago procesado</div>
+                                <div class="timeline-subtitle">Pago recibido y procesado correctamente (TRX123456789).</div>
+                            </div>
                         </div>
-                    </form>
+                        <div class="timeline-item">
+                            <div class="timeline-left">
+                                <div class="timeline-date">14/05/2025 10:24:15</div>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Envío de clave de activación</div>
+                                <div class="timeline-subtitle">Se ha enviado la clave de activación al correo electrónico del usuario.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-left">
+                                <div class="timeline-date">14/05/2025 10:25:00</div>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">Factura generada</div>
+                                <div class="timeline-subtitle">Se ha generado y enviado la factura al cliente.</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Enviar Factura</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <a href="#" class="btn btn-success"><i class="bi bi-receipt"></i> Generar Factura</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Cancelar Venta -->
-    <div class="modal fade" id="cancelSaleModal" tabindex="-1" aria-labelledby="cancelSaleModalLabel" aria-hidden="true">
+    <!-- Modal Eliminar Venta -->
+    <div class="modal fade" id="deleteSaleModal" tabindex="-1" aria-labelledby="deleteSaleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="cancelSaleModalLabel">Cancelar Venta</h5>
+                    <h5 class="modal-title" id="deleteSaleModalLabel">Eliminar Venta</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="text-center mb-4">
                         <i class="bi bi-exclamation-triangle text-danger" style="font-size: 3rem;"></i>
                         <h4 class="mt-3">¿Estás seguro?</h4>
-                        <p>¿Realmente deseas cancelar la venta <strong>#1</strong> de <strong>Juan Pérez</strong>?</p>
+                        <p>¿Realmente deseas eliminar la venta #1? Esta acción no se puede deshacer.</p>
                     </div>
-                    <div class="mb-3">
-                        <label for="cancelReason" class="form-label">Motivo de Cancelación</label>
-                        <select class="form-select" id="cancelReason">
-                            <option value="" selected disabled>Selecciona un motivo</option>
-                            <option value="customer_request">Solicitud del cliente</option>
-                            <option value="payment_issue">Problema con el pago</option>
-                            <option value="duplicate_order">Pedido duplicado</option>
-                            <option value="out_of_stock">Sin stock disponible</option>
-                            <option value="other">Otro</option>
-                        </select>
-                    </div>
-                    <div class="mb-3" id="otherReasonContainer" style="display: none;">
-                        <label for="otherReason" class="form-label">Especificar otro motivo</label>
-                        <textarea class="form-control" id="otherReason" rows="3"></textarea>
-                    </div>
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="refundPayment">
-                        <label class="form-check-label" for="refundPayment">
-                            Reembolsar el pago al cliente
-                        </label>
-                    </div>
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="returnToInventory" checked>
-                        <label class="form-check-label" for="returnToInventory">
-                            Devolver réplica al inventario
-                        </label>
-                    </div>
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="notifyCustomer" checked>
-                        <label class="form-check-label" for="notifyCustomer">
-                            Notificar al cliente por email
-                        </label>
-                    </div>
-                    <div class="alert alert-warning">
-                        <i class="bi bi-exclamation-circle"></i> Esta acción no se puede deshacer. Si la venta ya ha sido completada, se generará un reembolso.
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
-                    <button type="button" class="btn btn-danger">Confirmar Cancelación</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Restaurar Venta -->
-    <div class="modal fade" id="restoreSaleModal" tabindex="-1" aria-labelledby="restoreSaleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="restoreSaleModalLabel">Restaurar Venta</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="text-center mb-4">
-                        <i class="bi bi-arrow-repeat text-primary" style="font-size: 3rem;"></i>
-                        <h4 class="mt-3">¿Restaurar esta venta?</h4>
-                        <p>Estás a punto de restaurar la venta <strong>#5</strong> de <strong>Roberto Sánchez</strong> que fue cancelada anteriormente.</p>
-                    </div>
-                    <div class="mb-3">
-                        <label for="restoreStatus" class="form-label">Estado después de restaurar</label>
-                        <select class="form-select" id="restoreStatus">
-                            <option value="completed">Completada</option>
-                            <option value="pending" selected>Pendiente</option>
-                        </select>
-                    </div>
-                    <div class="alert alert-info">
-                        <i class="bi bi-info-circle"></i> Al restaurar esta venta, se volverá a asignar la réplica al cliente y se actualizarán las estadísticas de ventas.
+                    <div class="alert alert-danger">
+                        <i class="bi bi-exclamation-circle"></i> La eliminación de una venta afectará a los informes financieros y estadísticas. Solo deberías eliminar ventas en caso de registros erróneos.
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Restaurar Venta</button>
+                    <button type="button" class="btn btn-danger">Eliminar Venta</button>
                 </div>
             </div>
         </div>
@@ -865,6 +777,14 @@ El equipo de GGDeals</textarea>
     <script src="assets/extensions/jquery/jquery.min.js"></script>
     <script src="assets/extensions/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+    
+    <!-- FilePond -->
+    <script src="assets/extensions/filepond/filepond.js"></script>
+    <script src="assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.js"></script>
+    <script src="assets/extensions/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.js"></script>
+    <script src="assets/extensions/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.js"></script>
+    
+    <!-- Flatpickr -->
     <script src="assets/extensions/flatpickr/flatpickr.min.js"></script>
     
     <script>
@@ -873,28 +793,10 @@ El equipo de GGDeals</textarea>
             var table = $('#salesTable').DataTable({
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json"
-                },
-                "order": [[1, 'desc']], // Ordenar por fecha (descendente)
-            });
-            
-            // Inicializar Flatpickr para rangos de fechas
-            flatpickr(".flatpickr-range", {
-                mode: "range",
-                dateFormat: "d/m/Y",
-                locale: {
-                    firstDayOfWeek: 1,
-                    weekdays: {
-                        shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
-                        longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
-                    },
-                    months: {
-                        shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
-                        longhand: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-                    }
                 }
             });
             
-            // Inicializar Flatpickr para datetime
+            // Inicializar Flatpickr para selector de fecha y hora
             flatpickr(".flatpickr-datetime", {
                 enableTime: true,
                 dateFormat: "d/m/Y H:i:S",
@@ -912,23 +814,31 @@ El equipo de GGDeals</textarea>
                 }
             });
             
-            // Mostrar/ocultar campos dependiendo de la selección
-            $('#dateRangeFilter').change(function() {
-                if ($(this).val() === 'custom') {
-                    $('#customDateRange').show();
+            // Filtros de periodo
+            $('#sale-filter-status').change(function() {
+                var value = $(this).val();
+                
+                // Aquí implementarías la lógica real de filtrado por periodo
+                // Por ahora, solo mostramos un mensaje en la consola
+                console.log('Filtrando por periodo: ' + value);
+            });
+            
+            // Filtros de usuario
+            $('#sale-filter-user').change(function() {
+                var value = $(this).val();
+                
+                if (value === 'all') {
+                    table.column(3).search('').draw();
                 } else {
-                    $('#customDateRange').hide();
+                    table.column(3).search('ID: ' + value).draw();
                 }
             });
             
-            $('#cancelReason').change(function() {
-                if ($(this).val() === 'other') {
-                    $('#otherReasonContainer').show();
-                } else {
-                    $('#otherReasonContainer').hide();
-                }
+            // Inicializar Bootstrap tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
             });
-            
         });
     </script>
 </body>

@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Réplicas - GGDeals</title>
     
-    <!-- Enlaces CSS para que funcionen tanto en Thymeleaf como directamente -->
-    <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon" th:href="@{/assets/compiled/svg/favicon.svg}">
-    <link rel="stylesheet" href="./assets/compiled/css/app.css" th:href="@{/assets/compiled/css/app.css}">
-    <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" th:href="@{/assets/compiled/css/app-dark.css}">
-    <link rel="stylesheet" href="./assets/compiled/css/iconly.css" th:href="@{/assets/compiled/css/iconly.css}">
-    <link rel="stylesheet" href="./assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css" th:href="@{/assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css}">
-    <link rel="stylesheet" href="./assets/compiled/css/table-datatable-jquery.css" th:href="@{/assets/compiled/css/table-datatable-jquery.css}">
-    <link rel="stylesheet" href="./assets/extensions/bootstrap-icons/font/bootstrap-icons.css" th:href="@{/assets/extensions/bootstrap-icons/font/bootstrap-icons.css}">
+    <!-- Enlaces CSS -->
+    <link rel="shortcut icon" href="./assets/compiled/svg/favicon.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/compiled/css/app.css">
+    <link rel="stylesheet" href="./assets/compiled/css/app-dark.css">
+    <link rel="stylesheet" href="./assets/compiled/css/iconly.css">
+    <link rel="stylesheet" href="./assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="./assets/compiled/css/table-datatable-jquery.css">
+    <link rel="stylesheet" href="./assets/extensions/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- CSS de Flatpickr para el calendario -->
+    <link rel="stylesheet" href="./assets/extensions/flatpickr/flatpickr.min.css">
 </head>
 
 <body>
@@ -146,11 +148,10 @@
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Clave de Activación</th>
-                                                    <th>Juego</th>
-                                                    <th>Edición</th>
-                                                    <th>Plataforma</th>
-                                                    <th>Estado</th>
-                                                    <th>Fecha Venta</th>
+                                                    <th>¿Vendida?</th>
+                                                    <th>ID Juego</th>
+                                                    <th>ID Edición</th>
+                                                    <th>ID Plataforma</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
@@ -158,11 +159,10 @@
                                                 <tr>
                                                     <td>1</td>
                                                     <td>XXXX-XXXX-XXXX-XXXX</td>
-                                                    <td>The Witcher 3: Wild Hunt</td>
-                                                    <td>Estándar</td>
-                                                    <td>PC</td>
-                                                    <td><span class="badge bg-success">Disponible</span></td>
-                                                    <td>-</td>
+                                                    <td><span class="badge bg-success">No</span></td>
+                                                    <td>2</td>
+                                                    <td>1</td>
+                                                    <td>3</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -180,11 +180,10 @@
                                                 <tr>
                                                     <td>2</td>
                                                     <td>YYYY-YYYY-YYYY-YYYY</td>
-                                                    <td>Cyberpunk 2077</td>
-                                                    <td>Edición Deluxe</td>
-                                                    <td>PS5</td>
-                                                    <td><span class="badge bg-danger">Vendida</span></td>
-                                                    <td>22/04/2025</td>
+                                                    <td><span class="badge bg-danger">Sí</span></td>
+                                                    <td>1</td>
+                                                    <td>3</td>
+                                                    <td>1</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -202,11 +201,10 @@
                                                 <tr>
                                                     <td>3</td>
                                                     <td>ZZZZ-ZZZZ-ZZZZ-ZZZZ</td>
-                                                    <td>Red Dead Redemption 2</td>
-                                                    <td>Ultimate Edition</td>
-                                                    <td>Xbox</td>
-                                                    <td><span class="badge bg-success">Disponible</span></td>
-                                                    <td>-</td>
+                                                    <td><span class="badge bg-success">No</span></td>
+                                                    <td>3</td>
+                                                    <td>4</td>
+                                                    <td>2</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -224,11 +222,10 @@
                                                 <tr>
                                                     <td>4</td>
                                                     <td>AAAA-AAAA-AAAA-AAAA</td>
-                                                    <td>The Witcher 3: Wild Hunt</td>
-                                                    <td>Game of the Year</td>
-                                                    <td>PC</td>
-                                                    <td><span class="badge bg-danger">Vendida</span></td>
-                                                    <td>15/03/2025</td>
+                                                    <td><span class="badge bg-danger">Sí</span></td>
+                                                    <td>2</td>
+                                                    <td>2</td>
+                                                    <td>1</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -246,11 +243,10 @@
                                                 <tr>
                                                     <td>5</td>
                                                     <td>BBBB-BBBB-BBBB-BBBB</td>
-                                                    <td>Cyberpunk 2077</td>
-                                                    <td>Estándar</td>
-                                                    <td>PC</td>
-                                                    <td><span class="badge bg-success">Disponible</span></td>
-                                                    <td>-</td>
+                                                    <td><span class="badge bg-success">No</span></td>
+                                                    <td>1</td>
+                                                    <td>1</td>
+                                                    <td>1</td>
                                                     <td>
                                                         <div class="dropdown">
                                                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -461,54 +457,51 @@
                 </div>
                 <div class="modal-body">
                     <form>
+                        <input type="hidden" id="editKeyId" name="id" value="1">
                         <div class="mb-3">
-                            <label for="editKeyCode" class="form-label">Clave de Activación</label>
-                            <input type="text" class="form-control font-monospace" id="editKeyCode" value="XXXX-XXXX-XXXX-XXXX">
+                            <label for="editKeyActivationKey" class="form-label">Clave de Activación</label>
+                            <input type="text" class="form-control font-monospace" id="editKeyActivationKey" name="activation_key" value="XXXX-XXXX-XXXX-XXXX">
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="editKeyGame" class="form-label">Juego</label>
-                                <select class="form-select" id="editKeyGame">
-                                    <option value="1" selected>The Witcher 3: Wild Hunt</option>
-                                    <option value="2">Cyberpunk 2077</option>
-                                    <option value="3">Red Dead Redemption 2</option>
-                                    <option value="4">GTA V</option>
-                                    <option value="5">Elden Ring</option>
+                                <label for="editKeyIdGames" class="form-label">ID Juego</label>
+                                <select class="form-select" id="editKeyIdGames" name="id_games">
+                                    <option value="1">1 - The Witcher 3: Wild Hunt</option>
+                                    <option value="2" selected>2 - Cyberpunk 2077</option>
+                                    <option value="3">3 - Red Dead Redemption 2</option>
+                                    <option value="4">4 - GTA V</option>
+                                    <option value="5">5 - Elden Ring</option>
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="editKeyEdition" class="form-label">Edición</label>
-                                <select class="form-select" id="editKeyEdition">
-                                    <option value="1" selected>Estándar</option>
-                                    <option value="2">Game of the Year</option>
-                                    <option value="3">Edición Deluxe</option>
-                                    <option value="4">Ultimate Edition</option>
+                                <label for="editKeyIdEdition" class="form-label">ID Edición</label>
+                                <select class="form-select" id="editKeyIdEdition" name="id_edition">
+                                    <option value="1" selected>1 - Estándar</option>
+                                    <option value="2">2 - Game of the Year</option>
+                                    <option value="3">3 - Edición Deluxe</option>
+                                    <option value="4">4 - Ultimate Edition</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                <label for="editKeyPlatform" class="form-label">Plataforma</label>
-                                <select class="form-select" id="editKeyPlatform">
-                                    <option value="1" selected>PC</option>
-                                    <option value="2">PlayStation 5</option>
-                                    <option value="3">PlayStation 4</option>
-                                    <option value="4">Xbox Series X|S</option>
-                                    <option value="5">Xbox One</option>
-                                    <option value="6">Nintendo Switch</option>
+                                <label for="editKeyIdPlatform" class="form-label">ID Plataforma</label>
+                                <select class="form-select" id="editKeyIdPlatform" name="id_platform">
+                                    <option value="1">1 - PC</option>
+                                    <option value="2">2 - PlayStation 5</option>
+                                    <option value="3" selected>3 - PlayStation 4</option>
+                                    <option value="4">4 - Xbox Series X|S</option>
+                                    <option value="5">5 - Xbox One</option>
+                                    <option value="6">6 - Nintendo Switch</option>
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="editKeyStatus" class="form-label">Estado</label>
-                                <select class="form-select" id="editKeyStatus">
-                                    <option value="available" selected>Disponible</option>
-                                    <option value="sold">Vendida</option>
+                                <label for="editKeyIsSold" class="form-label">¿Vendida?</label>
+                                <select class="form-select" id="editKeyIsSold" name="is_sold">
+                                    <option value="false" selected>No</option>
+                                    <option value="true">Sí</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="mb-3">
-                            <label for="editKeyNotes" class="form-label">Notas</label>
-                            <textarea class="form-control" id="editKeyNotes" rows="3">Clave generada para la promoción de primavera.</textarea>
                         </div>
                     </form>
                 </div>
@@ -558,41 +551,50 @@
                     <form>
                         <div class="row mb-3">
                             <div class="col-md-6 mb-3 mb-md-0">
-                                <label for="batchGame" class="form-label">Juego</label>
-                                <select class="form-select" id="batchGame">
+                                <label for="batchGame" class="form-label">ID Juego</label>
+                                <select class="form-select" id="batchGame" name="id_games">
                                     <option value="" selected disabled>Seleccionar juego</option>
-                                    <option value="1">The Witcher 3: Wild Hunt</option>
-                                    <option value="2">Cyberpunk 2077</option>
-                                    <option value="3">Red Dead Redemption 2</option>
-                                    <option value="4">GTA V</option>
-                                    <option value="5">Elden Ring</option>
+                                    <option value="1">1 - The Witcher 3: Wild Hunt</option>
+                                    <option value="2">2 - Cyberpunk 2077</option>
+                                    <option value="3">3 - Red Dead Redemption 2</option>
+                                    <option value="4">4 - GTA V</option>
+                                    <option value="5">5 - Elden Ring</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label for="batchEdition" class="form-label">Edición</label>
-                                <select class="form-select" id="batchEdition">
+                                <label for="batchEdition" class="form-label">ID Edición</label>
+                                <select class="form-select" id="batchEdition" name="id_edition">
                                     <option value="" selected disabled>Seleccionar edición</option>
-                                    <option value="1">Estándar</option>
-                                    <option value="2">Game of the Year</option>
-                                    <option value="3">Edición Deluxe</option>
-                                    <option value="4">Ultimate Edition</option>
+                                    <option value="1">1 - Estándar</option>
+                                    <option value="2">2 - Game of the Year</option>
+                                    <option value="3">3 - Edición Deluxe</option>
+                                    <option value="4">4 - Ultimate Edition</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6 mb-3 mb-md-0">
-                                <label for="batchPlatform" class="form-label">Plataforma</label>
-                                <select class="form-select" id="batchPlatform">
+                                <label for="batchPlatform" class="form-label">ID Plataforma</label>
+                                <select class="form-select" id="batchPlatform" name="id_platform">
                                     <option value="" selected disabled>Seleccionar plataforma</option>
-                                    <option value="1">PC</option>
-                                    <option value="2">PlayStation 5</option>
-                                    <option value="3">PlayStation 4</option>
-                                    <option value="4">Xbox Series X|S</option>
-                                    <option value="5">Xbox One</option>
-                                    <option value="6">Nintendo Switch</option>
+                                    <option value="1">1 - PC</option>
+                                    <option value="2">2 - PlayStation 5</option>
+                                    <option value="3">3 - PlayStation 4</option>
+                                    <option value="4">4 - Xbox Series X|S</option>
+                                    <option value="5">5 - Xbox One</option>
+                                    <option value="6">6 - Nintendo Switch</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
+                                <label for="batchIsSold" class="form-label">¿Vendidas?</label>
+                                <select class="form-select" id="batchIsSold" name="is_sold">
+                                    <option value="false" selected>No</option>
+                                    <option value="true">Sí</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
                                 <label for="batchQuantity" class="form-label">Cantidad de Réplicas</label>
                                 <input type="number" min="1" class="form-control" id="batchQuantity" value="10">
                             </div>
@@ -632,7 +634,7 @@
                                 </div>
                                 <div id="importKeysOptions" class="d-none">
                                     <label for="keysTextarea" class="form-label">Ingresa una clave por línea</label>
-                                    <textarea class="form-control font-monospace" id="keysTextarea" rows="6" placeholder="XXXX-XXXX-XXXX-XXXX
+                                    <textarea class="form-control font-monospace" id="keysTextarea" name="activation_key" rows="6" placeholder="XXXX-XXXX-XXXX-XXXX
 YYYY-YYYY-YYYY-YYYY
 ZZZZ-ZZZZ-ZZZZ-ZZZZ"></textarea>
                                 </div>
